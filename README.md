@@ -52,10 +52,12 @@ cd ..
 *9.9) There will be many times when you will work with merge conflicts. I will teach you regarding this in the following meet*
 
 
-*10) You will be able to see something in the source control icon on the left, so click that, fill the message box with relevant and verbose commit message, and sync changes*
+*10) You will be able to see something in the source control icon on the left, so click that, fill the message box with relevant and verbose commit message, and sync changes.*
 
 
 *11) Happy coding!*
+
+
 
 
 
