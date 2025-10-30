@@ -37,7 +37,7 @@ const App = () => {
     fetchData();
   }, [dispatch]);
 
-  if (0) {
+  if (loading) {
     return (
       <>
         <div>
