@@ -1,15 +1,18 @@
 import React from "react";
 import "./Preloader.css";
+import TrueFocus from './TrueFocus.jsx';
 
 const Preloader = () => {
     return (
 
-        <div className="preloader">
-            <div className="logo1">
-                <div className="front"></div>
-                <div className="back"></div>
-            </div>
-        </div>
+        <TrueFocus 
+        sentence="GMUN 2026"
+        manualMode={false}
+        blurAmount={5}
+        borderColor="#7c03dfff"
+        animationDuration={2}
+        pauseBetweenAnimations={1}
+        />
     );
 };
 
