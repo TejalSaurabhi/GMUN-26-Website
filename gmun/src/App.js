@@ -11,6 +11,7 @@ import { logout } from "./store/authSlice.js";
 import Preloader from "./components/preloader.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Landing from "./pages/Landing.jsx";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -49,16 +50,15 @@ const App = () => {
 
   return (
     <>
-      <ToastContainer position="top-left" />
-      <div>
-        {/* Navbar will always be displayed */}
-        <NavBar />
+      {/* <ToastContainer position="top-left" /> */}
+      {/* Navbar will always be displayed */}
+      {/* <NavBar /> */}
 
-        {/* Render the child route components using Outlet */}
-        <div>
+      {/* Render the child route components using Outlet */}
+      {/* <div>
           <Outlet />
-        </div>
-      </div>
+        </div> */}
+      <Landing />
     </>
   );
 };

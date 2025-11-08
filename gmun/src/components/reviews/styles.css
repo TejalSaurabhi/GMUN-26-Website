@@ -155,8 +155,12 @@ section h1::after {
   padding: 10px 20px;
   border-radius: 16px;
   margin: 0px 10px;
-  border: 1px solid yellow;
+  border: 1px solid #e9a751;
   max-width: 70vw;
+}
+
+.name-center {
+  color: #e9a751;
 }
 
 .avatar-wrapper {
