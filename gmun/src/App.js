@@ -12,6 +12,7 @@ import Preloader from "./components/preloader.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Landing from "./pages/Landing.jsx";
+import Home from "./pages/Home.jsx";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -52,13 +53,12 @@ const App = () => {
     <>
       {/* <ToastContainer position="top-left" /> */}
       {/* Navbar will always be displayed */}
-      {/* <NavBar /> */}
+      <NavBar />
 
       {/* Render the child route components using Outlet */}
-      {/* <div>
+      <div>
           <Outlet />
-        </div> */}
-      <Landing />
+        </div>
     </>
   );
 };

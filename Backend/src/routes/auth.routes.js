@@ -1,8 +1,18 @@
 import { Router } from "express";
-import { loginRoute, logoutRoute, signUpRoute, verifyEmail, forgotPassword, resetPassword } from "../controllers/auth.controller.js";
+import {
+  loginRoute,
+  logoutRoute,
+  signUpRoute,
+  verifyEmail,
+  forgotPassword,
+  resetPassword,
+  checkAuth,
+} from "../controllers/auth.controller.js";
+import { verifyToken } from "../middlewares/verifyToken.js";
 
 const router = Router();
 
+router.get("/check-auth", verifyToken, checkAuth);
 router.post("/signup", signUpRoute);
 router.post("/login", loginRoute);
 router.post("/logout", logoutRoute);

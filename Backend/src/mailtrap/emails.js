@@ -21,7 +21,7 @@ export const sendVerificationEmail = async (email, verificationCode) => {
     });
   } catch (error) {
     console.log("Error in sendVerificationEmail function: ", error);
-    res.status(500).json({ success: false, message: "internal server error" });
+    throw new Error(error);
   }
 };
 
@@ -43,7 +43,7 @@ export const sendResetPasswordEmail = async (email, resetPasswordURL) => {
     console.log("Reset password email sent: ", response);
   } catch (error) {
     console.log("error in sendPasswordResetEmail function: ", error);
-    res.status(500).json({ success: false, message: "Server error" });
+    throw new Error(error);
   }
 };
 
@@ -60,6 +60,6 @@ export const sendResetSuccessfulEmail = async (email) => {
     });
   } catch (error) {
     console.log("Error in sendResetSuccessfulEmail: ", error);
-    res.status(500).json({ json: false, message: "Internal server error" });
+    throw new Error(error);
   }
 };

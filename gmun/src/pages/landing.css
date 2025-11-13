@@ -7,10 +7,10 @@
 .home-container {
   width: 100vw;
   height: 100vh;
-  background-image: url(../../public/home-reviews/car-bg.png);
   background-size: contain;
   padding: 0;
-  color: #f0f0f0;
+  color: #e2e2e2;
+  background-image: url("../../public/home-reviews/car-bg.png");
 }
 
 .main-cards {

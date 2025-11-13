@@ -197,3 +197,17 @@ export const resetPassword = async (req, res) => {
     res.status(500).json({ success: false, message: "internal server error" });
   }
 };
+
+export const checkAuth = async (req, res) => {
+  try {
+    const user = await User.findById(req.userId).select("-password");
+    if (!user) {
+      return res.status(400).json({ success: false, message: "No user found" });
+    }
+
+    res.status(200).json({ success: true, user });
+  } catch (error) {
+    console.log("Error in chechAuth controller", error);
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+};

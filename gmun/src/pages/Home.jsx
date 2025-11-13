@@ -7,7 +7,7 @@ import Timeline from "../components/Timeline";
 
 const Home = () => {
   return (
-    <div>
+    <div style={{ backgroundImage: 'url("/assets/home-bg.jpg")', backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
       <header>
         <h1 className="heading">GMUN 2025</h1>
       </header>
