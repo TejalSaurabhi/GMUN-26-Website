@@ -52,7 +52,7 @@ const SignUpPage = () => {
           <motion.button
             className="submit-btn"
             whileHover={{ scale: 1.02 }}
-            whileTop={{ scale: 0.98 }}
+            whileTap={{ scale: 0.98 }}
             type="submit"
           >
             Sign Up

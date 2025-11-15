@@ -5,7 +5,6 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Register from "./components/Register";
-import EditDetails from "./components/EditDetails";
 import Landing from "./pages/Landing";
 import Committee from "./components/Committee";
 import Contacts from "./components/Contacts";
@@ -21,6 +20,7 @@ import Sponsors from "./components/Sponsors.jsx";
 import AuthLayout from "./pages/Authorization/AuthLayout.jsx";
 import SignUpPage from "./pages/Authorization/SignUpPage.jsx";
 import LoginPage from "./pages/Authorization/LoginPage.jsx";
+import ForgotPassword from "./pages/Authorization/ForgotPassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -38,10 +38,18 @@ const router = createBrowserRouter([
     )
   },
   {
-    path: "api/auth/login",
+    path: "/api/auth/login",
     element: (
       <AuthLayout>
         <LoginPage />
+      </AuthLayout>
+    )
+  },
+  {
+    path: "/api/auth/forgot-password",
+    element: (
+      <AuthLayout>
+        <ForgotPassword />
       </AuthLayout>
     )
   },

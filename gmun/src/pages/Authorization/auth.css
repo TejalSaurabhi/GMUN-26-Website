@@ -90,7 +90,8 @@
     /* focus:ring-2 + focus:ring-green-500 */ 0 0 0 4px #111827;
 }
 
-.link-to-log-in {
+.link-to-log-in,
+.link-to-signup {
   padding-left: 2rem; /* px-8 */
   padding-right: 2rem;
 
@@ -103,17 +104,94 @@
   justify-content: center; /* justify-center */
 }
 
-.link-to-log-in p {
+.link-to-log-in p,
+.link-to-signup p {
   font-size: 0.875rem; /* text-sm */
   line-height: 1.25rem;
 
   color: #9ca3af;
 }
 
-.login-page-link {
+.login-page-link,
+.signup-page-link {
   color: #4ade80;
 }
 
-.login-page-link:hover {
-  text-decoration: underline;
+.login-page-link:hover,
+.signup-page-link:hover {
+  text-decoration: none;
+}
+
+.login-parent {
+  max-width: 28rem; /* max-w-md */
+  width: 100%; /* w-full */
+
+  background-color: rgba(31, 41, 55, 0.5); /* bg-gray-800 + bg-opacity-50 */
+
+  backdrop-filter: blur(24px); /* backdrop-filter + backdrop-blur-xl */
+
+  border-radius: 1rem; /* rounded-2xl */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-xl */
+
+  overflow: hidden;
+}
+
+.login-container {
+  padding: 2rem;
+}
+
+.welcome-back {
+  font-size: 1.875rem; /* text-3xl */
+  line-height: 2.25rem;
+
+  font-weight: 700; /* font-bold */
+
+  margin-bottom: 1.5rem; /* mb-6 */
+
+  text-align: center; /* text-center */
+
+  background-image: linear-gradient(
+    to right,
+    #4ade80,
+    #10b981
+  ); /* from-green-400 to-emerald-500 */
+  color: transparent; /* text-transparent */
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.forgot-password-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.forgot-password {
+  font-size: 0.875rem; /* text-sm */
+  line-height: 1.25rem;
+
+  color: #4ade80;
+}
+
+.forgot-password:hover {
+  text-decoration: none;
+}
+
+.loader {
+  width: 1.5rem; /* w-6 */
+  height: 1.5rem; /* h-6 */
+
+  animation: spin 1s linear infinite; /* animate-spin */
+
+  text-align: center; /* text-center */
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
