@@ -195,3 +195,89 @@
     transform: rotate(360deg);
   }
 }
+
+.verify-email-parent {
+  max-width: 28rem; /* max-w-md */
+  width: 100%; /* w-full */
+
+  background-color: rgba(31, 41, 55, 0.5); /* bg-gray-800 + bg-opacity-50 */
+
+  backdrop-filter: blur(24px); /* backdrop-blur-xl */
+  -webkit-backdrop-filter: blur(24px); /* Safari support */
+
+  border-radius: 1rem; /* rounded-2xl */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-xl */
+
+  overflow: hidden;
+}
+
+.verify-email-container {
+  background-color: rgba(31, 41, 55, 0.5); /* bg-gray-800 + bg-opacity-50 */
+
+  backdrop-filter: blur(24px); /* backdrop-blur-xl */
+  -webkit-backdrop-filter: blur(24px); /* Safari support */
+
+  border-radius: 1rem; /* rounded-2xl */
+
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-xl */
+
+  padding: 2rem; /* p-8 */
+
+  width: 100%; /* w-full */
+  max-width: 28rem;
+}
+
+.verify-your-email {
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 700; /* font-bold */
+  margin-bottom: 1.5rem; /* mb-6 */
+  text-align: center; /* text-center */
+
+  background: linear-gradient(
+    to right,
+    #4ade80,
+    #10b981
+  ); /* from-green-400 → to-emerald-500 */
+  -webkit-background-clip: text; /* bg-clip-text */
+  background-clip: text;
+  color: transparent;
+}
+
+.verify-email-container p {
+  text-align: center; /* text-center */
+  color: #d1d5db; /* text-gray-300 */
+  margin-bottom: 1.5rem;
+}
+
+.verify-form > * + * {
+  margin-top: 1.5rem; /* space-y-6 */
+}
+
+.verify-form-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.verify-form-input {
+  width: 3rem;                 /* w-12 */
+  height: 3rem;                /* h-12 */
+
+  text-align: center;          /* text-center */
+  font-size: 1.5rem;           /* text-2xl */
+  font-weight: 700;            /* font-bold */
+
+  background-color: #374151;   /* bg-gray-700 */
+  color: #ffffff;              /* text-white */
+
+  border-width: 2px;           /* border-2 */
+  border-color: #4b5563;       /* border-gray-600 */
+
+  border-radius: 0.5rem;       /* rounded-lg */
+  outline: none;
+}
+
+.verify-form-input:focus {
+  border-color: #22c55e;
+}

@@ -21,6 +21,7 @@ import AuthLayout from "./pages/Authorization/AuthLayout.jsx";
 import SignUpPage from "./pages/Authorization/SignUpPage.jsx";
 import LoginPage from "./pages/Authorization/LoginPage.jsx";
 import ForgotPassword from "./pages/Authorization/ForgotPassword.jsx";
+import VerifyEmail from "./pages/Authorization/VerifyEmail.jsx";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,14 @@ const router = createBrowserRouter([
     element: (
       <AuthLayout>
         <ForgotPassword />
+      </AuthLayout>
+    )
+  },
+  {
+    path: "/api/auth/verify-email",
+    element: (
+      <AuthLayout>
+        <VerifyEmail />
       </AuthLayout>
     )
   },
