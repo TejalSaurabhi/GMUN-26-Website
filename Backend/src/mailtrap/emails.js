@@ -21,7 +21,7 @@ export const sendVerificationEmail = async (email, verificationCode) => {
     });
   } catch (error) {
     console.log("Error in sendVerificationEmail function: ", error);
-    throw new Error(error);
+    // throw new Error(error);
   }
 };
 
@@ -43,7 +43,7 @@ export const sendResetPasswordEmail = async (email, resetPasswordURL) => {
     console.log("Reset password email sent: ", response);
   } catch (error) {
     console.log("error in sendPasswordResetEmail function: ", error);
-    throw new Error(error);
+    // throw new Error(error);
   }
 };
 
@@ -60,6 +60,6 @@ export const sendResetSuccessfulEmail = async (email) => {
     });
   } catch (error) {
     console.log("Error in sendResetSuccessfulEmail: ", error);
-    throw new Error(error);
+    // throw new Error(error);
   }
 };
