@@ -953,21 +953,26 @@ export default function InfiniteMenu({ items = [] }) {
     }
   };
 
+  
+
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-      <canvas id="infinite-grid-menu-canvas" ref={canvasRef} />
+  <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+    <canvas id="infinite-grid-menu-canvas" ref={canvasRef} />
 
-      {activeItem && (
-        <>
-          <h2 className={`face-title ${isMoving ? 'inactive' : 'active'}`}>{activeItem.title}</h2>
+    {activeItem && (
+      <>
+        <h2 className={`face-title ${isMoving ? 'inactive' : 'active'}`}>{activeItem.title}</h2>
+        <p className={`face-description ${isMoving ? 'inactive' : 'active'}`}> {activeItem.description}</p>
+      </>
+    )}
 
-          <p className={`face-description ${isMoving ? 'inactive' : 'active'}`}> {activeItem.description}</p>
-
-          <div onClick={handleButtonClick} className={`action-button ${isMoving ? 'inactive' : 'active'}`}>
-            <p className="action-button-icon">&#x2197;</p>
-          </div>
-        </>
-      )}
+    {/* Drag hint (bottom-right). hidden while isMoving is true */}
+    <div className={`drag-instruction ${isMoving ? 'hidden' : ''}`} aria-hidden={isMoving ? "true" : "false"}>
+      <span className="drag-text">
+        <small style={{opacity:0.8, display:'block', fontWeight:500}}>Click & Drag</small>
+      </span>
     </div>
-  );
+  </div>
+);
+
 }

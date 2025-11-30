@@ -29,12 +29,27 @@ const galleries = {
   ],
 };
 
+const titles = {
+  day0: "Day 0 – Opening Ceremony",
+  day1: "Day 1",
+  day2: "Day 2 – Closing Ceremony"
+};
+
+const descriptions = {
+  day0: "Opening ceremony highlights",
+  day1: "Social Night",
+  day2: "Closing ceremony moments"
+};
+
 // Flatten galleries into items compatible with InfiniteMenu
 const buildItems = () => {
   const items = [];
   Object.keys(galleries).forEach((day) => {
     galleries[day].forEach((img) => {
-      items.push({ image: img, link: '#', title: '', description: '' });
+      items.push({ image: img,
+        link: '#',
+        title: titles[day],          // ⭐ add title here
+        description: descriptions[day] });
     });
   });
   return items;

@@ -30,28 +30,121 @@
 
 .face-title {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 4%;
+  left: 50%;
+  bottom: 4%;
+  transform: translateX(-50%);
+  font-weight: 750;
+  font-size: 2.5rem;
   color: #fff;
-  font-size: 20px;
-  z-index: 2000;
+  letter-spacing: 0.5px;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+
+  /* animation */
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
+.face-title.active {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.face-title.inactive {
+  opacity: 0;
+  transform: translate(-50%, -20px);
+}
+
+/* ------------------------------
+   SUBTITLE / DESCRIPTION BELOW
+------------------------------ */
 .face-description {
   position: absolute;
-  top: 48px;
-  left: 20px;
-  color: rgba(255,255,255,0.85);
-  z-index: 2000;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.88);
+  letter-spacing: 0.3px;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  pointer-events: none;
+
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.action-button {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-  z-index: 2000;
-  cursor: pointer;
+.face-description.active {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.face-description.inactive {
+  opacity: 0;
+  transform: translate(-50%, -10px);
 }
 
 .inactive { opacity: 0.3; transform: translateY(6px); }
-.active { opacity: 1; transform: none; }
+.active { opacity: 1; transform: none; } 
+
+/* ---------- Drag hint (bottom-right) ---------- */
+.drag-instruction {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 30px;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  pointer-events: none;           /* <-- important: doesn't block drag */
+  transition: opacity 200ms ease, transform 200ms ease;
+  opacity: 1;
+  transform: translateY(0);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* small icon container (optional) */
+.drag-instruction .drag-icon {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+  user-select: none;
+}
+
+/* subtle hidden state when user is interacting */
+.drag-instruction.hidden {
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+}
+
+/* mobile tweaks */
+@media (max-width: 768px) {
+  .drag-instruction { bottom: 14px; right: 14px; padding: 6px 10px; font-size: 12px; }
+  .drag-instruction .drag-icon { width: 30px; height: 30px; }
+}
+
+@media (max-width: 1500px) {
+  .face-title,
+  .face-description {
+    display: none;
+  }
+}
