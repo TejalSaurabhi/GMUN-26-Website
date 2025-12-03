@@ -5,7 +5,7 @@ const AuthLayout = ({children}) => {
   return (
     <div className="auth-parent">
       <FloatingShapes
-        color="#22c55e"
+        color="#119d9fff"
         width="16rem"
         height="16rem"
         top="-5%"
@@ -13,7 +13,7 @@ const AuthLayout = ({children}) => {
         delay={0}
       />
       <FloatingShapes
-        color="#22c55e"
+        color="#119d9fff"
         width="8rem"
         height="8rem"
         top="-5%"
@@ -22,7 +22,7 @@ const AuthLayout = ({children}) => {
       />
 
       <FloatingShapes
-        color="#22c55e"
+        color="#119d9fff"
         width="12rem"
         height="12rem"
         top="45%"

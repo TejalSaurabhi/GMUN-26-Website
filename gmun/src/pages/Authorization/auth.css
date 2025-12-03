@@ -2,9 +2,9 @@
   min-height: 100vh; /* min-h-screen */
   background: linear-gradient(
     to bottom right,
-    /* bg-linear-to-br */ #111827,
-    /* from-gray-900 */ #064e3b,
-    /* via-green-900 */ #065f46 /* to-emerald-900 */
+    #032625,
+    #104341ff,
+    #356361ff
   );
   display: flex; /* flex */
   align-items: center; /* items-center */
@@ -43,11 +43,7 @@
 
   text-align: center; /* text-center */
 
-  background: linear-gradient(
-    to right,
-    #4ade80,
-    #10b981
-  ); /* bg-gradient-to-r from-green-400 to-emerald-500 */
+  background: #119d9fff;
   -webkit-background-clip: text; /* bg-clip-text */
   background-clip: text;
 
@@ -63,11 +59,7 @@
   padding-left: 1rem; /* px-4 */
   padding-right: 1rem;
 
-  background: linear-gradient(
-    to right,
-    #22c55e,
-    #059669
-  ); /* from-green-500 to-emerald-600 */
+  background: #119d9fff;
   color: #ffffff; /* text-white */
 
   font-weight: 700; /* font-bold */
@@ -81,12 +73,12 @@
 }
 
 .submit-btn:hover {
-  background: linear-gradient(to right, #16a34a, #047857);
+  background: linear-gradient(to right, #119d9fff, #0a5a5b);
 }
 
 .submit-btn:focus {
   outline: none; /* focus:outline-none */
-  box-shadow: 0 0 0 2px #22c55e,
+  box-shadow: 0 0 0 2px #119d9fff,
     /* focus:ring-2 + focus:ring-green-500 */ 0 0 0 4px #111827;
 }
 
@@ -109,12 +101,12 @@
   font-size: 0.875rem; /* text-sm */
   line-height: 1.25rem;
 
-  color: #9ca3af;
+  color: #d9ccc4;
 }
 
 .login-page-link,
 .signup-page-link {
-  color: #4ade80;
+  color: #119d9fff;
 }
 
 .login-page-link:hover,
@@ -151,11 +143,7 @@
 
   text-align: center; /* text-center */
 
-  background-image: linear-gradient(
-    to right,
-    #4ade80,
-    #10b981
-  ); /* from-green-400 to-emerald-500 */
+  background: #119d9fff;
   color: transparent; /* text-transparent */
   -webkit-background-clip: text;
   background-clip: text;
@@ -171,7 +159,7 @@
   font-size: 0.875rem; /* text-sm */
   line-height: 1.25rem;
 
-  color: #4ade80;
+  color: #119d9fff;
 }
 
 .forgot-password:hover {
@@ -235,11 +223,7 @@
   margin-bottom: 1.5rem; /* mb-6 */
   text-align: center; /* text-center */
 
-  background: linear-gradient(
-    to right,
-    #4ade80,
-    #10b981
-  ); /* from-green-400 → to-emerald-500 */
+  background: #119d9fff;
   -webkit-background-clip: text; /* bg-clip-text */
   background-clip: text;
   color: transparent;
@@ -247,7 +231,7 @@
 
 .verify-email-container p {
   text-align: center; /* text-center */
-  color: #d1d5db; /* text-gray-300 */
+  color: #d9ccc4; /* text-gray-300 */
   margin-bottom: 1.5rem;
 }
 
@@ -279,7 +263,7 @@
 }
 
 .verify-form-input:focus {
-  border-color: #22c55e;
+  border-color: #119d9fff;
 }
 
 .error {

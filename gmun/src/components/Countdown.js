@@ -73,7 +73,7 @@ const Countdown = () => {
     return (
         <div className="countdown-container">
             <h1 className="countdown-heading">
-                Countdown to <span>GMUN 2025</span>
+                Countdown to <span>GMUN 2026</span>
             </h1>
             <div className="countdown-wrapper">
                 <div className="countdown-card">

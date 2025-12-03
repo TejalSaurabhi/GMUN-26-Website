@@ -8,7 +8,7 @@ const Input = ({ icon: Icon, ...props }) => {
           style={{
             width: "1.25rem",
             height: "1.25rem",
-            color: "#22c55e",
+            color: "#0d7779ff",
           }}
         />
       </div>

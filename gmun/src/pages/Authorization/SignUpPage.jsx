@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import Input from "../../components/Authorization/InputField/Input";
-import { Loader, Lock, Mail, User } from "lucide-react";
+import { Flag, Landmark, Loader, Lock, Mail, User } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PasswordStrengthMeter from "../../components/Authorization/PasswordStrengthMeter/PasswordStrengthMeter";
@@ -10,6 +10,9 @@ const SignUpPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [committee, setCommittee] = useState("");
+  const [country, setCountry] = useState("");
+  const [personnel, setPersonnel] = useState("");
 
   const navigate = useNavigate();
   const { signup, error, isLoading } = useAuthStore();
@@ -20,7 +23,7 @@ const SignUpPage = () => {
     try {
       await signup(email, password, name);
       navigate("/api/auth/verify-email");
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
   };
@@ -57,6 +60,41 @@ const SignUpPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <Input
+            icon={Landmark}
+            type="text"
+            placeholder="Committee"
+            value={committee}
+            onChange={(e) => {
+              if (e.target.value === "All India Political Party") {
+                setCommittee("AIPPM");
+              } else setCommittee(e.target.value);
+            }}
+          />
+          {committee === "AIPPM" || committee === "International Press" ? (
+            <Input
+              icon={User}
+              type="text"
+              placeholder="Personnel"
+              value={personnel}
+              onChange={(e) => setPersonnel(e.target.value)}
+            />
+          ) : (
+            (committee === "UNSC" ||
+              committee === "DISEC" ||
+              committee === "UNCSW" ||
+              committee === "World Bank" ||
+              committee === "UNHRC") && (
+              <Input
+                icon={Flag}
+                type="text"
+                placeholder="Country"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+              />
+            )
+          )}
+
           {error && <p className="error">{error}</p>}
 
           <PasswordStrengthMeter password={password} />
