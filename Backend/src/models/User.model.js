@@ -15,23 +15,13 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
-    Role: {
-      type: String,
-      enum: [
-        "Executive Board",
-        "Secretary General",
-        "MUN head",
-        "Organizing Committee", // Corrected typo here
-        "Delegate",
-        "Unregistered",
-        "ADMIN"
-      ],
-      default: "Unregistered",
-    },
     verified: {
       type: Boolean,
       default: false,
     },
+    committee: String,
+    country: String,
+    personnel: String,
     verificationToken: String,
     verificationTokenExpiresAt: Date, // 24 hours from now
     resetPasswordToken: String,

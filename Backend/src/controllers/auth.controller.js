@@ -9,10 +9,10 @@ import {
 } from "../mailtrap/emails.js";
 
 export const signUpRoute = async (req, res) => {
-  const { fullName, email, password } = req.body;
+  const { fullName, email, password, committee, country, personnel } = req.body;
 
   try {
-    if (!fullName || !email || !password) {
+    if (!fullName || !email || !password || !committee) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -32,13 +32,31 @@ export const signUpRoute = async (req, res) => {
         100000 + Math.random() * 900000
       ).toString();
 
-      const user = new User({
-        fullName,
-        email,
-        password: hashedPassword,
-        verificationToken,
-        verificationTokenExpiresAt: Date.now() + 24 * 60 * 60 * 1000, // 24 hours from now
-      });
+      let user;
+
+      if(committee === "AIPPM" || committee === "International Press") {
+        user = new User({
+          fullName,
+          email,
+          password: hashedPassword,
+          committee,
+          personnel,
+          verificationToken,
+          verificationTokenExpiresAt: Date.now() + 15 * 60 * 1000, // 15 minutes from now
+        })
+      }
+
+      else {
+        user = new User({
+          fullName,
+          email,
+          password: hashedPassword,
+          committee,
+          country,
+          verificationToken,
+          verificationTokenExpiresAt: Date.now() + 15 * 60 * 1000, // 15 minutes from now
+        })
+      }
 
       await user.save();
       generateTokenAndSetCookie(res, user._id);
