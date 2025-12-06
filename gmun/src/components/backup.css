@@ -39,9 +39,12 @@
   position: relative;
   z-index: 1;
   margin: 0 auto;
+  /* Add bottom margin to match other components */
+  margin-bottom: 60px;
   margin-top:30px;
 }
 
+/* === MAIN CONTENT BOX === */
 .committee-content {
   align-items: center;
   width: 100%;
@@ -52,6 +55,7 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 2;
+  /* Normalized Spacing */
   margin-top: 30px; 
   margin-bottom: 30px;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -87,6 +91,7 @@
   color: #B69354;
 }
 
+/* === CARD CONTAINERS === */
 .cards {
   background-color: #36353767;
   border: 5px solid #B69354;
@@ -115,8 +120,10 @@
   margin-bottom: 5px;
 }
 
+/* === COMMITTEE LOGOS (Restored Colors + Double Wall Fix) === */
 .UNSCLogo {
   width: 16vw; 
+  /* Minimum width prevents it from getting too small on shrinking desktop windows */
   min-width: 200px; 
   height: auto;
   display: block;
@@ -131,25 +138,35 @@
   transition: all 0.4s ease;
 }
 
+/* === HOVER EFFECTS === */
 .UNSCLogo:hover {
   transform: translateY(-5px);
+  
+  /* Brighten Inner Line */
   border-color: rgba(182, 147, 84, 0.9);
+  
+  /* Brighten Outer Line */
   outline-color: #d2aa5b;
+  
+  /* Restored the stronger Hover Glow */
   box-shadow: 0 0 25px rgba(182, 147, 84, 0.4);
   
   cursor: pointer;
 }
 
+/* === AGENDA CARD CONTAINER === */
 .agenda-card-container {
   position: relative;
   z-index: 2;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  /* Normalized Spacing: EXACTLY same as Board */
+  margin-top: -30px;
+  margin-bottom: -30px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* === EXECUTIVE BOARD / Two-Chair Board === */
 .two-chair-board {
   background: rgba(36, 33, 45, 0.6);
   border: 2px solid rgba(182, 147, 84, 0.85);
@@ -160,11 +177,14 @@
   max-width: 950px;
   position: relative;
   transition: all 0.3s ease;
-  padding: 40px 50px;
+  
+  /* Normalized Spacing: EXACTLY same as Agenda */
+  padding: 40px 50px; /* Spacious on Desktop */
   max-width: 950px;
   margin: 30px auto;
 }
 
+/* Inner subtle gold frame */
 .two-chair-board::before {
   content: "";
   position: absolute;
@@ -223,6 +243,7 @@
   margin-top: 25px;
 }
 
+/* === Chair Cards === */
 .chair-card {
   width: 230px;
   text-align: center;
@@ -359,9 +380,10 @@
   color: #d5b97a;
 }
 
+/* === RESPONSIVE ADJUSTMENTS === */
 @media (max-width: 1024px) {
   .committee-container {
-    gap: 0px; 
+    gap: 0px; /* Let margins handle it */
   }
   
   .two-chair-board,
@@ -382,6 +404,123 @@
 }
 @media (max-width: 768px) {
   .two-chair-photos {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    margin-top: 20px;
+  }
+
+  .chair-card {
+    width: 180px;
+  }
+
+  .chair-img {
+    height: 220px;
+  }
+
+  .two-chair-board,
+  .committee-content,
+  .agenda-card-container {
+    padding: 25px 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .clean-heading {
+    font-size: 26px;
+  }
+  
+  #World-Map h2 {
+    font-size: 32px;
+    margin-bottom: 20px !important;
+  }
+  
+  /* Reduce the gap between map and content box on mobile */
+  .committee-map {
+    margin-bottom: 10px !important;
+    margin-top: 10px !important;
+  }
+  
+  .committee-content {
+    margin-top: 0px !important;
+  }
+  
+  .agenda-card-container {
+    margin-top: 0px !important;
+  }
+}
+/* === MOBILE & TABLET OVERRIDES === */
+@media (max-width: 768px) {
+
+  /* 1. FIX THE LOGO: Make it bigger on mobile */
+  .UNSCLogo {
+    width: 60vw; /* Use 60% of screen width instead of 16% */
+    max-width: 220px; /* Cap it so it doesn't get huge */
+    min-width: 150px; /* Ensure it's never tiny */
+    
+    /* Reduce padding/gap for mobile to save space */
+    padding: 20px; 
+    outline-offset: 6px; 
+    margin-top: 40px;
+    margin-bottom: 30px;
+  }
+
+  /* 2. FIX THE BOARD: maximize space */
+  .two-chair-board {
+    width: 90%; /* Take up most of the screen width */
+    padding: 30px 20px; /* Reduce padding so text fits */
+    margin-top: 20px;
+  }
+
+  /* 3. FIX THE CHAIRS: Stack vertically & center */
+  .two-chair-photos {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px; /* More space between the two stacked chairs */
+  }
+
+  .chair-card {
+    width: 100%; /* Allow card to fill the container width */
+    max-width: 280px; /* But don't let it get huge */
+  }
+
+  .chair-img {
+    height: auto; /* Allow height to adjust naturally */
+    aspect-ratio: 3/4; /* Maintain portrait ratio */
+  }
+  
+  /* 4. TEXT ADJUSTMENTS */
+  .clean-heading {
+    font-size: 24px; /* Slightly smaller heading */
+  }
+  
+  .chair-name {
+    font-size: 22px;
+  }
+  
+  .chair-role {
+    font-size: 16px;
+  }
+}
+
+/* === MOBILE & TABLET OVERRIDES === */
+@media (max-width: 768px) {
+
+  /* 1. EXECUTIVE BOARD (Margins & Sizing) */
+  .two-chair-board {
+    /* Maintain the margin fixes */
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin: 30px 15px !important; /* Slightly smaller side margins to give images more room */
+    
+    box-sizing: border-box !important;
+    /* Reduce padding inside the box so images can be bigger */
+    padding: 30px 15px !important; 
+  }
+
+  /* 2. CHAIR PHOTOS (Side-by-Side Fix) */
+  .two-chair-photos {
     flex-direction: row !important; /* Force side-by-side */
     flex-wrap: nowrap !important;   /* Prevent stacking */
     align-items: flex-start;
@@ -395,32 +534,15 @@
     max-width: 180px; /* Cap size */
     margin-bottom: 0;
   }
-
-  .chair-img {
-    height: auto; /* Allow height to adjust naturally */
-    aspect-ratio: 3/4; /* Maintain portrait ratio */
-  }
-
-  .two-chair-board,
-  .committee-content,
-  .agenda-card-container {
-    padding: 25px 15px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
+  
+  /* Adjust image wrapper */
   .chair-image-wrapper {
     width: 100%;
     aspect-ratio: 3/4;
-    border-radius: 10px; 
+    border-radius: 10px; /* Slightly smaller radius for smaller images */
   }
-  
-  .clean-heading {
-    font-size: 24px;
-    white-space: normal;
-    word-wrap: break-word;
-  }
-  
+
+  /* Scale down text to fit the smaller cards */
   .chair-name {
     font-size: 16px !important;
     margin-top: 8px;
@@ -431,25 +553,7 @@
     line-height: 1.3;
   }
 
-  
-  #World-Map h2 {
-    font-size: 32px;
-    margin-bottom: 20px !important;
-  }
-  
-  .committee-map {
-    margin-bottom: 10px !important;
-    margin-top: 10px !important;
-  }
-  
-  .committee-content {
-    margin-top: 0px !important;
-  }
-  
-  .agenda-card-container {
-    margin-top: 0px !important;
-  }
-
+  /* 3. LOGO FIX */
   .UNSCLogo {
     width: 60vw;
     max-width: 220px;
@@ -459,19 +563,16 @@
     margin-top: 40px;
     margin-bottom: 30px;
   }
-
-  .two-chair-board {
-    width: auto !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    margin: 30px 15px !important; 
-    box-sizing: border-box !important;
-    padding: 30px 15px !important; 
+  
+  /* 4. GENERAL TEXT FIXES */
+  .clean-heading {
+    font-size: 24px;
+    white-space: normal;
+    word-wrap: break-word;
   }
-
+  
   #Committee .committee-content-wrapper h2,
   #World-Map h2 {
-    margin-top:10px;
     font-size: 42px !important;
     margin-bottom: 40px !important;
   }
