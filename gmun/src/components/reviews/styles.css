@@ -1,224 +1,102 @@
-/* === General Section Styling === */
-section {
-  padding: 4rem 2rem;
-  background: linear-gradient(135deg, #204040, #0a5a5b);
-  font-family: "Poppins", sans-serif;
-  color: #d9ccc4;
-  text-align: center;
+/* Section background */
+.reviews-section {
+  /* background: linear-gradient(135deg, #0a5a5b, #204040); */
+  padding: 6rem 0rem;
+  position: relative;
+  overflow: hidden;
 }
 
-/* === Heading === */
-section h1 {
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 3rem;
+/* Wrapper */
+.reviews-wrapper {
+  width: 100vw;
+  margin: 0 auto;
+}
+
+/* Heading */
+.reviews-heading {
+  font-size: 2.8rem;
+  font-weight: 600;
+  text-align: center;
   color: #e9a751;
+  margin-bottom: 4rem;
   letter-spacing: 1px;
+}
+
+/* Outer scrolling area */
+.reviews-container-row {
+  overflow: hidden;
   position: relative;
 }
 
-section h1::after {
-  content: "";
-  width: 80px;
-  height: 3px;
-  background: #e9a751;
-  display: block;
-  margin: 0.8rem auto 0;
-  border-radius: 3px;
-}
-
-/* === Reviews Grid === */
-.reviews-container-row {
-  gap: 0.5rem;
-  overflow-x: scroll;
-  height: auto;
-  padding: 30px 0px;
-}
-
-.reviews-container-column {
-  max-height: 800px;
-  display: flex;
-  gap: 0.5rem;
-  justify-items: center;
-  overflow-y: hidden;
-  height: auto;
-  padding: 30px 0px;
-}
-
+/* Track (horizontal scroll effect base) */
 .reviews-track {
   display: flex;
-  flex-direction: row;
-  animation: scrollHorizontal 7s linear infinite;
-  margin: 20px 0px;
+  gap: 2rem;
+  padding: 1rem;
+  width: max-content;
+  animation: scrollReviews 20s linear infinite;
 }
 
 .reviews-track:hover {
   animation-play-state: paused;
 }
 
-.column {
-  flex-direction: column;
-  animation: scrollVertical 7s linear infinite;
-}
-
-.column:hover {
-  animation-play-state: paused;
-}
-
-.reverse {
-  animation-direction: reverse;
-}
-
-.reviews-container-column::-webkit-scrollbar {
-  width: 0px;
-}
-
-.reviews-container-row::-webkit-scrollbar {
-  height: 0px;
-}
-
-/* === Review Card === */
+/* Review Card */
 .review-card {
-  shrink: 0;
-  background: #333333;
-  border: 1px solid rgba(233, 167, 81, 0.2);
-  border-radius: 16px;
-  padding: 2rem 4rem;
-  margin: 10px 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  background: rgba(32, 64, 64, 0.95);
+  border: 1px solid rgba(217, 204, 196, 0.2);
+  border-radius: 24px;
+  padding: 2rem;
+  min-width: 320px;
   max-width: 320px;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(5px);
+  color: #d9ccc4;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
 }
 
-.review-card-column {
-  margin: 10px auto;
-  shrink: 0;
-  background: #333333;
-  border: 1px solid rgba(233, 167, 81, 0.2);
-  border-radius: 16px;
-  padding: 2rem 1rem;
-  margin: 10px 0px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-  max-width: 240px;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(5px);
+/* Hover glow */
+.review-card:hover {
+  box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.4),
+              0 0 25px rgba(233, 167, 81, 0.25);
 }
 
-/* Carousel Animation */
-@keyframes scrollHorizontal {
+/* Author info */
+.review-writer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Avatar */
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e9a751;
+}
+
+/* Name */
+.name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e8d8c3; /* light shade of #d9ccc4 */
+}
+
+/* Review text */
+.review-text p {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: #d9ccc4;
+}
+
+/* Infinite scroll animation */
+@keyframes scrollReviews {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-176.53%);
-  }
-}
-
-/* Vertical Carousel Animation */
-@keyframes scrollVertical {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-207.15%);
-  }
-}
-
-.review-card:hover {
-  box-shadow: 0 10px 25px rgba(233, 167, 81, 0.25);
-  border-color: #e9a751;
-}
-
-/* === Review Writer === */
-.review-writer {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-
-/* Progress Ring Carousel */
-.progress-ring-carousel {
-  margin-top: 40px;
-  padding: 10px 20px;
-  border-radius: 16px;
-  backdrop-filter: blur(5px);
-  display: flex;
-  justify-content: center;
-}
-
-.review-box {
-  background-color: #333333;
-  padding: 10px 20px;
-  border-radius: 16px;
-  margin: 0px 10px;
-  border: 1px solid #e9a751;
-  max-width: 70vw;
-}
-
-.name-center {
-  color: #e9a751;
-}
-
-.avatar-wrapper {
-  margin: 40px 15px;
-  position: relative;
-  text-align: left;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.progression-ring {
-  position: absolute;
-  top: -35px;
-  left: -15px;
-}
-
-.avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-bottom: 0.8rem;
-  margin-right: 1rem;
-  object-fit: cover;
-  background-color: #333333;
-}
-
-.name {
-  color: #e9a751;
-  font-weight: 600;
-  font-size: 1.1rem;
-}
-
-/* === Review Text === */
-.review-text-box {
-  text-align: left;
-  margin-top: 1rem;
-}
-
-.review-text p {
-  text-align: left;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #d9ccc4;
-  margin: 0;
-}
-
-/* === Responsiveness === */
-@media (max-width: 600px) {
-  section {
-    padding: 3rem 1.5rem;
-  }
-
-  section h1 {
-    font-size: 1.8rem;
-  }
-
-  .review-card {
-    padding: 1.5rem;
+    transform: translateX(-50.5%);
   }
 }

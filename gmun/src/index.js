@@ -23,6 +23,7 @@ import LoginPage from "./pages/Authorization/LoginPage.jsx";
 import ForgotPassword from "./pages/Authorization/ForgotPassword.jsx";
 import VerifyEmail from "./pages/Authorization/VerifyEmail.jsx";
 import { Toaster } from "react-hot-toast";
+import StarsBackground from "./components/Home/StarsBackground.jsx";
 
 const router = createBrowserRouter([
   {
@@ -116,6 +117,7 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <StarsBackground />
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>

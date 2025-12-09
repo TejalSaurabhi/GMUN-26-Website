@@ -37,7 +37,7 @@ const App = () => {
     fetchData();
   }, [dispatch]);
 
-  // if (loading) {
+  // if (0) {
   //   return (
   //     <>
   //       <div>
@@ -53,10 +53,11 @@ const App = () => {
       {/* Navbar will always be displayed */}
       <NavBar />
 
-      {/* Render the child route components using Outlet */}
-      <div>
-          <Outlet />
-        </div>
+          {/* Render the child route components using Outlet */}
+          <div>
+            <Outlet />
+          </div>
+        
     </>
   );
 };

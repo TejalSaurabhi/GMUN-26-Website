@@ -3,19 +3,31 @@ import "./Benefits.css";
 const benefits = [
   {
     id: 1,
-    text: "Meet talented and diverse students from across the country",
+    title: "Beginner friendly",
+    text: [
+      "No prior MUN experience needed",
+      "Introducing online committees",
+      "Supportive Executive Board that mentors and guides you",
+    ],
   },
   {
     id: 2,
-    text: "Take on roles of diplomats and represent various nations in both ONLINE and OFFLINE mode",
+    title: "Proven Prestige",
+    text: [
+      "4th Edition",
+      "200+ delegates in GMUN 2025",
+      "From colleges across India",
+    ],
   },
   {
     id: 3,
-    text: "Research the assigned country, understand its policies, and articulate its position on the agenda",
+    title: "Skills to Gain",
+    text: ["Public speaking", "Negotiation", "Leadership"],
   },
   {
     id: 4,
-    text: "Interact, share perspectives and form lasting connections with students from varied backgrounds",
+    title: "Beyond the Committee",
+    text: ["Socials & networking", "Culture night", "Unforgettable experience"],
   },
 ];
 
@@ -27,7 +39,16 @@ const Benefits = () => {
       <div className="benefits-container">
         {benefits.map((benefit) => (
           <div key={benefit.id} className="benefit">
-            <p>{benefit.text}</p>
+            <h2 className="benefit-title">{benefit.title}</h2>
+
+            <ul className="benefit-list">
+              {benefit.text.map((point, index) => (
+                <li key={index} className="benefit-item">
+                  <span className="bullet"></span>
+                  {point}
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
       </div>
