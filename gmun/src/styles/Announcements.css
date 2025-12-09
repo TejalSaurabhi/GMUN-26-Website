@@ -1,431 +1,178 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  background: #eaeaea;
-  overflow-y: auto;
+    background: #0f0f17; /* GMUN Dark Background */
+    overflow-x: hidden;
 }
 
-.name {
-  color: #B69354;
+.announcement-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Adjust height as needed, using min-height ensures it doesn't collapse */
+    min-height: 60vh; 
+    background: #0f0f17;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 50px 20px;
 }
 
-.des {
-  color: #F3EDE3;
+.section-title {
+    color: #d4af37; /* GMUN Gold */
+    font-size: 3rem;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #d4af37;
+    padding-bottom: 10px;
+    text-align: center;
 }
 
 .container {
-  position: relative;
-  margin: 20px auto;
-  width: 1000px;
-  height: 800px;
-  background: #f5f5f5;
-  box-shadow: 0 30px 50px #dbdbdb;
-  border-radius: 40px;
-  
-}
-
-.contain {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-}
-
-.slide {
-  transition: transform 0.5s ease-in-out;
-}
-
-.item {
-  width: 200px;
-  height: 200px;
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -30%);
-  border-radius: 20px;
-  box-shadow: 0 30px 50px #505050;
-  background-position:50% 50%;
-  background-size: cover;
-  display: inline-block;
-  transition: 0.5s;
-
-}
-
-.overlay {
-  position: absolute;
-  border-radius: 20px;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-position:50% 50%;
-  background-size: cover; 
-  transition: background 0.5s ease;
-}
-
-
-.slide .item:nth-child(1),
-.slide .item:nth-child(2) {
-  top: 0;
-  left: 0;
-  transform: translate(0, 0);
-  border-radius: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 40px;
-  
-}
-.dark{
-  border-radius: 20px;
-}
-.slide .item:nth-child(2) .dark{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  transition: background 3s ease;
-}
-
-.slide .item:nth-child(3) {
-  left: 50%;
-  top: 90%;
-}
-
-.slide .item:nth-child(4) {
-  left: calc(50% + 220px);
-  top: 90%;
-}
-
-.slide .item:nth-child(5) {
-  left: calc(50% + 440px);
-  top: 90%;
-}
-
-.slide .item:nth-child(n + 6) {
-  left: calc(50% + 660px);
-  top: 90%;
-  opacity: 0;
-}
-
-.item .content {
-  position: absolute;
-  top: 50%;
-  left: 100px;
-  width: 300px;
-  text-align: left;
-  color: #eee;
-  transform: translate(0, -50%);
-  font-family: system-ui;
-  display: none;
-  z-index: 1;
-}
-
-.slide .item:nth-child(2) .content {
-  display: block;
-}
-
-.content .name {
-  font-size: 40px;
-  text-transform: uppercase;
-  font-weight: bold;
-  opacity: 0;
-  animation: animate 1s ease-in-out 1 forwards;
-}
-
-.content .des {
-  margin-top: 10px;
-  margin-bottom: 20px;
-  opacity: 0;
-  animation: animate 1s ease-in-out 0.3s 1 forwards;
-}
-
-.content button {
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0;
-  animation: animate 1s ease-in-out 0.6s 1 forwards;
-}
-.content .reg{
-  border-radius: 8px;
-  box-shadow: 5px 5px 10px #505050;
-}
-.content .reg:hover{
-  position: relative;
-  top:3px;
-  background: #ababab;
-  color:#fff;
-}
-@keyframes animate {
-  from {
-    opacity: 0;
-    transform: translate(0, 100px);
-    filter: blur(33px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate(0);
-    filter: blur(0);
-  }
-}
-
-.button {
-  width: 100%;
-  position: absolute;
-  right: 10%;
-  bottom: 20px;
-}
-
-.button button {
-  width: 40px;
-  height: 35px;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  margin: 0 5px;
-  border: 1px solid #000;
-  transition: 0.3s;
-}
-
-.button button:hover {
-  background: #ababab;
-  color: #fff;
-  position: relative;
-  top: 3px;
-}
-
-/*Making responsive*/
-@media (max-width: 1140px) {
-  .container {
-    position: relative;
-    margin: 20px auto;
-    width: 900px;
-    height: 700px;
-    background: #f5f5f5;
-    box-shadow: 0 30px 50px #dbdbdb;
-    border-radius: 40px;
-    
-  }
-  
-  .contain {
+    width: 100%;
+    max-width: 900px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    
-  }
-
-  .item {
-    width: 160px;
-    height: 160px;
-    position: absolute;
-    top: 50%;
-    transform: translate(80%, -30%);
-    border-radius: 20px;
-    box-shadow: 0 30px 50px #505050;
-    background-position:50% 50%;
-    background-size: cover;
-    display: inline-block;
-    transition: 0.5s;
-  
-  }
-  .dark{
-    border-radius: 20px;
-  }
-  .overlay{
-    border-radius: 20px;
-  }
-  
-  .content .name {
-    font-size: 30px;
-    
-  }
-  .content .des {
-    font-size: 18px;
-  }
-
-  .content button {
-    font-size: 12px;
-  }
-
-  .slide .item:nth-child(3) {
-    left: 35%;
-    top: 90%;
-  }
-  
-  .slide .item:nth-child(4) {
-    left: calc(35% + 180px);
-    top: 90%;
-  }
-  
-  .slide .item:nth-child(5) {
-    left: calc(35% + 360px);
-    top: 90%;
-  }
-  
-  .slide .item:nth-child(n + 6) {
-    left: calc(35% + 540px);
-    top: 90%;
-    opacity: 0;
-  }
 }
 
-@media (max-width: 840px) {
-  .container {
-    position: relative;
-    margin: 20px auto;
-    width: 600px;
-    height: 500px;
-    background: #f5f5f5;
-    box-shadow: 0 30px 50px #dbdbdb;
-    border-radius: 40px;
-    
-  }
-  
-  .contain {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-  }
+/* ============================
+        SINGLE ITEM CARD
+   ============================ */
 
-  .item {
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 50%;
-    transform: translate(80%, -30%);
-    border-radius: 20px;
-    box-shadow: 0 30px 50px #505050;
-    background-position:50% 50%;
-    background-size: cover;
-    display: inline-block;
-    transition: 0.5s;
-  
-  }
-  .dark{
-    border-radius: 20px;
-  }
-  .overlay{
-    border-radius: 20px;
-  }
-  
-
-  .content .name {
-    font-size: 25px;
-  }
-  .content .des {
-    font-size: 16px;
-  }
-
-  .content button {
-    font-size: 12px;
-  }
-
-  .slide .item:nth-child(3) {
-    left: 40%;
-    top: 90%;
-  }
-  
-  .slide .item:nth-child(4) {
-    left: calc(40% + 110px);
-    top: 90%;
-  }
-  
-  .slide .item:nth-child(5) {
-    left: calc(40% + 220px);
-    top: 90%;
-  }
-  
-  .slide .item:nth-child(n + 6) {
-    left: calc(40% + 660px);
-    top: 90%;
-    opacity: 0;
-  }
+.single-item {
+    width: 100%;
+    background: transparent;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3); /* Subtle gold divider line */
+    padding-bottom: 30px;
 }
 
-@media (max-width: 420px) {
-  .container {
-    position: relative;
-    margin: 20px auto;
-    width: 370px;
-    height: 300px;
-    background: #f5f5f5;
-    box-shadow: 0 30px 50px #dbdbdb;
-    border-radius: 40px;
-    
-  }
-  
-  .contain {
+/* Inner Layout: Flexbox for Date (Left) and Content (Right) */
+.card-inner {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    
-  }
-  
-  .item {
-    width: 70px;
-    height: 70px;
-    position: absolute;
-    top: 50%;
-    transform: translate(80%, -30%);
-    border-radius: 20px;
-    box-shadow: 0 30px 50px #505050;
-    background-position:50% 50%;
-    background-size: cover;
-    display: inline-block;
-    transition: 0.5s;
-  
-  }
-  .dark{
-    border-radius: 20px;
-  }
-  .overlay{
-    border-radius: 20px;
-  }
-  .content{
-    max-width: 200px;
-    margin-bottom: 0;
-  }
-  .content .name {
-    font-size: 15px;
-  }
-  .content .des {
-    font-size: 10px;
-  }
-
-  .slide .item:nth-child(3) {
-    left: 50%;
-    top: 90%;
-  }
-  
-  .slide .item:nth-child(4) {
-    left: calc(50% + 80px);
-    top: 90%;
-  }
-  
-  .slide .item:nth-child(n + 5) {
-    left: calc(40% + 660px);
-    top: 90%;
-    opacity: 0;
-  }
-  .button button{
-    max-width: 25px;
-    max-height: 20px;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.02); /* Very subtle backdrop */
     border-radius: 12px;
-    transform: translateY(60%);
-  }
-  .content .reg{
-    max-width: 90px;
-    max-height: 25px;
-    font-size: 0.5em;
-    position: relative;
-    top:-10px;
+    transition: transform 0.3s ease;
+}
 
-  }
+.card-inner:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* ============================
+        DATE BOX (Left Side)
+   ============================ */
+.date-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 90px;
+    height: 90px;
+    background-color: #d4af37; /* Gold Background */
+    color: #0f0f17; /* Dark Text for contrast */
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    flex-shrink: 0; /* Prevents box from squishing on small screens */
+}
+
+.date-num {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.date-month {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 2px;
+}
+
+/* ============================
+      TEXT CONTENT (Right Side)
+   ============================ */
+.text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #fff;
+    text-align: left;
+}
+
+.name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff; 
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.des {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.75); /* Muted white text */
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.read-more {
+    background: none;
+    border: none;
+    color: #d4af37; /* GMUN Gold for link */
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.read-more:hover {
+    color: #fff;
+    gap: 12px; /* Move arrow slightly on hover */
+}
+
+/* ============================
+          RESPONSIVE
+   ============================ */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    .card-inner {
+        flex-direction: column; /* Stack date on top of text */
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .date-box {
+        width: 70px;
+        height: 70px;
+        min-width: 70px;
+    }
+
+    .date-num {
+        font-size: 1.5rem;
+    }
+
+    .date-month {
+        font-size: 0.8rem;
+    }
+
+    .name {
+        font-size: 1.5rem;
+    }
 }
