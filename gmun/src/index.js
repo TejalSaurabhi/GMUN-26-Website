@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import App from "./App";
+import { BookOpen, FileText, HelpCircle, Globe2, Users } from "lucide-react";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "./components/Login";
@@ -10,6 +11,7 @@ import AuthLayout from "./components/AuthLayout";
 import Profile from "./components/Profile";
 import EditDetails from "./components/EditDetails";
 import Landing from "./pages/Landing";
+import HowToMun from "./pages/howToMun";
 import Committee from "./components/Committee";
 import Contacts from "./components/Contacts";
 import Guide from "./components/Guide";
@@ -100,6 +102,10 @@ const router = createBrowserRouter([
       {
         path: "/worldmap",
         element: <WorldMap />,
+      },
+      {
+        path: "/how-to-mun",
+        element: <HowToMun />,
       },
       {
         path: "/FAQs",
