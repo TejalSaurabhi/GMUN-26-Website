@@ -1,7 +1,9 @@
+import Countdown from '../components/Countdown';
+// import Commendations from '../components/commendationpage';
 // import { useEffect } from "react";
 import Announcements from "../components/Announcements";
-import Countdown from "../components/Countdown";
 import Footer from "../components/Footer";
+ 
 import Reviews from "../components/reviews/Reviews";
 import Timeline from "../components/Timeline";
 // import { useAuthStore } from "../store/authStore";
@@ -10,7 +12,6 @@ import Hero from "../components/Home/Hero/Hero";
 import "./landing.css";
 import Commendations from "../components/Home/Commendations/Commendations";
 import Benefits from "../components/Home/Benefits/Benefits";
-import Committees from "../components/Home/Committees/Committees";
 
 // Redireceting already authenticated users to home page if they try to go to signup page
 // The verified property is causing trouble
