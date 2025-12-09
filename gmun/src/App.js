@@ -37,7 +37,7 @@ const App = () => {
     fetchData();
   }, [dispatch]);
 
-  if (0) {
+  if (loading) {
     return (
       <>
         <div>
@@ -45,19 +45,20 @@ const App = () => {
         </div>
       </>
     );
-  } else {
-    return (
-      <>
-        <ToastContainer position="top-left" />
-        <div>
-          {/* Navbar will always be displayed */}
-          <NavBar />
+  }
 
-          {/* Render the child route components using Outlet */}
-          <div>
-            <Outlet />
-          </div>
-        
+  return (
+    <>
+      <ToastContainer position="top-left" />
+      <div>
+        {/* Navbar will always be displayed */}
+        <NavBar />
+
+        {/* Render the child route components using Outlet */}
+        <div>
+          <Outlet />
+        </div>
+      </div>
     </>
   );
 };
