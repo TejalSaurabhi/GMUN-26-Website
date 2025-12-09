@@ -1,20 +1,25 @@
 .countdown-container {
     width: 100%;
     max-width: 100%;
-    padding: 30px;
-    background: #241a3a;
-    border-radius: 15px;
-    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.6);
+    padding: 30px 100px;
+    background: linear-gradient(135deg, #0f0c29 0%, #241a3a 30%, #3b183e 60%, #0b2e4f 100%);
+    border-radius: 18px;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.6), inset 0 0 120px rgba(123,97,255,0.06);
     text-align: center;
-    animation: fadeIn 1s ease-in-out;
+    animation: gradientShift 8s ease-in-out infinite, fadeIn 1s ease-in-out;
     box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
 }
 
 .countdown-heading {
     font-size: 28px;
-    font-weight: 700;
-    color: #B69354;
+    font-weight: 800;
+    color: #EDE7FF;
     margin-bottom: 20px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 12px rgba(123,97,255,0.18), 0 1px 0 rgba(0,0,0,0.2);
 }
 
 .countdown-heading span {
@@ -29,23 +34,32 @@
 }
 
 .countdown-card {
-    background-color: #CDC9E3;
-    padding: 15px;
-    border-radius: 15px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    padding: 8px 6px;
+    border-radius: 12px;
     text-align: center;
-    width: 80px;
-    height: 75px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    width: 110px;
+    height: 110px;
+    box-shadow: 0 6px 24px rgba(11,20,40,0.45);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(6px);
 }
 
 .countdown-number {
-    font-size: 32px;
-    font-weight: 800;
-    color: #363537;
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+}
+
+.neon-text {
+    color: #fff;
+    text-shadow:
+      0 0 6px rgba(142,249,255,0.35),
+      0 0 18px rgba(123,97,255,0.18),
+      0 6px 20px rgba(0,0,0,0.6);
 }
 
 .countdown-number.fade-in {
@@ -176,4 +190,28 @@
         font-size: 10px;
         padding: 3px 8px;
     }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* SVG ring styles */
+.ring-wrap { position: relative; width: 86px; height: 86px; display: inline-flex; align-items: center; justify-content: center; }
+.ring-svg { width: 86px; height: 86px; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); }
+.ring-bg { fill: none; stroke: rgba(255,255,255,0.04); stroke-width: 6; }
+.ring-fg { fill: none; stroke-width: 6; stroke-linecap: round; transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke-dashoffset 0.6s cubic-bezier(.2,.9,.2,1); filter: drop-shadow(0 4px 10px rgba(123,97,255,0.12)); }
+
+.countdown-label { color: rgba(237,231,255,0.8); font-weight: 600; margin-top: 8px; }
+
+/* confetti canvas */
+.confetti-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40; }
+
+/* responsive tweaks for larger ring cards */
+@media (max-width: 768px) {
+    .countdown-card { width: 86px; height: 86px; }
+    .ring-wrap { width: 72px; height: 72px; }
+    .ring-svg { width: 72px; height: 72px; }
 }

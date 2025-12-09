@@ -1,0 +1,177 @@
+:root{
+    /* Accent colors */
+    --gm-gold: #D4AF37;    /* Metallic Gold accent */
+    --gm-primary: #D4AF37; /* Primary action color is Gold */
+
+    /* Dark theme backgrounds */
+    --gm-bg: #071022;            /* Deep navy page background */
+    --gm-bg-secondary: #0E1A2A;  /* Slightly lighter card/modal background */
+
+    /* Text colors adapted for dark theme */
+    --gm-maroon: #E6DFD7;  /* Light cream (primary text on dark) */
+    --gm-teal: #9FD6CE;    /* Soft teal for accents/secondary text */
+
+    /* Layout */
+    --header-height: 12px;
+    --card-border: 1px;
+    --card-radius: 18px; 
+    /* Helpful RGB variables when using rgba(var(--var-rgb)) */
+    --gm-maroon-rgb: 230, 223, 215;
+    --gm-gold-rgb: 212, 175, 55;
+    /* extra utility variables for variants */
+    --gm-gold-dark: #B69354; /* richer darker gold */
+    --gm-gold-light: #FFD700; /* lighter gold tone */
+    --gm-on-dark: #ffffff; /* light-on-dark text fallback for highlights */
+    --gm-on-gold: #071022; /* text color used when on gold backgrounds */
+}
+ 
+/* layout safety */
+body, #root { box-sizing: border-box; }
+main { padding-top: var(--header-height); }
+ 
+/* Page background & smoothing */
+body { background: var(--gm-bg); color: var(--gm-maroon); font-family: 'system-ui', sans-serif; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+
+/* --- RIBBON REMOVAL --- */
+.heading::after,
+.heading::before,
+section.mb-8::after,
+section.mb-8::before,
+.hero-ribbon, .hero-banner, .yellow-strip, .top-ribbon, .page-ribbon, .ribbon-bar {
+    display: none !important;
+}
+ 
+/* GM card baseline */
+.gm-card {
+    background: var(--gm-bg-secondary);
+    border-radius: var(--card-radius);
+    border: var(--card-border) solid rgba(212,175,55,0.06); /* subtle gold border */
+    box-shadow: 0 14px 36px rgba(0,0,0,0.6);
+    padding: 1.5rem; 
+    transition: all 0.3s ease-out; 
+}
+ 
+/* ensure cards stretch to same height and use flex column for bottom alignment */
+.grid .gm-card { height: 100%; display: flex; flex-direction: column; }
+.grid .gm-card > div { height: 100%; display: flex; flex-direction: column; } 
+ 
+/* typography base colors and style */
+.gm-title { color: var(--gm-maroon); font-weight: 700; font-size: 4rem; }
+.gm-subtitle { color: var(--gm-teal); font-size: 1.3rem !important; }
+.gm-small { color: var(--gm-teal); font-size: 2.0rem; }
+ 
+/* chip */
+.gm-chip { width: 54px; height: 54px; border-radius: 999px; display:flex; align-items:center; justify-content:center; background:var(--gm-gold); color:var(--gm-bg); font-weight:700; font-size: 1.2rem; }
+ 
+/* button */
+.gm-btn { border-radius: 8px; padding: 0.6rem 1.0rem; font-weight:600; cursor:pointer; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.1s; }
+.gm-btn:hover { transform: translateY(-1px); }
+.gm-btn-primary { background: var(--gm-primary); color: var(--gm-bg); border: none; } /* Dark text on gold button */
+.gm-btn-secondary { background: transparent; color: var(--gm-maroon); border: 1px solid rgba(230,223,215,0.08); }
+ 
+/* keep main container above decorations */
+.container-content { position: relative; z-index: 3; }
+ 
+/* modal styling (fixed, centered, non-clipped) */
+.gm-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 10000; }
+.gm-modal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10001;
+    width: min(920px, calc(100% - 48px));
+    border-radius: 12px;
+    background: var(--gm-bg-secondary);
+    border: var(--card-border) solid rgba(212,175,55,0.10);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    padding: 24px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+.gm-modal-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 24px; align-items: start; }
+.gm-modal-image { width: 100%; height: 280px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(212,175,55,0.06); background: var(--gm-bg); box-shadow: 0 4px 12px rgba(0,0,0,0.6); }
+.gm-modal-actions { display:flex; gap:12px; margin-top: 16px; }
+.gm-btn-ghost { background: transparent; border: none; color: var(--gm-teal); font-weight:600; padding:6px 8px; cursor:pointer; }
+ 
+/* ensure hero heading is constrained and centered - Gold Theme applied */
+.heading { 
+    font-size: 130px; 
+    text-align: center; 
+    /* letter-spacing: 4px;  */
+    margin: 6px 0 0; 
+    min-width: 900px;
+    margin-left: auto; 
+    margin-right: auto; 
+    color: var(--gm-gold); /* Main Heading is GOLD */
+    /* font-weight: 800;  */
+    text-shadow: 0 6px 18px rgba(0,0,0,0.6); /* subtle dark shadow for depth on gold */
+}
+ 
+/* card title wrapping */
+.gm-card-title { white-space: normal !important; overflow: visible !important; word-break: break-word; }
+
+/* Inline letter content in the commendation card */
+.gm-card-letter { 
+    margin-top: 12px; 
+    font-size: 0.95rem; 
+    color: var(--gm-teal); 
+    line-height: 1.6; 
+    white-space: pre-wrap; /* respect line breaks */
+}
+
+/* card letter image (inline, below letter text) */
+.gm-card-letter-image { width: 100%; max-height: 360px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(212,175,55,0.06); background: var(--gm-bg); box-shadow: 0 8px 30px rgba(0,0,0,0.4); display:block; }
+
+/* offsets for select cards - apply vertical offsets in grid column visually */
+.offset-c2, .offset-c3 { transform: none; transition: transform 420ms cubic-bezier(.22,.9,.28,.99); }
+@media (min-width: 1024px) {
+    .offset-c2 { margin-top: 20svh; }
+    .offset-c3 { margin-top: 40svh; }
+}
+
+@media (min-width: 1024px) {
+    /* Use a CSS variable that stores half the card height (px) to center
+       the sticky element precisely without applying transform (which can
+       break sticky in some browsers / conditions). We'll set this variable
+       via a small JS measurement to avoid heavy JS logic. */
+    .gm-card-sticky { position: sticky; top: calc(50vh - var(--sticky-half, 120px)); transform: none; will-change: top; z-index: 2; }
+    .gm-card-sticky-short { position: sticky; top: calc(50vh - var(--sticky-half, 120px)); transform: none; will-change: top; z-index: 2; }
+}
+
+/* placeholder for fixed card to preserve layout */
+.gm-card-placeholder { display:block; width:100%; height: auto; }
+
+/* visual highlight when stuck */
+.gm-card-stuck { transform: scale(1.02); box-shadow: 0 24px 60px rgba(0,0,0,0.6); transition: transform 220ms ease, box-shadow 220ms ease; }
+
+/* A subtle horizontal line at the center of the viewport for debugging center-sticking logic */
+.gm-center-line { position: fixed; left: 0; right: 0; top: 50%; height: 0px; border-top: 1px dashed rgba(255,255,255,0.04); z-index: 99999; pointer-events: none; }
+
+/* New animation for subtle pulse/glow on the countdown card - Updated to GOLD */
+@keyframes countdown-pulse {
+    0% { box-shadow: 0 16px 30px rgba(0,0,0,0.08); }
+    50% { box-shadow: 0 16px 40px rgba(212, 175, 55, 0.25); } /* Gold glow */
+    100% { box-shadow: 0 16px 30px rgba(0,0,0,0.08); }
+}
+
+.countdown-card-effect {
+    animation: countdown-pulse 3s infinite alternate ease-in-out;
+}
+ 
+/* responsive tweaks */
+@media (max-width: 1024px) {
+    .gm-modal-grid { grid-template-columns: 1fr; }
+    .gm-modal-image { height: 220px; }
+    .gm-modal { width: min(600px, calc(100% - 32px)); }
+}
+
+@media (max-width: 768px) {
+    .heading { font-size: 96px; } /* Adjust responsive size */
+    .gm-modal { width: calc(100% - 32px); padding: 16px; }
+    .gm-modal-image { height: 180px; }
+    .gm-modal-actions { justify-content: center; }
+}
+
+/* Fix for split text to be inline */
+.inline-block { display: inline-block; }

@@ -1,13 +1,16 @@
 import React from 'react';
 import Countdown from '../components/Countdown';
 import Announcements from '../components/Announcements';
+import Commendations from '../components/commendationpage';
 import Footer from "../components/Footer";
 import Carousel from '../components/carousel';
 import Timeline from '../components/Timeline';
+ 
 
 const Landing = () => {
     return (
         <div>
+            
             <header>
                 <h1 className="heading">GMUN 2025</h1>
             </header>
@@ -18,6 +21,11 @@ const Landing = () => {
 
             <div className="countdown-section" style={{ marginTop: '500px' }}>
                 <Countdown />
+
+                {/* Commendations section added to home */}
+                <div style={{ marginTop: '40px' }}>
+                    <Commendations />
+                </div>
 
                 {/* <section id="about" style={{ color: '#B69354' }}>
                     <h2

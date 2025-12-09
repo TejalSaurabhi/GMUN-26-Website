@@ -17,7 +17,7 @@
 }
 
 .card {
-  background: white;
+  background: var(--gm-bg-secondary);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   width: 100%;
@@ -35,8 +35,8 @@
 .cardHeader {
   padding: 2rem 2rem 1rem;
   text-align: center;
-  background: linear-gradient(135deg, #574a73, #363537);
-  color: #f3ede3;
+  background: linear-gradient(135deg, rgba(var(--gm-gold-rgb), 0.06), rgba(0,0,0,0.12));
+  color: var(--gm-maroon);
   position: relative;
   overflow: hidden;
 }
@@ -67,13 +67,13 @@
   font-size: 1.75rem;
   font-weight: bold;
   margin-bottom: 0.75rem;
-  color: #f3ede3;
+  color: var(--gm-maroon);
   position: relative;
   z-index: 1;
 }
 
 .cardDescription {
-  color: #cdc9e3;
+  color: rgba(var(--gm-maroon-rgb), 0.9);
   font-size: 0.925rem;
   margin-bottom: 1.5rem;
   position: relative;
@@ -82,7 +82,7 @@
 
 .cardContent {
   padding: 2rem;
-  background: white;
+  background: var(--gm-bg);
 }
 
 .inputGroup {
@@ -94,7 +94,7 @@
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
-  color: #574a73;
+  color: var(--gm-maroon);
   transition: color 0.3s ease;
 }
 
@@ -102,19 +102,19 @@
 .select {
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid #cdc9e3;
+  border: 2px solid rgba(var(--gm-maroon-rgb), 0.08);
   border-radius: 6px;
   font-size: 1rem;
   transition: all 0.3s ease;
-  background: #f3ede3;
-  color: #363537;
+  background: var(--gm-bg-secondary);
+  color: var(--gm-maroon);
 }
 
 .input:focus,
 .select:focus {
   outline: none;
-  border-color: #b69354;
-  box-shadow: 0 0 15px rgba(182, 147, 84, 0.3);
+  border-color: rgba(var(--gm-gold-rgb), 0.6);
+  box-shadow: 0 0 18px rgba(var(--gm-gold-rgb), 0.08);
 }
 
 .passwordWrapper {
@@ -129,26 +129,26 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #574a73;
+  color: var(--gm-maroon);
   padding: 0.25rem;
   transition: all 0.3s ease;
 }
 
 .passwordToggle:hover {
-  color: #b69354;
+  color: var(--gm-gold);
   transform: translateY(-50%) scale(1.1);
 }
 
 .cardFooter {
   padding: 0 2rem 2rem;
-  background: white;
+  background: var(--gm-bg);
 }
 
 .button {
   width: 100%;
   padding: 0.875rem;
-  background-color: #b69354;
-  color: white;
+  background-color: var(--gm-gold);
+  color: var(--gm-bg);
   border: none;
   border-radius: 6px;
   font-size: 1rem;
@@ -179,7 +179,7 @@
 }
 
 .button:hover {
-  background-color: #574a73;
+  background-color: rgba(var(--gm-gold-rgb), 0.96);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(182, 147, 84, 0.3);
 }
@@ -191,12 +191,12 @@
 .loginText {
   text-align: center;
   font-size: 0.925rem;
-  color: #574a73;
+  color: var(--gm-maroon);
   margin-top: 1.5rem;
 }
 
 .loginLink {
-  color: #b69354;
+  color: var(--gm-gold);
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s ease;
@@ -211,7 +211,7 @@
   height: 2px;
   bottom: -2px;
   left: 0;
-  background-color: #b69354;
+  background-color: var(--gm-gold);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -277,7 +277,7 @@
   left: 50%;
   width: 0;
   height: 2px;
-  background: #b69354;
+  background: var(--gm-gold);
   transition: all 0.3s ease;
 }
 

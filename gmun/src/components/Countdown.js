@@ -1,255 +1,184 @@
-import React, { useState, useEffect, useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform, useInView } from "framer-motion";
-import "../styles/Countdown.css";
+import React, { useEffect, useState, useRef, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import './gmun-styles.css';
 
-// Utility function for combining classes
-const cn = (...classes) => classes.filter(Boolean).join(' ');
+// small util
+const pad = (n) => String(n).padStart(2, "0");
 
-function AnimatedCounter({
-  value,
-  duration = 1,
-  delay = 0,
-  label,
-}) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { margin: "-50px" });
-
-  const motionValue = useMotionValue(0);
-  const springValue = useSpring(motionValue, {
-    damping: 20,
-    stiffness: 50,
-    mass: 1,
-  });
-
-  const rounded = useTransform(springValue, (latest) =>
-    Math.floor(latest)
-  );
-
-  const [displayValue, setDisplayValue] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
-
-  useEffect(() => {
-    const unsubscribe = rounded.on("change", (latest) => {
-      setDisplayValue(latest);
-    });
-    return () => unsubscribe();
-  }, [rounded]);
-
-  useEffect(() => {
-    if (isInView && !hasAnimated) {
-      motionValue.set(0);
-      const timeout = setTimeout(() => {
-        motionValue.set(value);
-        setHasAnimated(true);
-      }, delay * 300);
-      return () => clearTimeout(timeout);
-    } else if (hasAnimated) {
-      motionValue.set(value);
-    } else if (!isInView) {
-      motionValue.set(0);
-      setHasAnimated(false);
-    }
-  }, [isInView, value, hasAnimated, delay]);
+function TitleMotion({ text = "", className = "", delay = 0.1 }) {
+  const textVariants = {
+    hidden: { opacity: 0, y: 30, rotateX: 90 },
+    show: {
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94],
+        delay: delay,
+      },
+    },
+  };
 
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{
-        duration: 0.8,
-        delay: delay * 0.2,
-        type: "spring",
-        stiffness: 80,
-      }}
-      className={cn(
-        "text-center flex-1 min-w-0 flex flex-col justify-center h-full"
-      )}
+      initial="hidden"
+      animate="show"
+      className={className}
+      style={{ perspective: 1000, overflow: 'hidden' }} 
     >
-      <motion.div
-        className={cn(
-          "text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4 whitespace-nowrap"
-        )}
-        initial={{ scale: 0.8 }}
-        animate={isInView ? { scale: 1 } : { scale: 0.8 }}
-        transition={{
-          duration: 0.6,
-          delay: delay * 0.2 + 0.3,
-          type: "spring",
-          stiffness: 100,
-        }}
-      >
-        {displayValue.toString().padStart(2, '0')}
-      </motion.div>
-      <motion.p
-        className={cn(
-          "text-gray-600 dark:text-gray-400 text-xs sm:text-sm leading-relaxed px-1 sm:px-2 hyphens-auto break-words"
-        )}
-        style={{ wordBreak: "break-word", overflowWrap: "break-word" }}
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ delay: delay * 0.2 + 0.6, duration: 0.6 }}
-      >
-        {label}
-      </motion.p>
+      <motion.span variants={textVariants} className="inline-block">
+        {text}
+      </motion.span>
     </motion.div>
   );
 }
 
-const Countdown = () => {
-    const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-    const [fact, setFact] = useState("");
-    const [usedFacts, setUsedFacts] = useState([]);
+// SplitText
+function SplitText({ text = "", className = "", stagger = 0.02 }) {
+  const chars = useMemo(() => text.split("").map((c, i) => ({ c, i })), [text]);
+  const container = { hidden: {}, show: { transition: { staggerChildren: stagger } } };
+  const char = { hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0, transition: { duration: 0.36 } } };
 
-    const targetDate = new Date("January 11, 2026 10:00:00").getTime();
+  return (
+    <motion.div variants={container} initial="hidden" animate="show" className={className} aria-hidden>
+      {chars.map((ch) => (
+        <motion.span key={ch.i} variants={char} className="inline-block leading-none mr-0.5">
+          {ch.c === " " ? "\u00A0" : ch.c}
+        </motion.span>
+      ))}
+    </motion.div>
+  );
+}
 
-    const funFacts = [
-        "Debating fosters critical thinking and diplomacy skills.",
-        "The UN’s first official language was French.",
-        "Model UN started in the 1920s as League of Nations simulations.",
-        "Over 400,000 students participate in MUN conferences worldwide every year!",
-        "The first-ever MUN conference was organized at Harvard University in 1947.",
-        "Many professional diplomats credit MUN for sparking their interest in international relations.",
-        "The term 'Model United Nations' refers to the simulation of actual United Nations committees and procedures.",
-        "Delegates from more than 150 countries participate in MUN annually.",
-        "Some MUN conferences run crisis simulations, including zombie apocalypses or alien invasions!",
-        "A delegate’s outfit is as important as their arguments. Business formal is non-negotiable!",
-        "The most dreaded but rewarding part of any MUN preparation is writing position papers.",
-        "The unmoderated caucus is the only time you can stand up and run around—technically!",
-        "Terms like 'working paper,' 'bloc formation,' and 'GA Dance' are part of every MUNer's vocabulary.",
-        "MUN is often cited as the best way to overcome stage fright.",
-        "Delegates learn to dive deep into global issues, from climate change to cybersecurity.",
-        "MUN conferences teach you how to argue your point while respecting others’ perspectives.",
-        "Learning to word resolutions precisely is a skill that MUNers use even outside conferences.",
-        "Some lifelong friendships and professional connections start at MUN conferences.",
-        "MUN was inspired by the League of Nations, the UN's predecessor.",
-        "MUN began as a collegiate activity but has expanded to high schools and even middle schools.",
-        "Some MUNs recreate historical committees like the Cuban Missile Crisis or the founding of the UN.",
-        "Every great MUNer has forgotten their country’s name during roll call at least once.",
-        "Snack trades during unmoderated caucuses are the real secret to building alliances!",
-        "The real reward is the confidence and skills you gain, not just awards.",
-        "Everyone was a nervous first-timer once. It only gets better!"
-    ];
 
-    // Timer logic
-    useEffect(() => {
-        const updateTimer = () => {
-            const now = new Date().getTime();
-            const timeRemaining = targetDate - now;
 
-            const days = Math.max(0, Math.floor(timeRemaining / (1000 * 60 * 60 * 24)));
-            const hours = Math.max(0, Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-            const minutes = Math.max(0, Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60)));
-            const seconds = Math.max(0, Math.floor((timeRemaining % (1000 * 60)) / 1000));
+// Circular Progress Dial Component
+const TimeDial = ({ value, displayValue, max, label, isAnimated = false }) => {
+  const radius = 56;
+  const stroke = 3;
+  const normalizedRadius = radius - stroke * 2;
+  const circumference = normalizedRadius * 2 * Math.PI;
+  const strokeDashoffset = circumference - (value / max) * circumference;
 
-            setTimeLeft({ days, hours, minutes, seconds });
-        };
+  return (
+    <div className="flex flex-col items-center justify-center flex-1 min-w-[120px]">
+      <div className="relative flex items-center justify-center">
+        <svg height={radius * 2} width={radius * 2} className="rotate-[-90deg] drop-shadow-sm">
+          <circle
+            stroke="var(--gm-bg-secondary)"
+            strokeWidth={stroke}
+            fill="transparent"
+            r={normalizedRadius}
+            cx={radius}
+            cy={radius}
+          />
+          <motion.circle
+            stroke="var(--gm-gold)"
+            strokeWidth={stroke + 1}
+            strokeDasharray={circumference + ' ' + circumference}
+            animate={{ strokeDashoffset }}
+            transition={{ duration: isAnimated ? 0.05 : 0.5, ease: "linear" }}
+            fill="transparent"
+            r={normalizedRadius}
+            cx={radius}
+            cy={radius}
+            strokeLinecap="round"
+          />
+        </svg>
 
-        const timer = setInterval(updateTimer, 1000);
-        updateTimer();
-
-        return () => clearInterval(timer);
-    }, [targetDate]);
-
-    // Handle fact change on button click
-    const changeFact = () => {
-        if (usedFacts.length === funFacts.length) {
-            setUsedFacts([]);
-        }
-
-        const remainingFacts = funFacts.filter((fact) => !usedFacts.includes(fact));
-        const randomFact = remainingFacts[Math.floor(Math.random() * remainingFacts.length)];
-        setUsedFacts((prev) => [...prev, randomFact]);
-        setFact(randomFact);
-    };
-
-    const containerRef = useRef(null);
-    const isInView = useInView(containerRef, { margin: "-100px" });
-
-    const timeStats = [
-        { value: timeLeft.days, label: "Days", duration: 5 },
-        { value: timeLeft.hours, label: "Hours", duration: 5 },
-        { value: timeLeft.minutes, label: "Minutes", duration: 5 },
-        { value: timeLeft.seconds, label: "Seconds", duration: 5 },
-    ];
-
-    return (
-        <motion.section
-            ref={containerRef}
-            className={cn(
-                "countdown-container py-8 sm:py-12 lg:py-20 px-2 sm:px-4 md:px-8 w-full overflow-hidden"
-            )}
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8 }}
-        >
-            <motion.div
-                className={cn("text-center mb-8 sm:mb-12 lg:mb-16")}
-                initial={{ opacity: 0, y: -20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-            >
-                <h1 className="countdown-heading">
-                    Countdown to <span>GMUN 2025</span>
-                </h1>
-            </motion.div>
-
-            <div className={cn("w-full max-w-6xl mx-auto")}>
-                <div
-                    className={cn(
-                        "flex flex-row items-stretch justify-between gap-2 sm:gap-4 lg:gap-8 w-full min-h-[120px] sm:min-h-[140px]"
-                    )}
+        <div className="absolute inset-0 flex items-center justify-center">
+          {isAnimated ? (
+            <div className="overflow-hidden h-[50px] flex items-center justify-center w-full">
+               <AnimatePresence mode="wait">
+                <motion.div 
+                  key={displayValue} 
+                  initial={{ opacity: 0, y: 15 }} 
+                  animate={{ opacity: 1, y: 0 }} 
+                  exit={{ opacity: 0, y: -15 }} 
+                  transition={{ duration: 0.3 }}
+                  className="gm-dial-number"
                 >
-                    {timeStats.map((stat, index) => (
-                        <div
-                            key={index}
-                            className={cn(
-                                "relative flex-1 min-w-0 flex flex-col justify-center h-full"
-                            )}
-                        >
-                            <AnimatedCounter
-                                value={stat.value}
-                                duration={stat.duration}
-                                delay={index}
-                                label={stat.label}
-                            />
-                            {index < timeStats.length - 1 && (
-                                <motion.div
-                                    className={cn(
-                                        "absolute -right-1 sm:-right-2 lg:-right-4 top-1/2 transform -translate-y-1/2 h-12 sm:h-16 lg:h-20 w-px bg-gray-200 dark:bg-gray-700"
-                                    )}
-                                    initial={{ opacity: 0, scaleY: 0 }}
-                                    animate={
-                                        isInView
-                                            ? { opacity: 1, scaleY: 1 }
-                                            : { opacity: 0, scaleY: 0 }
-                                    }
-                                    transition={{ delay: 1.5 + index * 0.2, duration: 0.6 }}
-                                />
-                            )}
-                        </div>
-                    ))}
-                </div>
+                  {pad(displayValue)}
+                </motion.div>
+              </AnimatePresence>
             </div>
-            <motion.p
-                className="fun-fact"
-                initial={{ opacity: 0 }}
-                animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ delay: 2, duration: 0.6 }}
-            >
-                {fact || "Click below to reveal a fun fact about GMUN!"}
-            </motion.p>
-            <motion.button
-                className="fact-button"
-                onClick={changeFact}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: 2.2, duration: 0.6 }}
-            >
-                Show Fun Fact
-            </motion.button>
-        </motion.section>
-    );
+          ) : (
+            <div className="gm-dial-number">
+              {pad(displayValue)}
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="mt-3 gm-dial-label uppercase tracking-widest">{label}</div>
+    </div>
+  );
 };
 
-export default Countdown;
+// Countdown component
+function Countdown_Timer({ targetDate = null, className = "w-full max-w-4xl mx-auto pt-14 scale-110 " }) {
+  const [now, setNow] = useState(Date.now());
+  const timeRef = useRef({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 50);
+    return () => clearInterval(id);
+  }, []);
+  
+  const end = new Date(targetDate).getTime();
+  const diff = Math.max(0, end - now);
+  
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const secondsInt = Math.floor((diff / 1000) % 60);
+  const secondsFloat = (diff / 1000) % 60;
+
+  if (secondsInt === 59 || diff === 0) {
+      timeRef.current = { days, hours, minutes, seconds: secondsInt };
+  }
+
+  return (
+    <div className={`${className} mt-8 md:mt-12`}> 
+      <motion.div 
+        initial={{ opacity: 0, y: 18 }} 
+        whileInView={{ opacity: 1, y: 0 }} 
+        viewport={{ once: true, amount: 0.15 }} 
+        transition={{ duration: 0.45 }} 
+        style={{ zIndex: 20, border: "2px solid var(--gm-gold)" }} 
+        className="rounded-3xl p-8 shadow-xl gm-card countdown-card-effect relative overflow-hidden"
+      > 
+        <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--gm-gold)] opacity-5 rounded-bl-full pointer-events-none" />
+
+        <div className="flex items-center justify-between mb-8 flex-wrap gap-3 relative z-10">
+          <div>
+            <div className="gm-subtitle uppercase text-start" style={{ color: "var(--gm-teal)" }}><SplitText text={"GMUN — Opening"} stagger={0.02} /></div>
+            <div className="text-3xl font-bold" style={{ color: "var(--gm-gold)" }}><SplitText text={"Event starts in"} stagger={0.02} /></div> 
+          </div>
+        </div>
+
+        <div className="flex flex-wrap justify-around gap-6 md:gap-8"> 
+          <TimeDial value={days} displayValue={days} max={60} label="Days" />
+          <TimeDial value={hours} displayValue={hours} max={24} label="Hours" />
+          <TimeDial value={minutes} displayValue={minutes} max={60} label="Minutes" />
+          <TimeDial value={secondsFloat} displayValue={secondsInt} max={60} label="Seconds" isAnimated={true} />
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+
+export default function Countdown(){
+  const target = "2026-01-15T09:00:00"; 
+  return (
+  
+      <div className="mx-auto max-w-7xl px-6 container-content" > {/* Width Increased */}
+        <section className="mb-10 text-center pt-8">
+          <h1 className="heading" style={{ marginBottom: 6, marginLeft: "auto", marginRight: "auto" , fontFamily: "Colonna MT"}}><TitleMotion text={"GMUN 2026"} className={"gm-topo-heading"} /></h1>
+          <p className="gm-subtitle text-center" style={{ color: "var(--gm-teal)", marginLeft: "auto", marginRight: "auto" }}><SplitText text={"A global forum for young diplomats and visionary leaders"} stagger={0.001} /></p>
+        </section>
+        <Countdown_Timer targetDate={target} />
+      </div>
+  );
+}
