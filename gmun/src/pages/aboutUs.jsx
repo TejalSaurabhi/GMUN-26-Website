@@ -139,7 +139,6 @@ export default function OurStory() {
 
         .quote-section {
   background: #f6e7e5; /* page background */
-  display: flex;
   justify-content: center;
   align-items: center;
   padding: 80px 20px;

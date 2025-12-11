@@ -1,63 +1,7 @@
-import React, { useEffect, useState, useRef, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect, useRef, useMemo } from "react";
+import { motion } from "framer-motion";
 import './gmun-styles.css';
 
-
-// 2. NEW: "Sea Lice" Animation Variants (Specific for Commendations)
-// This recreates the deep slide-up and staggered reveal from the reference
-const seaLiceContainer = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2, // Controls the delay between each card appearing
-      delayChildren: 0.1
-    }
-  }
-};
-
-const seaLiceItem = {
-  hidden: { opacity: 0, y: 60 }, // Starts 60px down
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      bounce: 0.4, // Adds that slight "alive" bounce
-      duration: 0.8
-    }
-  }
-};
-
-
-function TitleMotion({ text = "", className = "", delay = 0.1 }) {
-  const textVariants = {
-    hidden: { opacity: 0, y: 30, rotateX: 90 },
-    show: {
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
-        delay: delay,
-      },
-    },
-  };
-
-  return (
-    <motion.div
-      initial="hidden"
-      animate="show"
-      className={className}
-      style={{ perspective: 1000, overflow: 'hidden' }} 
-    >
-      <motion.span variants={textVariants} className="inline-block">
-        {text}
-      </motion.span>
-    </motion.div>
-  );
-}
 
 // SplitText
 function SplitText({ text = "", className = "", stagger = 0.02 }) {
@@ -100,13 +44,12 @@ function TiltCard({ children, className = "", intensity = 3 }) {
 // CommendationCard
 function CommendationCard({ e }) {
   return (
-    <TiltCard className="rounded-2xl h-full" intensity={3}>
+    <TiltCard className="rounded-2xl " intensity={3}>
       <motion.article 
-        variants={seaLiceItem} // <--- UPDATED: Uses the Sea Lice Item Variant
         whileHover={{ translateY: -6 }} 
         // clicking does not open a modal anymore
         onClick={() => { /* no-op to keep hover style */ }}
-        className="rounded-3xl p-6 cursor-pointer shadow-lg will-change-transform h-full flex flex-col gm-card" 
+        className="rounded-3xl p-6 cursor-pointer shadow-lg will-change-transform flex flex-col gm-card" 
         // Note: initial/animate props REMOVED here so the parent controls the stagger
         transition={{ duration: 0.42 }}
       > 
@@ -166,15 +109,11 @@ export default function Commendations({ entries = [], className = "w-full max-w-
   // Using CSS sticky — no JS refs required for sticky behavior
   // Using CSS sticky for center-sticking behavior instead of JS detection
 
-  const stickyRefs = useRef([]);
   const containerRef = useRef(null);
   // Track scroll distance to disable c2 sticky after 20svh
 
   // Measure each sticky wrapper's height and set a CSS variable that centers
   // the element vertically without using transform (which can break position: sticky).
-  
-
-  // Track scroll to disable c2 sticky after 20svh of scrolli
 
   return (
     <div className={className} style={{ position: "relative", zIndex: 10 }}>
@@ -184,16 +123,10 @@ export default function Commendations({ entries = [], className = "w-full max-w-
         <div className="gm-small mt-3" style={{ color: "var(--gm-teal)" }}>Trusted endorsements from partner embassies</div> 
       </div>
       
-      {/* UPDATED: Applied seaLiceContainer to the Grid */}
-      {/* paddingBottom controls how long sticky cards stay fixed before releasing */}
-      <motion.div 
+      <div 
         ref={containerRef}
-        variants={seaLiceContainer} 
-        initial="hidden" 
-        whileInView="show" 
-        viewport={{ once: true, amount: 0.2 }} 
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-start"
-        style={{ paddingBottom: '0svh' }} // <-- Adjust this value to change sticky duration for c1
+         // <-- Adjust this value to change sticky duration for c1
       > 
         {list.map((e, idx) => {
           // Offsets stagger when each card appears during scroll
@@ -202,21 +135,16 @@ export default function Commendations({ entries = [], className = "w-full max-w-
           const offset = offsets[e.id] || null;
           const wrapperStyle = offset ? { marginTop: offset } : undefined;
           // assign distinct classes: c1 uses full sticky, c2 uses short-sticky, c3 not sticky
-          let stickyClass = '';
-          if (e.id === 'c1') stickyClass = 'gm-card-sticky';
-          if (e.id === 'c2') stickyClass = 'gm-card-sticky-short';
+          
           return (
             <div key={e.id} className="h-full" style={wrapperStyle}>
-              <div className={stickyClass} >
                 <CommendationCard e={e} />
-              </div>
             </div>
           );
         })}
-      </motion.div>
+      </div>
       {/* No modal: full letters are displayed inline within each card */}
     </div>
   );
 }
-
 
