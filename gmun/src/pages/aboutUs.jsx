@@ -109,112 +109,157 @@ export default function OurStory() {
 
 
   return (
-    <div
+<div
+className="page-bg"
   style={{
-    color: "#6b6666",
-    minHeight: "100vh",      // ✅ allows unlimited vertical growth
-    background: "#f6e7e5",  // ✅ keeps page consistent
-    paddingBottom: "120px"  // ✅ prevents bottom clipping
+    color: "#f3f6f7ff",
+    minHeight: "100vh",
+    paddingBottom: "120px"
   }}
 >
 
 
+
       <style>{`
        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap');
-
-.container {
-  max-width: 980px;
-  margin: 32px auto 80px;
-  padding: 48px 40px 96px;  /* ✅ extra bottom padding */
-  text-align: center;
-  background: #ffffff;
-  border-radius: 32px;
-
-  /* ✅ WHITE GLOW */
-  box-shadow:
-    0 0 12px rgba(255,255,255,0.6),
-    0 0 30px rgba(255,255,255,0.4),
-    0 0 70px rgba(255,255,255,0.25);
-
-  overflow: visible;       /* ✅ allow content to grow */
-  height: auto;            /* ✅ CRITICAL FIX */
+:root{
+  --text: #F6F3EE;       /* main text */
+  --muted: #cfc9c6;     /* secondary text */
+  --accent: #E7B65C;    /* accent */
+  --glass-bg: rgba(177, 162, 162, 0.06);
+  --glass-border: rgba(255,255,255,0.08);
+  --dark-overlay: rgba(6,12,14,0.36); /* overlay to increase contrast */
 }
 
-.since { letter-spacing: 6px; font-size: 25px; margin-top: 6px; }
-.title { font-family: 'Playfair Display', serif; font-weight: 700; color: #13433f; font-size: 130px; line-height: 0.82; margin: 18px 0 6px; }
-.subtitle { font-size: px; letter-spacing: 4px; margin-top: 30px; margin-bottom: 40px; }
-
-/* static image wrapper — no animation, no transform */
-.image-wrap {
-  width: 700px;
-  height: 260px;
-  margin: 28px auto 14px;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 14px 35px rgba(0,0,0,0.12);
+/* ---------------- PAGE GLASS WRAPPER ---------------- */
+.page-bg {
   position: relative;
+  min-height: 100vh;
+  /* If the background image is set on body, this still works.
+     If not, you can set the image here using background-image: url('/path') */
+  z-index: 0;
+  color: var(--text);
 }
 
-/* image itself — keep object-fit so it crops nicely */
-.image-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+/* the core glass: translucent panel + blur of background behind it */
+.page-bg::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* translucent fill to allow background to show through */
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02));
+  /* optional darker overlay to improve contrast (keeps texture but darkens) */
+  box-shadow: inset 0 120px 220px rgba(0,0,0,0.12);
+  z-index: 0;
+  pointer-events: none;
 }
 
-/* keep lead paragraph styling */
+/* The frosted effect for content wrapper (the actual glass card).
+   This sits above ::before and blurs the page background behind it. */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 980px;
+  margin: 48px auto 80px;
+  padding: 48px 40px 96px;
+  text-align: center;
+
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+
+  box-shadow: 0 18px 50px rgba(2,6,8,0.32);
+  overflow: visible;
+  height: auto;
+}
+
+/* Typography + helpers */
+.since { letter-spacing: 6px; font-size: 50px; margin-top: 6px; color: #ffffffff; }
+
+.title { font-family: 'Playfair Display', serif; font-weight: 700; color: #05290cff; font-size: 130px; line-height: 0.82; margin: 18px 0 6px; }
+.subtitle { font-size: 40px; letter-spacing: 1px; margin-top: 30px; margin-bottom: 40px; color:#ffffffff; font-family: Poppins (sans) ;}
+
+/* IMAGE WRAP (keep as-is, sits inside frosted container) */
+.image-wrap { width: 700px; height: 260px; margin: 28px auto 14px; border-radius: 14px; overflow: hidden; box-shadow: 0 14px 35px rgba(0,0,0,0.12); position: relative; }
+.image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ---------------- LEAD (glass paragraph) ---------------- */
 .lead {
   width: 100%;
-  max-width: 100%;
+  max-width: 85ch;
   margin: 32px auto 0;
-  font-size: 15px;
+  padding: 22px 26px;
+  font-size: 18px;
   line-height: 1.75;
-  color: #4b4545;
+  color: #0c2205ff;
   text-align: left;
   word-wrap: break-word;
   overflow-wrap: break-word;
+
+
+  
+
+  position: relative;
+  z-index: 2; /* above container overlay */
 }
 
-/* responsive adjustments */
-@media (max-width: 760px){
-  .title { font-size: 64px; }
-  .image-wrap { width: 200px; height: 200px; }
-}
-
-
-        .quote-section {
-  background: transparent /* page background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 80px 20px;
-}
-
+/* ---------------- QUOTE (convert to frosted card too) ---------------- */
+.quote-section { background: transparent; display: flex; justify-content: center; align-items: center; padding: 80px 20px; z-index:1; }
 .quote-card {
-  background: #78716c; /* soft muted grey */
-  padding: 70px 60px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  padding: 48px 40px;
   border-radius: 14px;
-  max-width: 1200px;
+  max-width: 1100px;
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  box-shadow: 0 18px 40px rgba(2,6,8,0.32);
+  color: #ffff;
+}
+.quote-text { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 500; color: var(--text); margin-bottom: 24px; line-height: 1.3; text-shadow: 0 6px 18px rgba(2,6,8,0.45); }
+.quote-author { font-family: 'Poppins', sans-serif; font-size: 18px; color: #0d350bff; opacity: 0.95; }
+
+/* ---------------- CAROUSEL SLIDE COPY (frosted darker panel for contrast) ---------------- */
+.oe-slide-copy {
+  background: rgba(3,6,8,0.56); /* dark translucent to maximize readability */
+  color: #f7f3ee;
+  padding: 24px;
+  border-radius: 12px;
+  width: 420px;
+  box-shadow: 0 14px 40px rgba(2,6,8,0.46);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.oe-slide-heading { margin: 0 0 10px; font-size: 20px; color: #ffd79a; }
+.oe-slide-text { margin: 0; color: #f1ebe6; line-height: 1.6; }
+
+/* ---------------- TEAM SECTION (make frosted & readable) ---------------- */
+.team-section {
+  padding: 4rem 6vw 5rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  color: var(--text);
+  font-family: "Poppins", system-ui, sans-serif;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.02);
 }
 
-.quote-text {
-  font-family: 'Playfair Display', serif;
-  font-size: 48px;
-  font-weight: 500;
-  color: #f6e7e5;
-  margin-bottom: 32px;
-  line-height: 1.3;
+/* governor gradient text OK — add tiny shadow for small screens */
+.governor-name { background: linear-gradient(90deg,#ffe3b8,#f8d6ff); -webkit-background-clip: text; color: transparent; text-shadow: 0 2px 8px rgba(0,0,0,0.24); }
+
+/* secretaries list readable color */
+.secretary-name { color: var(--text); }
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 900px) {
+  .title { font-size: 64px; }
+  .image-wrap { width: 260px; height: 220px; }
+  .oe-slide-img { width: 260px; height: 260px; }
+  .container { padding: 32px; margin: 28px 12px 60px; border-radius: 12px; }
 }
 
-.quote-author {
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
-  color: #f6e7e5;
-  opacity: 0.9;
-}
 
       `}</style>
 
@@ -345,7 +390,7 @@ function Carousel({ id, title, description, slides }) {
           --bg: #f6e7e5;
           --brand: #13433fff;
           --muted: #6b6666;
-          --accent: #13433fff;
+          --accent: rgba(19, 67, 63, 1);
           --card-dark: #13433fff;
         }
 
@@ -370,11 +415,11 @@ function Carousel({ id, title, description, slides }) {
  }
         .oe-header h2 {
           font-family: 'Playfair Display', serif;
-          font-size: 56px;
+          font-size: 65px;
           margin: 0 0 8px;
-          color: var(--brand);
+          color: #05290cff;
         }
-        .oe-header p { color: var(--muted); max-width: 100% ; margin: 0 auto;  }
+        .oe-header p { color: #0a0a0aff; max-width: 100% ; margin: 0 auto; font-size: 20px }
 
         /* vertical stack: ITW first, Bootcamp below */
         .oe-grid {
@@ -392,7 +437,7 @@ function Carousel({ id, title, description, slides }) {
           font-size: 60px;
           font-weight: 600;
           margin: 0 0 18px;
-          color: var(--brand);
+          color: #05290cff;
         }
 
         .oe-carousel { display: flex; align-items: center; justify-content: center; gap: 12px; position: relative; margin: 0 auto;  width: 100%;
@@ -418,7 +463,7 @@ function Carousel({ id, title, description, slides }) {
 
         .oe-slide-copy {
           background: var(--card-dark);
-          color: #fff;
+          color:var(--muted) ;
           padding: 28px;
           border-radius: 12px;
           width: 420px;
@@ -438,14 +483,14 @@ function Carousel({ id, title, description, slides }) {
           .oe-arrow { display: none; }
         }
           .oe-carousel-description {
-  font-size: 16px;
-  color: var(--muted);
+  font-size: 20px;
+  color: #ffff;
   margin: -6px 0 28px;
   line-height: 1.7;
-  max-width: 760px;
-  text-align: center;
+  max-width: ;
+  text-align: left;
   font-weight: 400;
-  opacity: 0.85;
+  opacity: 1;
 }
 
 
@@ -490,121 +535,128 @@ function QuoteBlock() {
     <>
       <style>
         {`
-        .team-section {
-          padding: 4rem 6vw 5rem;
-          background: #5a5252;
-          color: #f7f0f0;
-          font-family: "Poppins", system-ui, sans-serif;
-          text-align: center;
-        }
+/* TEAM SECTION – CLEAN, CONTRASTED, READABLE ON YOUR BACKGROUND */
 
-        .team-heading {
-          font-size: clamp(2.6rem, 4vw, 3.4rem);
-          letter-spacing: 0.22em;
-          margin-bottom: 3rem;
-          text-transform: uppercase;
-        }
+.team-section {
+  padding: 4rem 6vw 5rem;
+  background: transparent;
+  color: #f6f3ee;                        /* soft warm white for dark bg */
+  font-family: "Poppins", sans-serif;    /* readable body font */
+  text-align: center;
+}
 
-        .team-block {
-          max-width: 1000px;
-          margin: 0 auto 3.2rem;
-        }
+/* MAIN HEADING */
+.team-heading {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.6rem, 4vw, 3.4rem);
+  letter-spacing: 0.12em;                /* FIXED (was empty before) */
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  color: #fefcf8;                        /* brighter heading color */
+  text-shadow: 0 4px 14px rgba(0,0,0,0.45); /* adds contrast on bg */
+}
 
-        .team-label {
-          display: inline-block;
-          font-size: 1.2rem;
-          text-transform: uppercase;
-          letter-spacing: 0.18em;
-          margin-bottom: 1.5rem;
-          padding-bottom: 0.4rem;
-          border-bottom: 1px solid rgba(246, 225, 200, 0.6);
-          opacity: 0.9;
-        }
+/* BLOCK WRAPPER */
+.team-block {
+  max-width: 1000px;
+  margin: 0 auto 3.2rem;
+}
 
-        .governors-label {
-          border-color: rgba(255, 215, 170, 0.9);
-        }
+/* LABELS (Governors / Secretaries) */
+.team-label {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  color: #fefaf5;
+  opacity: 0.9;
+}
 
-        .governor-row {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 0.75rem 2rem;
-          margin: 0 auto;
-        }
+.governors-label {
+  border-color: rgba(255, 225, 190, 0.9);
+}
 
-        .governor-name {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.45rem;
-          font-size: 1rem;
-          font-weight: 500;
-          letter-spacing: 0.04em;
-          background: linear-gradient(90deg, #ffe3b8, #f8d6ff);
-          -webkit-background-clip: text;
-          color: transparent;
-          cursor: default;
-        }
+/* MEMBER ROWS */
+.governor-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 2rem;
+  margin: 0 auto;
+}
 
-        .governor-name .dot {
-          width: 7px;
-          height: 7px;
-          border-radius: 999px;
-          background: radial-gradient(circle, #ffe3b8, #f4b96e);
-        }
+/* GOVERNOR NAME – HIGH CONTRAST + ELEGANT */
+.governor-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
 
-        .secretary-list {
-          list-style: none;
-          margin: 0 auto;
-          padding: 0;
-          max-width: 900px;
-          column-count: 3;
-          column-gap: 3rem;
-          text-align: left;
-        }
+  /* readable gold gradient */
+  background: linear-gradient(90deg, #ffe8c6, #f2c57a);
+  -webkit-background-clip: text;
+  color: transparent;
+  
+  cursor: default;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.35);
+}
 
-        @media (max-width: 900px) {
-          .secretary-list {
-            column-count: 2;
-          }
-        }
+/* DOT COLOR */
+.governor-name .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: radial-gradient(circle, #ffe3b8, #f4b96e);
+}
 
-        @media (max-width: 600px) {
-          .secretary-list {
-            column-count: 1;
-          }
-        }
+/* SECRETARIES LIST */
+.secretary-list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 900px;
+  column-count: 3;
+  column-gap: 3rem;
+  text-align: left;
+}
 
-        .secretary-name {
-          padding: 0.2rem 0 0.2rem 1.1rem;
-          font-size: 0.98rem;
-          letter-spacing: 0.02em;
-          position: relative;
-          opacity: 0.9;
-          break-inside: avoid;
-        }
+/* RESPONSIVE COLUMNS */
+@media (max-width: 900px) { .secretary-list { column-count: 2; } }
+@media (max-width: 600px) { .secretary-list { column-count: 1; } }
 
-        .secretary-name::before {
-          content: "";
-          position: absolute;
-          left: 0;
-          top: 0.7rem;
-          width: 6px;
-          height: 6px;
-          border-radius: 999px;
-          background: rgba(245, 215, 195, 0.9);
-        }
+/* SECRETARY NAME */
+.secretary-name {
+  padding: 0.2rem 0 0.2rem 1.1rem;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  position: relative;
+  color: #f3ede5;                     /* soft white */
+  opacity: 0.9;
+  break-inside: avoid;
+}
 
-        .governor-name,
-        .secretary-name {
-          transition: transform 0.15s ease, opacity 0.15s ease;
-        }
+/* DOT BEFORE SECRETARY */
+.secretary-name::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(250, 222, 196, 0.9);
+}
 
-        .governor-name:hover,
-        .secretary-name:hover {
-          transform: translateX(3px);
-          opacity: 1;
-        }
+
+
+
+
         `}
       </style>
 
