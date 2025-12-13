@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useMemo } from "react";
+import React, { useRef, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import './gmun-styles.css';
 
@@ -19,6 +19,7 @@ function SplitText({ text = "", className = "", stagger = 0.02 }) {
     </motion.div>
   );
 }
+
 
 // TiltCard with Gold Shadow
 function TiltCard({ children, className = "", intensity = 3 }) {
@@ -44,7 +45,7 @@ function TiltCard({ children, className = "", intensity = 3 }) {
 // CommendationCard
 function CommendationCard({ e }) {
   return (
-    <TiltCard className="rounded-2xl " intensity={3}>
+    <TiltCard className="rounded-2xl " intensity={3} >
       <motion.article 
         whileHover={{ translateY: -6 }} 
         // clicking does not open a modal anymore
@@ -105,46 +106,46 @@ export default function Commendations({ entries = [], className = "w-full max-w-
     { id: "c2", countryCode: "US", countryName: "United States", title: "Letter of Recommendation", short: "Recognizes the conference's role in fostering dialogue and leadership.", full: "The United States Embassy is delighted to recognize the GMUN conference's critical role in fostering constructive international dialogue and developing future global leaders. The level of debate and resolution drafting was exemplary, demonstrating true academic rigor.", imageUrl: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=60", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=60" },
     { id: "c3", countryCode: "GB", countryName: "United Kingdom", title: "Official Commendation", short: "Highlights academic rigor and diplomatic spirit.", full: "We commend GMUN for their meticulous planning and the outstanding platform they provide for students to engage with complex global issues. The event truly highlights a strong sense of academic rigor and an excellent diplomatic spirit among all delegates.", imageUrl: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=60", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=60" },
   ];
-  const list = entries.length ? entries : sample;
+  const list = entries.length >= 3 ? entries.slice(0, 3) : sample;
   // Using CSS sticky — no JS refs required for sticky behavior
   // Using CSS sticky for center-sticking behavior instead of JS detection
 
   const containerRef = useRef(null);
-  // Track scroll distance to disable c2 sticky after 20svh
+  const headingRef = useRef(null);
 
-  // Measure each sticky wrapper's height and set a CSS variable that centers
-  // the element vertically without using transform (which can break position: sticky).
+  // No sticky logic; cards are independent
 
-  return (
-    <div className={className} style={{ position: "relative", zIndex: 10 }}>
-      <div className="mb-10 text-center"> 
+  return (<div style={{ marginBottom: "-60svh" }}>
+    <div className={className} style={{ minHeight:"65.5svh", position: "relative", zIndex: 10 }}>
+      <div
+        ref={headingRef}
+        className="mb-10 text-center"
+        style={{ position: "sticky", top: 124 }}
+      > 
         <div className="gm-subtitle uppercase" style={{ color: "var(--gm-teal)" }}><SplitText text={"COMMENDATIONS"} stagger={0.01} /></div>
         <div className="text-4xl font-bold gm-title" style={{ color: "var(--gm-gold)", marginTop: 8 }}><SplitText text={"Letters from Ambassadors"} stagger={0.01} /></div> 
         <div className="gm-small mt-3" style={{ color: "var(--gm-teal)" }}>Trusted endorsements from partner embassies</div> 
       </div>
-      
+    </div>
+    <div className={className} >
       <div 
         ref={containerRef}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-start"
-         // <-- Adjust this value to change sticky duration for c1
-      > 
-        {list.map((e, idx) => {
-          // Offsets stagger when each card appears during scroll
-          // c1: no offset (appears first), c2: 20svh offset, c3: 40svh offset (no sticky)
-          const offsets = { c2: '20svh', c3: '40svh' };
-          const offset = offsets[e.id] || null;
-          const wrapperStyle = offset ? { marginTop: offset } : undefined;
-          // assign distinct classes: c1 uses full sticky, c2 uses short-sticky, c3 not sticky
-          
-          return (
-            <div key={e.id} className="h-full" style={wrapperStyle}>
-                <CommendationCard e={e} />
-            </div>
-          );
-        })}
+        className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-end"
+        style={{ minHeight:"100svh", zIndex: 10, top:"-58.5svh" ,position:"relative"}}
+      >
+        <div  style={{ height:"100svh",position:"relative"}}><div  style={{ position: "sticky", top: headingRef.current ? headingRef.current.offsetHeight +300 : 300 }}>
+          <CommendationCard e={entries[0] || list[0]}/>
+        </div></div>
+        <div style={{ height:"80svh", position: "relative"}}><div  style={{ position: "sticky", top: headingRef.current ? headingRef.current.offsetHeight +300 : 300 }}>
+            <CommendationCard e={entries[1] || list[1]} />
+          </div></div>
+        <div style={{ height:"60svh", position: "relative"}}><div  style={{ position: "sticky", top: headingRef.current ? headingRef.current.offsetHeight  +300:300 }}>
+          <CommendationCard e={entries[2] || list[2]} />
+        </div></div>
       </div>
-      {/* No modal: full letters are displayed inline within each card */}
+      </div>
     </div>
   );
 }
+
 
