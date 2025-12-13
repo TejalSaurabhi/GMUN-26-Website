@@ -103,7 +103,7 @@ export default function OurStory() {
       <style>{`
        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap');
 
-.container { max-width: 980px; margin: 0 auto; padding: 48px 24px 0; text-align: center; }
+.container { max-width: 980px; margin: 900px auto; padding: 48px 24px 0; text-align: center; }
 .since { letter-spacing: 6px; font-size: 25px; margin-top: 6px; }
 .title { font-family: 'Playfair Display', serif; font-weight: 700; color: #13433f; font-size: 130px; line-height: 0.82; margin: 18px 0 6px; }
 .subtitle { font-size: px; letter-spacing: 4px; margin-top: 30px; margin-bottom: 40px; }
