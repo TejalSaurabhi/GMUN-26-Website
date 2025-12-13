@@ -3,7 +3,7 @@
 .hero-wrapper {
   text-align: center;
   width: 100%;
-  padding-top: 6rem;
+  padding: 6rem 0;
   color: #c7fff6;
   display: flex;
   flex-direction: column;
@@ -11,6 +11,9 @@
 }
 
 .hero-title {
+  background: linear-gradient(to bottom, #e9a751, #d9ccc4, #e9a751);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-size: clamp(4rem, 8vw, 12rem);
   font-weight: 600;
   letter-spacing: 4px;

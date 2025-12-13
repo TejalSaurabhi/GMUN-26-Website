@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import NavBar from "./components/Navbar";
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import { BASE_URL } from "./constants.js";
 import { useDispatch } from "react-redux";
 import { login } from "./store/authSlice.js";

@@ -1,5 +1,5 @@
 import Countdown from '../components/Countdown';
-// import Commendations from '../components/commendationpage';
+import Commendations from '../components/commendationpage';
 // import { useEffect } from "react";
 import Announcements from "../components/Announcements";
 import Footer from "../components/Footer";
@@ -10,8 +10,7 @@ import Timeline from "../components/Timeline";
 // import LoadingSpinner from "../components/LoadingSpinner";
 import Hero from "../components/Home/Hero/Hero";
 import "./landing.css";
-import Commendations from "../components/Home/Commendations/Commendations";
-import Benefits from "../components/Home/Benefits/Benefits";
+import Highlights from "../components/Home/Highlights/Highlights";
 
 // Redireceting already authenticated users to home page if they try to go to signup page
 // The verified property is causing trouble
@@ -47,7 +46,7 @@ const Landing = () => {
         <Countdown />
       </header>
 
-      <Benefits />
+      <Highlights />
 
       <div className="countdown-section">
         <Commendations />
