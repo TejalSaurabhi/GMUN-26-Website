@@ -5,7 +5,8 @@ import image1 from "../images/an1.jpg";
 const Timeline = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionsRef = useRef([]);
-  const itemRefs = useRef([]);
+  // Ref for the scrollable container to fix the parallax/scroll listener
+  const scrollContainerRef = useRef(null); 
 
   const timelineItems = [
     {
@@ -35,16 +36,20 @@ const Timeline = () => {
     }
   ];
 
-  /* RIGHT SIDE OBSERVER */
+  /* RIGHT SIDE OBSERVER - DRIVER OF STATE */
   useEffect(() => {
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
-          const index = sectionsRef.current.indexOf(entry.target);
-          if (entry.isIntersecting) setActiveIndex(index);
+          // Only update if the element is actually intersecting/visible
+          if (entry.isIntersecting) {
+            const index = sectionsRef.current.indexOf(entry.target);
+            if (index !== -1) setActiveIndex(index);
+          }
         });
       },
-      { threshold: 0.6 }
+      // Lower threshold slightly to catch smaller sections or fast scrolls
+      { threshold: 0.5, root: scrollContainerRef.current } 
     );
 
     sectionsRef.current.forEach(ref => ref && observer.observe(ref));
@@ -52,55 +57,45 @@ const Timeline = () => {
       sectionsRef.current.forEach(ref => ref && observer.unobserve(ref));
   }, []);
 
-  /* RIGHT SIDE PARALLAX */
+  /* PARALLAX EFFECT - FIXED TO LISTEN TO CONTAINER, NOT WINDOW */
   useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
     const handleScroll = () => {
       sectionsRef.current.forEach(section => {
         if (!section) return;
         const rect = section.getBoundingClientRect();
-        const ratio = Math.min(Math.max(0, 1 - rect.top / window.innerHeight), 1);
-        const translateX = (ratio - 0.5) * 150;
-
+        // Calculate ratio based on container height (window.innerHeight acts as proxy for viewport height)
+        const viewHeight = window.innerHeight;
+        const ratio = Math.min(Math.max(0, 1 - rect.top / viewHeight), 1);
+        
+        // Subtle Parallax effect
+        const translateX = (ratio - 0.5) * 50; 
+        
         section.style.transform = `translateX(${translateX}px) scale(${
-          1 + ratio * 0.05
+          1 + ratio * 0.02
         })`;
       });
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
-  /* LEFT SIDE ACTIVE DETECTOR */
-  useEffect(() => {
-    const titleObserver = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          const idx = itemRefs.current.indexOf(entry.target);
-          if (entry.isIntersecting) setActiveIndex(idx);
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    itemRefs.current.forEach(ref => ref && titleObserver.observe(ref));
-    return () =>
-      itemRefs.current.forEach(ref => ref && titleObserver.unobserve(ref));
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
-      {/* SIMPLE SAFE TITLE */}
       <div className="timeline-page-title">GMUN TIMELINE</div>
 
       <div className="timeline-wrapper">
 
-        {/* LEFT SECTION */}
+        {/* LEFT SECTION - STATIC/STICKY DISPLAY ONLY */}
         <div className="timeline-left-stacked">
           <div className="timeline-left-container">
             {timelineItems.map((item, index) => (
               <div
                 key={index}
-                ref={el => (itemRefs.current[index] = el)}
+                // No ref needed here for observation anymore
                 className={`timeline-left-item ${index === activeIndex ? "active" : ""}`}
               >
                 <h2 className="timeline-left-title">{item.year}</h2>
@@ -110,8 +105,8 @@ const Timeline = () => {
           </div>
         </div>
 
-        {/* RIGHT SECTION */}
-        <div className="timeline-scroll">
+        {/* RIGHT SECTION - SCROLLABLE CONTENT */}
+        <div className="timeline-scroll" ref={scrollContainerRef}>
           {timelineItems.map((item, index) => (
             <section
               key={index}

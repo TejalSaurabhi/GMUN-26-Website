@@ -1,179 +1,217 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
-body {
-  background: #0f0f17; /* GMUN Dark Background */
-  overflow-x: hidden;
-}
-
-.announcement-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* Adjust height as needed, using min-height ensures it doesn't collapse */
-  min-height: 60vh;
-  /* background: #0f0f17; */
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  padding: 50px 20px;
-}
-
-.section-title {
-  color: #d4af37; /* GMUN Gold */
-  font-size: 3rem;
-  margin-bottom: 50px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  border-bottom: 2px solid #d4af37;
-  padding-bottom: 10px;
-  text-align: center;
-}
-
-.container {
-  width: 100%;
-  max-width: 900px;
+/* =========================================================
+    WRAPPER (Positioning System)
+========================================================= */
+.sticky-announcement-wrapper {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 9999;
+  font-family: 'Montserrat', sans-serif;
   
-  justify-content: center;
-}
-
-/* ============================
-        SINGLE ITEM CARD
-   ============================ */
-
-.single-item {
-  width: 100%;
-  background: transparent;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.3); /* Subtle gold divider line */
-  padding-bottom: 30px;
-}
-
-/* Inner Layout: Flexbox for Date (Left) and Content (Right) */
-.card-inner {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 30px;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.02); /* Very subtle backdrop */
-  border-radius: 12px;
-  transition: all 0.3s ease;
-}
-
-.card-inner:hover {
-  /* transform: translateY(-5px); Slight lift on hover */
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(233, 167, 81, 0.25);
-}
-
-/* ============================
-        DATE BOX (Left Side)
-   ============================ */
-.date-box {
+  /* Container allows elements to flow out from right */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: flex-end;
+  padding-right: 20px; /* Spacing from screen edge */
+}
+
+/* =========================================================
+    TOGGLE BUTTON (The "Bell" Pill)
+========================================================= */
+.announcement-toggle {
+  display: flex;
   align-items: center;
-  min-width: 90px;
-  height: 90px;
-  background-color: #d4af37; /* Gold Background */
-  color: #0f0f17; /* Dark Text for contrast */
-  border-radius: 4px;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-  flex-shrink: 0; /* Prevents box from squishing on small screens */
+  gap: 12px;
+  background: #d4af37; /* GM Gold */
+  padding: 10px 20px 10px 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Initial State */
+  opacity: 1;
+  transform: translateX(0);
 }
 
-.date-num {
-  font-size: 2rem;
-  font-weight: 800;
-  line-height: 1;
+.announcement-toggle:hover {
+  transform: translateX(-5px) scale(1.05);
+  background: #eac34d; /* Lighter Gold */
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
 }
 
-.date-month {
+/* Hide toggle when card is open */
+.announcement-toggle.hidden {
+  opacity: 0;
+  transform: translateX(100px); /* Fly out to right */
+  pointer-events: none;
+}
+
+.toggle-icon-box {
+  width: 35px;
+  height: 35px;
+  background: #071022; /* Dark Navy Icon BG */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d4af37;
+}
+
+/* Bell Animation */
+.bell-icon {
+  animation: ring 3s ease-in-out infinite;
+  font-size: 1rem;
+}
+
+.toggle-text {
+  font-weight: 700;
+  color: #071022; /* Dark text on Gold */
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* =========================================================
+    ANNOUNCEMENT CARD (The "Message" Box)
+========================================================= */
+.announcement-card {
+  width: 320px;
+  background: rgba(7, 16, 34, 0.95); /* Deep Navy Glass */
+  backdrop-filter: blur(12px);
+  border: 1px solid #d4af37;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  position: absolute;
+  right: 20px; /* Aligns with padding of wrapper */
+  
+  /* Hidden State */
+  opacity: 0;
+  transform: perspective(1000px) rotateY(-90deg) translateX(50px);
+  transform-origin: right center;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+}
+
+/* Visible State */
+.announcement-card.visible {
+  opacity: 1;
+  transform: perspective(1000px) rotateY(0deg) translateX(0);
+  pointer-events: all;
+}
+
+/* Close "X" Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: rgba(230, 223, 215, 0.5); /* Muted Cream */
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.close-btn:hover {
+  color: #d4af37;
+}
+
+/* Content Layout */
+.card-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.icon-badge {
+  width: 40px;
+  height: 40px;
+  background: rgba(212, 175, 55, 0.15);
+  color: #d4af37;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.text-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.announcement-title {
+  color: #9fd6ce; /* Teal Accent */
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.announcement-msg {
+  color: #e6dfd7; /* Cream Text */
   font-size: 1rem;
   font-weight: 600;
-  text-transform: uppercase;
-  margin-top: 2px;
+  line-height: 1.4;
 }
 
-/* ============================
-      TEXT CONTENT (Right Side)
-   ============================ */
-.text-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  color: #fff;
-  text-align: left;
-}
-
-.name {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 15px;
-  line-height: 1.2;
-}
-
-.des {
-  font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.75); /* Muted white text */
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.read-more {
-  background: none;
+/* Action Button Inside Card */
+.action-link {
+  width: 100%;
+  padding: 8px 0;
+  background: linear-gradient(90deg, #d4af37, #b69354);
   border: none;
-  color: #d4af37; /* GMUN Gold for link */
+  border-radius: 8px;
+  color: #071022;
   font-weight: 700;
-  font-size: 1rem;
+  font-family: inherit;
+  font-size: 0.9rem;
   cursor: pointer;
-  padding: 0;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.3s ease;
+  transition: opacity 0.3s;
 }
 
-.read-more:hover {
-  color: #fff;
-  gap: 12px; /* Move arrow slightly on hover */
+.action-link:hover {
+  opacity: 0.9;
 }
 
-/* ============================
-          RESPONSIVE
-   ============================ */
+/* =========================================================
+    ANIMATIONS & MEDIA QUERIES
+========================================================= */
+
+@keyframes ring {
+  0%, 100% { transform: rotate(0); }
+  10% { transform: rotate(15deg); }
+  20% { transform: rotate(-15deg); }
+  30% { transform: rotate(10deg); }
+  40% { transform: rotate(-10deg); }
+  50% { transform: rotate(0); }
+}
+
 @media (max-width: 768px) {
-  .section-title {
-    font-size: 2rem;
-    margin-bottom: 30px;
+  .sticky-announcement-wrapper {
+    top: auto;
+    bottom: 20px; /* Move to bottom right on mobile to avoid covering content */
+    right: 10px;
+    padding-right: 0;
+    transform: none;
   }
-
-  .card-inner {
-    flex-direction: column; /* Stack date on top of text */
-    align-items: flex-start;
-    gap: 20px;
+  
+  .announcement-toggle {
+    padding: 8px 16px 8px 8px;
   }
-
-  .date-box {
-    width: 70px;
-    height: 70px;
-    min-width: 70px;
-  }
-
-  .date-num {
-    font-size: 1.5rem;
-  }
-
-  .date-month {
-    font-size: 0.8rem;
-  }
-
-  .name {
-    font-size: 1.5rem;
+  
+  .announcement-card {
+    width: 280px;
+    right: 10px;
+    bottom: 0; /* Anchor to bottom */
+    transform-origin: bottom right;
   }
 }
