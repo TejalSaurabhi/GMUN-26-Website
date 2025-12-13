@@ -169,44 +169,12 @@ export default function Commendations({ entries = [], className = "w-full max-w-
   const stickyRefs = useRef([]);
   const containerRef = useRef(null);
   // Track scroll distance to disable c2 sticky after 20svh
-  const [c2StickyDisabled, setC2StickyDisabled] = useState(false);
 
   // Measure each sticky wrapper's height and set a CSS variable that centers
   // the element vertically without using transform (which can break position: sticky).
-  useEffect(() => {
-    function updateHeights() {
-      stickyRefs.current.forEach((el) => {
-        if (!el) return;
-        const half = Math.round(el.offsetHeight / 2);
-        el.style.setProperty('--sticky-half', `${half}px`);
-      });
-    }
-    updateHeights();
-    // keep up-to-date on resize
-    window.addEventListener('resize', updateHeights);
-    return () => window.removeEventListener('resize', updateHeights);
-  }, [list.length]);
+  
 
-  // Track scroll to disable c2 sticky after 20svh of scrolling past start
-  useEffect(() => {
-    let startY = null;
-    function onScroll() {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      // When container top reaches viewport top, start tracking
-      if (startY === null && rect.top <= window.innerHeight * 0.5) {
-        startY = window.scrollY;
-      }
-      if (startY !== null) {
-        const scrolled = window.scrollY - startY;
-        const threshold = window.innerHeight * 0.2; // 20svh
-        setC2StickyDisabled(scrolled >= threshold);
-      }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  // Track scroll to disable c2 sticky after 20svh of scrolli
 
   return (
     <div className={className} style={{ position: "relative", zIndex: 10 }}>
@@ -225,7 +193,7 @@ export default function Commendations({ entries = [], className = "w-full max-w-
         whileInView="show" 
         viewport={{ once: true, amount: 0.2 }} 
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-start"
-        style={{ paddingBottom: '40svh' }} // <-- Adjust this value to change sticky duration for c1
+        style={{ paddingBottom: '0svh' }} // <-- Adjust this value to change sticky duration for c1
       > 
         {list.map((e, idx) => {
           // Offsets stagger when each card appears during scroll
@@ -236,10 +204,10 @@ export default function Commendations({ entries = [], className = "w-full max-w-
           // assign distinct classes: c1 uses full sticky, c2 uses short-sticky, c3 not sticky
           let stickyClass = '';
           if (e.id === 'c1') stickyClass = 'gm-card-sticky';
-          if (e.id === 'c2') stickyClass = c2StickyDisabled ? '' : 'gm-card-sticky-short';
+          if (e.id === 'c2') stickyClass = 'gm-card-sticky-short';
           return (
             <div key={e.id} className="h-full" style={wrapperStyle}>
-              <div className={stickyClass} ref={(el) => (stickyRefs.current[idx] = el)}>
+              <div className={stickyClass} >
                 <CommendationCard e={e} />
               </div>
             </div>

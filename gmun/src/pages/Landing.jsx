@@ -10,6 +10,7 @@ import Timeline from "../components/Timeline";
 // import LoadingSpinner from "../components/LoadingSpinner";
 import Hero from "../components/Home/Hero/Hero";
 import "./landing.css";
+<<<<<<< HEAD
 import Highlights from "../components/Home/Highlights/Highlights";
 
 // Redireceting already authenticated users to home page if they try to go to signup page

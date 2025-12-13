@@ -36,21 +36,21 @@ const App = () => {
     fetchData();
   }, [dispatch]);
 
-  // if (0) {
-  //   return (
-  //     <>
-  //       <div>
-  //         <Preloader />
-  //       </div>
-  //     </>
-  //   );
-  // } else
-
-  return (
-    <>
-      {/* <ToastContainer position="top-left" /> */}
-      {/* Navbar will always be displayed */}
-      <NavBar />
+  if (0) {
+    return (
+      <>
+        <div>
+          <Preloader />
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <ToastContainer position="top-left" />
+        <div>
+          {/* Navbar will always be displayed */}
+          <NavBar />
 
           {/* Render the child route components using Outlet */}
           <div>

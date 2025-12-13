@@ -260,7 +260,7 @@ section.mb-8::before,
   }
   .gm-card-sticky-short {
     position: sticky;
-    top: calc(50vh - var(--sticky-half, 120px));
+    top: calc(25vh - var(--sticky-half, 120px));
     transform: none;
     will-change: top;
     z-index: 2;

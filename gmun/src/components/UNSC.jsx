@@ -1,104 +1,80 @@
-import React, { useEffect } from "react";
+// UNSC.jsx – Refined version with TwoChairBoard layout
+import React from "react";
 import WorldMap from "./WorldMap";
-import "./committee.css"; // General styles
+import "./committee.css";
 import { ReactComponent as UNSCLogo } from "../images/committee_img/UNSC Logo.svg";
+import BackgroundGuideBox from "./BackgroundGuideBox";
+import AgendaCard from "./AgendaCard";
+import TwoChairBoard from "./TwoChairBoard"; // ⬅️ new component import
 
+const message = `
+Dear Delegates,
 
+My name is Urvansh Saraf, and I am delighted to serve as your Co-Chair for the United Nations Security Council at HMUN 2026. It is an honor to guide this simulation of one of the most powerful and dynamic bodies in international diplomacy.
+
+The Security Council stands as a pillar of global governance — where peace, conflict, and cooperation meet. This year’s agenda challenges you to think deeply about the intersection of organized crime and terrorism — how financial networks, arms trade, and transnational groups threaten global security, and how international cooperation can create solutions.
+
+As your chairs, we look forward to seeing you bring creativity, intellect, and diplomacy to the table. Debate passionately, but also listen carefully — that’s where the best resolutions are built.
+
+See you in committee!
+
+Warm regards,
+Urvansh Saraf & Swapnaneel Datta
+Co-Chairs, United Nations Security Council
+hmun-unsc@harvardmun.org
+`;
 
 const UNSC = () => {
-  useEffect(() => {
-    const cards = document.querySelector(".cards");
-    const images = document.querySelectorAll(".card__img");
-    const backgrounds = document.querySelectorAll(".card__bg");
-    const range = 40;
-
-    const calcValue = (a, b) => ((a / b) * range - range / 2).toFixed(1);
-
-    const handleMouseMove = (event) => {
-      const { clientX: x, clientY: y } = event;
-      const yValue = calcValue(y, window.innerHeight);
-      const xValue = calcValue(x, window.innerWidth);
-
-      if (cards) {
-        cards.style.transform = `rotateX(${yValue}deg) rotateY(${xValue}deg)`;
-      }
-
-      images.forEach((image) => {
-        image.style.transform = `translateX(${-xValue}px) translateY(${yValue}px)`;
-      });
-
-      backgrounds.forEach((background) => {
-        background.style.backgroundPosition = `${xValue * 0.45}px ${
-          -yValue * 0.45
-        }px`;
-      });
-    };
-
-    document.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
   return (
     <div className="committee-container">
-      
+      {/* === Logo Section === */}
       <div className="emblem">
-      <UNSCLogo className="UNSCLogo" />
+        <UNSCLogo className="UNSCLogo" />
       </div>
-
-      {/* World Map Section */}
+    
+      {/* === Committee Title + Map === */}
       <div className="committee-map">
-        <WorldMap title="UNITED NATIONS SECURITY COUNCIL" mapDataFile="mapdata.js" />
+        <WorldMap
+          title={
+            <span className="hover-underline">
+              UNITED NATIONS SECURITY COUNCIL
+            </span>
+          }
+          mapDataFile="mapdata.js"
+        />
       </div>
 
-      {/* Committee Content Section */}
-      <div className="committee-content">
-        <h2>AGENDA</h2>
-        
-        <p>Deliberation on the nexus between organised crime and terrorism.</p>
+      {/* === Agenda Card === */}
+      <div className="agenda-card-container">
+        <AgendaCard
+          agenda="Deliberation on the nexus between organised crime and terrorism."
+          label="UNSC"
+        />
       </div>
 
-      {/* 3D Cards Section */}
-      <div className="cards">
-        <h3>UNSC</h3>
-        <h1>Executive Board</h1>
+      {/* === Executive Board Section === */}
+      <TwoChairBoard
+        title="Executive Board"
+        subtitle="UNSC"
+        chairs={[
+          {
+            name: "Urvansh Saraf",
+            role: "Co-Chair",
+            image: "/team-images/Executive Board Images/Urvansh pic.jpg",
+          },
+          {
+            name: "Swapnaneel Datta",
+            role: "Co-Chair",
+            image: "/team-images/Executive Board Images/Swapnaneel pic.jpg",
+          },
+        ]}
+        message={message}
+      />
 
-        {/* Card 1 */}
-        <div className="card card__one">
-          <div className="card__bg"></div>
-          <img
-            className="card__img"
-            src="/team-images/Executive Board Images/Urvansh pic.jpg"
-            alt="Urvansh Saraf"
-          />
-          <div className="card__hover-text">
-          <p>Co-Chair</p>
-          </div>
-          <div className="card__text">
-            <p className="card__title">Urvansh Saraf</p>
-          </div>
-        </div>
-
-        {/* Card 2 */}
-        <div className="card card__two">
-          <div className="card__bg"></div>
-          <img
-            className="card__img"
-            src="/team-images/Executive Board Images/Swapnaneel pic.jpg"
-            alt="Swapnaneel Datta"
-          />
-          <div className="card__hover-text">
-          <p>Co-Chair</p>
-          </div>
-          <div className="card__text">
-            <p className="card__title">Swapnaneel Datta</p>
-          </div>
-        </div>
-
+      {/* === Background Guide Box === */}
+      <div style={{ marginBottom: "60px" }}>
+        <BackgroundGuideBox link="https://example.com/background-guide.pdf" />
       </div>
-      
     </div>
   );
 };

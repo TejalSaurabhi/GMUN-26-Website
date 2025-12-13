@@ -2,15 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import App from "./App";
+import { BookOpen, FileText, HelpCircle, Globe2, Users } from "lucide-react";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Register from "./components/Register";
 import Landing from "./pages/Landing";
+import HowToMun from "./pages/howToMun";
 import Committee from "./components/Committee";
 import Contacts from "./components/Contacts";
 import Guide from "./components/Guide";
 import WorldMap from "./components/WorldMap";
 import Gallery from "./components/Gallery";
+import Gallery2Page from "./components/Gallery2Page";
+import LogoutBtn from "./components/LogoutBtn";
 import FAQs from "./components/FAQs";
 import AboutUs from "./pages/aboutUs";
 import Sec from "./components/sec";
@@ -24,6 +28,8 @@ import ForgotPassword from "./pages/Authorization/ForgotPassword.jsx";
 import VerifyEmail from "./pages/Authorization/VerifyEmail.jsx";
 import { Toaster } from "react-hot-toast";
 import StarsBackground from "./components/Home/StarsBackground.jsx";
+import FAQ from "./pages/FAQ";
+
 
 const router = createBrowserRouter([
   {
@@ -95,16 +101,25 @@ const router = createBrowserRouter([
         element: <WorldMap />,
       },
       {
+        path: "/how-to-mun",
+        element: <HowToMun />,
+      },
+      {
         path: "/FAQs",
-        element: <FAQs />,
+        element: <FAQ />,
       },
       {
         path: "/Sponsors",
         element: <Sponsors />,
       },
+      
       {
         path: "/gallery",
-        element: <Gallery />,
+        element: <Gallery2Page />,
+      },
+      {
+        path: "/gallery2",
+        element: <Gallery2Page />,
       },
       {
         path: "/sec",
