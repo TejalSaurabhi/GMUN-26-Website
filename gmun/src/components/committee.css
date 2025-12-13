@@ -475,4 +475,62 @@
     font-size: 42px !important;
     margin-bottom: 40px !important;
   }
+
+  /* COUNTRY POPUP (DESKTOP + MOBILE) */
+.tt_sm,
+.tt_mobile_sm {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 2px 8px !important;      /* small pill – same on desktop & mobile */
+  max-width: 70vw !important;
+  white-space: nowrap !important;
+
+  /* Shape & background */
+  border-radius: 999px !important;
+  background: #ffffff !important;     /* bright white interior */
+  border: 1px solid #B69354 !important;  /* gold border */
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(243, 237, 227, 0.9) !important;
+
+  /* Typography */
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 0.7rem !important;       /* same size everywhere */
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  color: #18191d !important;
+
+  /* Subtle motion */
+  transform: translateY(-1px) !important;
+  animation: popupFadeIn 0.25s ease-out !important;
+}
+
+/* Country name text */
+.tt_name_sm,
+.tt_mobile_name_sm {
+  float: none !important;
+  margin: 0 !important;
+}
+
+/* Hide close icons */
+.xmark_sm,
+.xmark_mobile_sm {
+  display: none !important;
+}
+
+/* Fade/slide in animation */
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-1px) scale(1);
+  }
+}
+
 }
