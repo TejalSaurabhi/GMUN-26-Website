@@ -55,7 +55,6 @@
     align-items: center;
     position: relative;
     z-index: 2;
-    /* if this section is scrolled-to via anchor, keep it clear of navbar */
     scroll-margin-top: 140px;
 }
 
@@ -130,10 +129,8 @@
     display: flex;
     justify-content: center;
     gap: 40px;
-    /* was: 60px */
     margin-bottom: 40px;
     border-bottom: 1px solid rgba(230, 223, 215, 0.1);
-    /* was: 10px */
     padding-bottom: 6px;
 }
 
@@ -225,8 +222,8 @@
 .cardRow {
     display: flex;
     gap: var(--card-gap);
-    /*            top   right  bottom left  */
-    padding: 60px 80px 60px 80px;  /* was 60px 80px 250px 80px */
+    /* top   right  bottom left  */
+    padding: 60px 80px 60px 80px;  
     overflow-x: scroll;
     overflow-y: visible;
     scroll-behavior: smooth;
@@ -453,14 +450,6 @@
     opacity: 0;
     cursor: default;
 }
-
-/* ------------------------------------------- */
-/* --- 7. MOBILE --- */
-/* ------------------------------------------- */
-
-/* ------------------------------------------- */
-/* --- 7. MOBILE --- */
-/* ------------------------------------------- */
 
 /* ------------------------------------------- */
 /* --- 7. MOBILE --- */
