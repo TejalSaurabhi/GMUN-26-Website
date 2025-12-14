@@ -339,6 +339,55 @@ section.mb-8::before,
   }
 }
 
+/* Mobile adjustments for titles, spacing and card sizes */
+@media (max-width: 767px) {
+  .gm-title {
+    font-size: 2.2rem;
+    line-height: 1.04;
+    margin-top: 6px;
+  }
+  .gm-subtitle {
+    font-size: 0.98rem !important;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .gm-small {
+    font-size: 0.95rem;
+  }
+  .gm-card {
+    padding: 1rem 1rem 1.75rem 1rem; /* extra bottom padding to avoid overlap */
+    margin-bottom: 1.5rem;
+    border-radius: 14px;
+  }
+  .gm-card-title {
+    font-size: 1.12rem;
+  }
+  .gm-card-short {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  .gm-card-letter-image {
+    max-height: 220px;
+  }
+  .heading {
+    font-size: 44px;
+    min-width: unset;
+    margin-top: 6px;
+  }
+  .container-content {
+    padding-top: 8px;
+    padding-bottom: calc(120px + env(safe-area-inset-bottom)); /* space for announcement */
+  }
+  .gm-modal {
+    padding: 12px;
+  }
+  /* tighten up very small screens */
+  @media (max-width: 360px) {
+    .gm-title { font-size: 2rem; }
+    .heading { font-size: 40px; }
+  }
+}
+
 /* Fix for split text to be inline */
 .inline-block {
   display: inline-block;

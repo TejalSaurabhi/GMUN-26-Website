@@ -214,4 +214,11 @@
     bottom: 0; /* Anchor to bottom */
     transform-origin: bottom right;
   }
+
+  /* Make toggle a bit smaller on very small devices and add subtle shadow so it doesn't visually cut into cards */
+  @media (max-width: 380px) {
+    .announcement-toggle { padding: 8px 12px 8px 8px; }
+    .announcement-toggle { box-shadow: 0 6px 20px rgba(0,0,0,0.5); }
+    .announcement-card { width: 260px; right: 8px; }
+  }
 }

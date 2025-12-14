@@ -5,35 +5,6 @@ import "./gmun-styles.css";
 // small util
 const pad = (n) => String(n).padStart(2, "0");
 
-function TitleMotion({ text = "", className = "", delay = 0.1 }) {
-  const textVariants = {
-    hidden: { opacity: 0, y: 30, rotateX: 90 },
-    show: {
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
-        delay: delay,
-      },
-    },
-  };
-
-  return (
-    <motion.div
-      initial="hidden"
-      animate="show"
-      className={className}
-      style={{ perspective: 1000, overflow: "hidden" }}
-    >
-      <motion.span variants={textVariants} className="inline-block">
-        {text}
-      </motion.span>
-    </motion.div>
-  );
-}
-
 // SplitText
 function SplitText({ text = "", className = "", stagger = 0.02 }) {
   const chars = useMemo(() => text.split("").map((c, i) => ({ c, i })), [text]);
@@ -76,34 +47,36 @@ const TimeDial = ({ value, displayValue, max, label, isAnimated = false }) => {
   const strokeDashoffset = circumference - (value / max) * circumference;
 
   return (
-    <div className="flex flex-col items-center justify-center flex-1 min-w-[120px]">
+    <div className="flex flex-col items-center justify-center flex-1 min-w-[60px] sm:min-w-[120px]">
       <div className="relative flex items-center justify-center">
-        <svg
-          height={radius * 2}
-          width={radius * 2}
-          className="rotate-[-90deg] drop-shadow-sm"
-        >
-          <circle
-            stroke="var(--gm-bg-secondary)"
-            strokeWidth={stroke}
-            fill="transparent"
-            r={normalizedRadius}
-            cx={radius}
-            cy={radius}
-          />
-          <motion.circle
-            stroke="var(--gm-gold)"
-            strokeWidth={stroke + 1}
-            strokeDasharray={circumference + " " + circumference}
-            animate={{ strokeDashoffset }}
-            transition={{ duration: isAnimated ? 0.05 : 0.5, ease: "linear" }}
-            fill="transparent"
-            r={normalizedRadius}
-            cx={radius}
-            cy={radius}
-            strokeLinecap="round"
-          />
-        </svg>
+        <div className="scale-[0.6] sm:scale-100">
+          <svg
+            height={radius * 2}
+            width={radius * 2}
+            className="rotate-[-90deg] drop-shadow-sm"
+          >
+            <circle
+              stroke="var(--gm-bg-secondary)"
+              strokeWidth={stroke}
+              fill="transparent"
+              r={normalizedRadius}
+              cx={radius}
+              cy={radius}
+            />
+            <motion.circle
+              stroke="var(--gm-gold)"
+              strokeWidth={stroke + 1}
+              strokeDasharray={circumference + " " + circumference}
+              animate={{ strokeDashoffset }}
+              transition={{ duration: isAnimated ? 0.05 : 0.5, ease: "linear" }}
+              fill="transparent"
+              r={normalizedRadius}
+              cx={radius}
+              cy={radius}
+              strokeLinecap="round"
+            />
+          </svg>
+        </div>
 
         <div className="absolute inset-0 flex items-center justify-center">
           {isAnimated ? (
@@ -126,7 +99,7 @@ const TimeDial = ({ value, displayValue, max, label, isAnimated = false }) => {
           )}
         </div>
       </div>
-      <div className="mt-3 gm-dial-label uppercase tracking-widest">
+      <div className=" sm:mt-3 gm-dial-label uppercase tracking-widest text-xs sm:text-base">
         {label}
       </div>
     </div>
@@ -134,9 +107,9 @@ const TimeDial = ({ value, displayValue, max, label, isAnimated = false }) => {
 };
 
 // Countdown component
-function Countdown_Timer({
+function CountdownTimer({
   targetDate = null,
-  className = "w-full max-w-4xl mx-auto pt-14 scale-110 ",
+  className = "w-full max-w-4xl mx-auto pt-8 sm:pt-14 scale-90 sm:scale-110 ",
 }) {
   const [now, setNow] = useState(Date.now());
   const timeRef = useRef({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -160,14 +133,14 @@ function Countdown_Timer({
   }
 
   return (
-    <div className={`${className} pt-3 pb-6 mb-[10rem]`}>
+    <div className={`${className} pt-3 pb-6 mb-8 sm:mb-[10rem]`}>
       <motion.div
         initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 0.45 }}
         style={{ zIndex: 20, border: "2px solid var(--gm-gold)" }}
-        className="rounded-3xl p-8 shadow-xl gm-card countdown-card-effect relative overflow-hidden"
+        className="rounded-3xl p-4 sm:p-8 shadow-xl gm-card countdown-card-effect relative overflow-hidden"
       >
         <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--gm-gold)] opacity-5 rounded-bl-full pointer-events-none" />
 
@@ -188,7 +161,7 @@ function Countdown_Timer({
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-around gap-6 md:gap-8">
+        <div className="flex flex-row flex-wrap justify-center gap-4 sm:gap-8">
           <TimeDial value={days} displayValue={days} max={60} label="Days" />
           <TimeDial value={hours} displayValue={hours} max={24} label="Hours" />
           <TimeDial
@@ -216,7 +189,7 @@ export default function Countdown() {
     <div className="mx-auto max-w-7xl px-6 container-content">
       {" "}
       {/* Width Increased */}
-      <Countdown_Timer targetDate={target} />
+      <CountdownTimer targetDate={target} />
     </div>
   );
 }

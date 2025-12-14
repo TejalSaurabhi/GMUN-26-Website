@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useEffect } from "react";
+import React, { useRef, useMemo, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import './gmun-styles.css';
 
@@ -27,6 +27,11 @@ function TiltCard({ children, className = "", intensity = 3 }) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Disable tilt interactions on touch devices to avoid unwanted mobile effects
+    try {
+      const isTouch = typeof window !== "undefined" && ("ontouchstart" in window || (navigator && navigator.maxTouchPoints > 0));
+      if (isTouch) return;
+    } catch (e) {/* ignore in non-browser environments */}
     function onMove(e) {
       const r = el.getBoundingClientRect();
       const px = ((e.clientX - r.left) / r.width - 0.5) * 2;
@@ -59,7 +64,7 @@ function CommendationCard({ e }) {
             <div className="flex-shrink-0">
               {/* Profile picture if present, else chip with country code */}
               {(e.avatarUrl || e.avatar) ? (
-                <img src={e.avatarUrl || e.avatar} alt={`${e.countryName} profile`} className="w-14 h-14 rounded-full object-cover shadow-sm" onError={(ev) => (ev.currentTarget.style.display = 'none')} />
+                <img src={e.avatarUrl || e.avatar} alt={`${e.title} profile`} className="w-14 h-14 rounded-full object-cover shadow-sm" onError={(ev) => (ev.currentTarget.style.display = 'none')} />
               ) : (
                 <div className="gm-chip" style={{ background: "var(--gm-gold)", color: "var(--gm-maroon)" }}>{e.countryCode}</div>
               )}
@@ -67,7 +72,7 @@ function CommendationCard({ e }) {
             <div className="flex-1">
               <div className="gm-card-title text-xl" style={{ color: "var(--gm-maroon)", fontWeight: 700, lineHeight: 1.15 }}> 
                 <div style={{ whiteSpace: "normal", overflow: "visible", wordBreak: "break-word" }}>
-                  {e.countryName} — <span style={{ color: "var(--gm-teal)", fontWeight: 500 }}>{e.title}</span>
+                  <span style={{ color: "var(--gm-teal)", fontWeight: 700 }}>{e.title}</span>
                 </div>
               </div>
             </div>
@@ -101,10 +106,12 @@ function CommendationCard({ e }) {
 // Commendations Container
 export default function Commendations({ entries = [], className = "w-full max-w-6xl mx-auto mt-32 px-4" }) {
   // No modal: all content will be displayed inside the card itself.
-  const sample = [
-    { id: "c1", countryCode: "IN", countryName: "India", title: "Ambassador's Commendation", short: "A heartfelt letter praising GMUN's initiative and delegation quality.", full: "The Embassy of India extends its warmest congratulations to the GMUN secretariat for organizing a successful and impactful conference. We were particularly impressed by the initiative shown and the exceptional quality of the participating delegations. We recommend this event highly to all future participants.", imageUrl: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=60", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=60" },
-    { id: "c2", countryCode: "US", countryName: "United States", title: "Letter of Recommendation", short: "Recognizes the conference's role in fostering dialogue and leadership.", full: "The United States Embassy is delighted to recognize the GMUN conference's critical role in fostering constructive international dialogue and developing future global leaders. The level of debate and resolution drafting was exemplary, demonstrating true academic rigor.", imageUrl: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=60", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=60" },
-    { id: "c3", countryCode: "GB", countryName: "United Kingdom", title: "Official Commendation", short: "Highlights academic rigor and diplomatic spirit.", full: "We commend GMUN for their meticulous planning and the outstanding platform they provide for students to engage with complex global issues. The event truly highlights a strong sense of academic rigor and an excellent diplomatic spirit among all delegates.", imageUrl: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=60", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=60" },
+const sample = [
+    { id: "c1", countryCode: "IN", countryName: "India", title: "Ambassador of India to Chile (Santiago)", short: "Extends best wishes to the organizers of the 3rd edition of Global Model United Nations (GMUN) 2025 at IIT Kharagpur. Highlights GMUN as a platform for young leaders to engage in diplomacy, dialogue, and international cooperation.", imageUrl: "/commendations/commendation1.svg", avatar: "/commendations/commi1.jpg" },
+    { id: "c2", countryCode: "IN", countryName: "India", title: <>
+      Ambassador of India to Armenia <span style={{ fontSize: "0.65em", fontWeight: 400, display: "inline-block" }}>(Concurrently accredited to Georgia)</span>
+    </>, short: "Emphasizes MUN as a valuable diplomatic simulation that builds negotiation, communication, and consensus-building skills. Encourages students to view GMUN as both a learning experience and a foundation for future leadership and diplomacy.", imageUrl: "/commendations/commendation2.svg", avatar: "/commendations/commi2.jpg" },
+    { id: "c3", countryCode: "IN", countryName: "India", title: "High Commissioner of India to Canada (Ottawa)", short: "Highlights India’s global leadership in multilateral platforms such as the UN, G20, BRICS, and climate initiatives. Appreciates IIT Kharagpur’s GMUN for preparing students to engage confidently with global challenges and leadership roles.", imageUrl: "/commendations/commendation3.svg", avatar: "/commendations/commi3.jpg" },
   ];
   const list = entries.length >= 3 ? entries.slice(0, 3) : sample;
   // Using CSS sticky — no JS refs required for sticky behavior
@@ -112,36 +119,68 @@ export default function Commendations({ entries = [], className = "w-full max-w-
 
   const containerRef = useRef(null);
   const headingRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mq = window.matchMedia('(max-width: 767px)');
+    const onChange = () => setIsMobile(mq.matches);
+    onChange();
+    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    else mq.addListener(onChange);
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener('change', onChange);
+      else mq.removeListener(onChange);
+    };
+  }, []);
 
   // No sticky logic; cards are independent
 
-  return (<div style={{ marginBottom: "-60svh" }}>
-    <div className={className} style={{ minHeight:"65.5svh", position: "relative", zIndex: 10 }}>
+  const containerClass = isMobile ? "w-full max-w-6xl mx-auto px-4" : className;
+
+  return (<div style={{ marginBottom: isMobile ? 0 : "-50svh" }}>
+    <div className={containerClass} style={{ minHeight: isMobile ? "auto" : "60.5svh", position: "relative", zIndex: 10 }}>
       <div
         ref={headingRef}
         className="mb-10 text-center"
-        style={{ position: "sticky", top: 124 }}
+        style={{ position: isMobile ? 'static' : 'sticky', top: isMobile ? undefined : 124, paddingTop: isMobile ? 96 : undefined }}
       > 
-        <div className="gm-subtitle uppercase" style={{ color: "var(--gm-teal)" }}><SplitText text={"COMMENDATIONS"} stagger={0.01} /></div>
-        <div className="text-4xl font-bold gm-title" style={{ color: "var(--gm-gold)", marginTop: 8 }}><SplitText text={"Letters from Ambassadors"} stagger={0.01} /></div> 
+        <div className="gm-subtitle uppercase" style={{ color: "var(--gm-teal)",fontSize: isMobile ? '3rem' : undefined }}><SplitText text={"COMMENDATIONS"} stagger={0.01} /></div>
+        <div className="text-4xl font-bold gm-title" style={{ color: "var(--gm-gold)", marginTop: 8, fontSize: isMobile ? '1.4rem' : undefined }}><SplitText text={"Letters from Ambassadors"} stagger={0.01} /></div> 
         <div className="gm-small mt-3" style={{ color: "var(--gm-teal)" }}>Trusted endorsements from partner embassies</div> 
       </div>
     </div>
-    <div className={className} >
+    <div className={containerClass} >
       <div 
         ref={containerRef}
-        className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-end"
-        style={{ minHeight:"100svh", zIndex: 10, top:"-58.5svh" ,position:"relative"}}
+        className={isMobile ? "grid grid-cols-1 gap-6" : "grid grid-cols-1 lg:grid-cols-3 gap-8 items-end"}
+        style={isMobile ? { zIndex: 10 } : { minHeight:"100svh", zIndex: 10, top:"-53.5svh" ,position:"relative"}}
       >
-        <div  style={{ height:"100svh",position:"relative"}}><div  style={{ position: "sticky", top: headingRef.current ? headingRef.current.offsetHeight +300 : 300 }}>
-          <CommendationCard e={entries[0] || list[0]}/>
-        </div></div>
-        <div style={{ height:"80svh", position: "relative"}}><div  style={{ position: "sticky", top: headingRef.current ? headingRef.current.offsetHeight +300 : 300 }}>
-            <CommendationCard e={entries[1] || list[1]} />
-          </div></div>
-        <div style={{ height:"60svh", position: "relative"}}><div  style={{ position: "sticky", top: headingRef.current ? headingRef.current.offsetHeight  +300:300 }}>
-          <CommendationCard e={entries[2] || list[2]} />
-        </div></div>
+        {!isMobile ? (
+          <>
+            <div style={{ height:"100svh",position:"relative"}}>
+              <div className="gm-card-sticky">
+                <CommendationCard e={entries[0] || list[0]}/>
+              </div>
+            </div>
+            <div style={{ height:"84.5svh", position: "relative"}}>
+              <div className="gm-card-sticky">
+                <CommendationCard e={entries[1] || list[1]} />
+              </div>
+            </div>
+            <div style={{ height:"67.5svh", position: "relative"}}>
+              <div className="gm-card-sticky">
+                <CommendationCard e={entries[2] || list[2]} />
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="w-full"><CommendationCard e={entries[0] || list[0]}/></div>
+            <div className="w-full"><CommendationCard e={entries[1] || list[1]}/></div>
+            <div className="w-full"><CommendationCard e={entries[2] || list[2]}/></div>
+          </>
+        )}
       </div>
       </div>
     </div>
