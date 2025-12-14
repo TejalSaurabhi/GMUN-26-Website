@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import "./styles.css";
 
 const ReviewsData = [
@@ -43,7 +42,13 @@ const ReviewsData = [
 
 const Reviews = () => {
   return (
-    <section className="reviews-section">
+    <motion.section
+      className="reviews-section"
+      initial={{ y: 100, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1.5 }}
+    >
       <div className="reviews-wrapper">
         {/* Heading */}
         <h1 className="reviews-heading">What Participants Think About GMUN</h1>
@@ -84,7 +89,7 @@ const Reviews = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/Announcements.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faTimes, faBullhorn } from '@fortawesome/free-solid-svg-icons';
+import { Bell } from 'lucide-react';
+import { FaBullhorn, FaTimes } from 'react-icons/fa';
 
 const Announcements = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +18,7 @@ const Announcements = () => {
                 onClick={toggleAnnouncement}
             >
                 <div className="toggle-icon-box">
-                    <FontAwesomeIcon icon={faBell} className="bell-icon" />
+                    <Bell className='bell-icon' />
                 </div>
                 <span className="toggle-text">Show Announcement</span>
             </div>
@@ -26,12 +26,12 @@ const Announcements = () => {
             {/* ANNOUNCEMENT CARD (Visible when open) */}
             <div className={`announcement-card ${isOpen ? 'visible' : ''}`}>
                 <button className="close-btn" onClick={toggleAnnouncement}>
-                    <FontAwesomeIcon icon={faTimes} />
+                    <FaTimes />
                 </button>
                 
                 <div className="card-content">
                     <div className="icon-badge">
-                        <FontAwesomeIcon icon={faBullhorn} />
+                        <FaBullhorn />
                     </div>
                     <div className="text-area">
                         <h3 className="announcement-title">Update</h3>

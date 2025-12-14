@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import App from "./App";
-import { BookOpen, FileText, HelpCircle, Globe2, Users } from "lucide-react";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Register from "./components/Register";
@@ -13,8 +12,6 @@ import Contacts from "./components/Contacts";
 import Guide from "./components/Guide";
 import WorldMap from "./components/WorldMap";
 import Gallery2Page from "./components/Gallery2Page";
-import LogoutBtn from "./components/LogoutBtn";
-import FAQs from "./components/FAQs";
 import AboutUs from "./pages/aboutUs";
 import Sec from "./components/sec";
 import { Provider } from "react-redux";
@@ -28,7 +25,6 @@ import VerifyEmail from "./pages/Authorization/VerifyEmail.jsx";
 import { Toaster } from "react-hot-toast";
 import StarsBackground from "./components/Home/StarsBackground.jsx";
 import FAQ from "./pages/FAQ";
-
 
 const router = createBrowserRouter([
   {
@@ -111,7 +107,7 @@ const router = createBrowserRouter([
         path: "/Sponsors",
         element: <Sponsors />,
       },
-      
+
       {
         path: "/gallery",
         element: <Gallery2Page />,

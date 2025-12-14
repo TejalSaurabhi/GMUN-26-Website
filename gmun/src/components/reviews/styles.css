@@ -1,25 +1,27 @@
 /* Section background */
+
 .reviews-section {
-  /* background: linear-gradient(135deg, #0a5a5b, #204040); */
-  padding: 6rem 0rem;
+  padding: 6rem 0;
   position: relative;
   overflow: hidden;
 }
 
 /* Wrapper */
 .reviews-wrapper {
-  width: 100vw;
+  position: relative;
+  z-index: 2;
   margin: 0 auto;
 }
 
 /* Heading */
 .reviews-heading {
-  font-size: 2.8rem;
-  font-weight: 600;
   text-align: center;
-  color: #e9a751;
-  margin-bottom: 4rem;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 600;
   letter-spacing: 1px;
+  margin-bottom: 4rem;
+
+  color: #f0b45b;
 }
 
 /* Outer scrolling area */
@@ -43,21 +45,27 @@
 
 /* Review Card */
 .review-card {
-  background: rgba(32, 64, 64, 0.95);
-  border: 1px solid rgba(217, 204, 196, 0.2);
+  background: linear-gradient(
+    160deg,
+    rgba(18, 70, 82, 0.55),
+    rgba(6, 28, 34, 0.55)
+  );
+
   border-radius: 24px;
   padding: 2rem;
-  min-width: 320px;
-  max-width: 320px;
-  color: #d9ccc4;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  position: relative;
+  min-width: 460px;
+  max-width: 460px;
+
+  border: 1px solid rgba(240, 180, 91, 0.15);
+  backdrop-filter: blur(10px);
+
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 /* Hover glow */
 .review-card:hover {
-  box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.4),
-              0 0 25px rgba(233, 167, 81, 0.25);
+  transform: translateY(-5px);
+  border-color: #e4b363;
 }
 
 /* Author info */
@@ -74,21 +82,23 @@
   height: 52px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #e9a751;
+  border: 2px solid #f0b45b;
 }
 
 /* Name */
 .name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #e8d8c3; /* light shade of #d9ccc4 */
+  color: #f3e6cf;
 }
 
-/* Review text */
+.review-text {
+  color: #d6dfe2;
+  line-height: 1.65;
+}
+
 .review-text p {
   font-size: 0.98rem;
-  line-height: 1.6;
-  color: #d9ccc4;
+  line-height: 1.65;
+  color: #d6dfe2;
 }
 
 /* Infinite scroll animation */

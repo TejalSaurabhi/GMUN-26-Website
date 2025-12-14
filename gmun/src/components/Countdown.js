@@ -160,7 +160,7 @@ function Countdown_Timer({
   }
 
   return (
-    <div className={`${className} mt-8 md:mt-12`}>
+    <div className={`${className} pt-3 pb-6 mb-[10rem]`}>
       <motion.div
         initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
