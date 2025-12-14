@@ -56,9 +56,9 @@ const Landing = () => {
         <Committees />
       </div> */}
 
-      <div className="announcements">
+      {/* <div className="announcements">
         <Announcements />
-      </div>
+      </div> */}
 
       <div className="timeline">
         <Timeline />

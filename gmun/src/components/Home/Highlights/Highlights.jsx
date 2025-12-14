@@ -112,7 +112,7 @@ const Highlights = () => {
 
       <div className="content-wrapper">
         <motion.div
-          className="about-paragraph"
+          className="about-paragraph bg-[rgb(13,44,49)]"
           initial={{ x: -50, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ once: true }}
@@ -144,7 +144,7 @@ const Highlights = () => {
         >
           {isVisible &&
             highlights.map((highlight, index) => (
-              <div key={highlight.id} className="highlights">
+              <div key={highlight.id} className="highlights bg-[rgb(13,44,49)]">
                 <CounterBox
                   icon={highlight.icon}
                   value={highlight.number}

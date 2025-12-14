@@ -1,143 +1,180 @@
 /* =========================================================
-    SIMPLE INDEPENDENT TITLE (DOES NOT AFFECT LAYOUT)
+    IMPORTS & VARIABLES
+========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+:root {
+  --tl-bg: #071022;          /* Deep Navy */
+  --tl-gold: #d4af37;        /* GM Gold */
+  --tl-gold-dim: rgba(212, 175, 55, 0.3);
+  --tl-text-main: #e6dfd7;   /* Cream/Maroon */
+  --tl-text-sub: #9fd6ce;    /* Teal */
+  --tl-font: "Montserrat", sans-serif;
+}
+
+/* =========================================================
+    PAGE TITLE
 ========================================================= */
 
 .timeline-page-title {
   width: 100%;
   text-align: center;
-  margin: 40px 0 25px 0;
+  margin: 50px 0 30px 0;
 
-  font-size: 2rem;
+  font-family: var(--tl-font);
+  font-size: 2.5rem;
   font-weight: 700;
-  font-family: "Poppins", sans-serif;
-  color: #d4af37;
-  letter-spacing: 1px;
+  color: var(--tl-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  
+  background-image: linear-gradient(to right, transparent, var(--tl-gold), transparent);
+  background-position: bottom;
+  background-size: 180px 2px;
+  background-repeat: no-repeat;
+  padding-bottom: 15px;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
 }
-
-
 
 /* =========================================================
     WRAPPER
 ========================================================= */
 
 .timeline-wrapper {
-  width: 100%;
-  min-height: 100vh;
+  width: 90%;
+  max-width: 1300px;
+  /* Increased height to 86vh to accommodate the 3vh top/bottom padding addition */
+  height: 86vh; 
+  margin: 0 auto 60px auto;
+  
   display: flex;
-  background-color: #0f0f17;
-  overflow: visible;
+  background-color: var(--tl-bg);
+  
+  border-radius: 20px;
+  overflow: hidden;    
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); 
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  position: relative;
 }
 
-
-
 /* =========================================================
-    LEFT SIDE STACKED CONTENT
+    LEFT SIDE STACKED CONTENT (TEXT)
 ========================================================= */
 
 .timeline-left-stacked {
-  width: 40%;
-  height: 100vh;
-  position: sticky;
-  top: 0;
-  background-color: #0f0f17;
-
+  width: 45%;
+  height: 100%; 
+  position: relative; 
+  background-color: var(--tl-bg);
+  z-index: 2;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-
-  padding: 70px 30px;
-  overflow-y: auto;
-  scrollbar-width: none;
-}
-
-.timeline-left-stacked::-webkit-scrollbar {
-  display: none;
+  align-items: center;
+  justify-content: center;
+  /* Added 3vh top/bottom padding so the first/last items aren't cut off */
+  padding: 3vh 30px; 
 }
 
 .timeline-left-container {
   display: flex;
   flex-direction: column;
-  gap: 55px;
-}
-
-
-
-/* ITEM */
-.timeline-left-item {
+  gap: 30px; 
   position: relative;
-  padding-left: 20px;
-  opacity: 0.45;
-  transform: translateY(12px);
-  transition: 0.45s ease;
+  width: 100%;
+  max-width: 500px;
+  
+  border-left: 2px solid rgba(212, 175, 55, 0.15); 
+  padding-left: 0;
 }
-
-.timeline-left-item.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
-
-/* Glow bar */
-.timeline-left-item.active::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 4px;
-  width: 5px;
-  height: 24px;
-  border-radius: 2px;
-
-  background: linear-gradient(180deg, #d4af37, #f6e27a);
-  box-shadow: 0 0 18px rgba(212, 175, 55, 0.9);
-}
-
-
-
-/* TITLE */
-.timeline-left-title {
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: #d4af37;
-  margin-bottom: 6px;
-  transition: opacity 0.4s ease;
-}
-
-.timeline-left-item:not(.active) .timeline-left-title {
-  opacity: 0.55;
-}
-
-
-
-/* DESCRIPTION */
-.timeline-left-desc {
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.75);
-  line-height: 1.45;
-
-  opacity: 0;
-  transform: translateY(10px);
-  transition: 0.45s ease;
-
-  min-height: 48px; /* uniform spacing */
-}
-
-.timeline-left-item.active .timeline-left-desc {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
 
 /* =========================================================
-    RIGHT SIDE PANELS
+    TIMELINE ITEM (NODES)
+========================================================= */
+
+.timeline-left-item {
+  position: relative;
+  padding: 20px 25px; 
+  margin-left: 20px;  
+  
+  opacity: 0.4;
+  transform: translateX(0);
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: default;
+}
+
+/* Active State */
+.timeline-left-item.active {
+  opacity: 1;
+  background: rgba(14, 26, 42, 0.6); 
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 175, 55, 0.5); 
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  transform: translateX(10px);
+}
+
+/* The Dot */
+.timeline-left-item::before {
+  content: "";
+  position: absolute;
+  left: -27px; 
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--tl-bg);
+  border: 2px solid var(--tl-gold);
+  transition: all 0.4s ease;
+  z-index: 2;
+}
+
+.timeline-left-item.active::before {
+  background-color: var(--tl-gold);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+  transform: translateY(-50%) scale(1.3);
+}
+
+/* =========================================================
+    TYPOGRAPHY
+========================================================= */
+
+.timeline-left-title {
+  font-family: var(--tl-font);
+  font-size: 1.35rem; 
+  font-weight: 700;
+  color: var(--tl-text-main); 
+  margin-bottom: 6px;
+  transition: color 0.4s ease;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.timeline-left-item.active .timeline-left-title {
+  color: var(--tl-gold);
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.timeline-left-desc {
+  font-family: var(--tl-font);
+  font-size: 0.9rem; 
+  color: var(--tl-text-sub); 
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* =========================================================
+    RIGHT SIDE PANELS (IMAGES)
 ========================================================= */
 
 .timeline-scroll {
-  width: 60%;
-  height: 100vh;
+  width: 55%;
+  height: 100%; /* Automatically fills the new 86vh height */
   overflow-y: auto;
   scrollbar-width: none;
+  background: #000;
+  border-radius: 0 20px 20px 0; 
 }
 
 .timeline-scroll::-webkit-scrollbar {
@@ -145,47 +182,93 @@
 }
 
 .timeline-section {
-  height: 100vh;
+  height: 100%; /* Ensures posters scale perfectly with the wrapper */
+  width: 100%;
   background-size: cover;
   background-position: center;
+  position: relative;
+  
+  opacity: 0.2;
+  filter: grayscale(100%) blur(2px);
+  transition: opacity 0.7s ease, filter 0.7s ease;
+}
 
-  opacity: 0.7;
-  transition: 0.4s ease;
+.timeline-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--tl-bg) 0%, rgba(7, 16, 34, 0.4) 30%, rgba(7, 16, 34, 0) 100%);
 }
 
 .timeline-section.is-active {
   opacity: 1;
-  transform: scale(1.02);
+  filter: grayscale(0%) blur(0);
+  z-index: 1;
 }
 
-
-
 /* =========================================================
-    RESPONSIVE
+    RESPONSIVE DESIGN
 ========================================================= */
 
 @media (max-width: 900px) {
+  
+  .timeline-page-title {
+    font-size: 1.8rem;
+    margin: 30px 0 20px 0;
+  }
 
   .timeline-wrapper {
     flex-direction: column;
+    height: auto; 
+    width: 95%;
+    margin-bottom: 40px;
   }
 
-  .timeline-left-stacked,
-  .timeline-scroll {
+  /* Adjust Left Side (Text) */
+  .timeline-left-stacked {
     width: 100%;
     height: auto;
-    position: relative;
+    padding: 30px 20px;
   }
 
-  .timeline-left-stacked {
-    padding: 40px 25px;
+  .timeline-left-container {
+    gap: 20px;
+    border-left: 2px solid rgba(212, 175, 55, 0.15);
+  }
+
+  .timeline-left-item {
+    margin-left: 15px;
+    padding: 15px 20px;
+    opacity: 1;
+    background: rgba(14, 26, 42, 0.4);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+  }
+  
+  .timeline-left-item::before {
+    left: -22px; 
   }
 
   .timeline-left-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
-  .timeline-left-desc {
-    font-size: 0.85rem;
+  /* Adjust Right Side (Images) */
+  .timeline-scroll {
+    width: 100%;
+    height: 400px; 
+    border-radius: 0 0 20px 20px;
+  }
+
+  .timeline-section {
+    height: 400px; 
+    opacity: 1;
+    filter: none;
+  }
+  
+  .timeline-section::after {
+    background: linear-gradient(180deg, transparent 0%, var(--tl-bg) 100%);
   }
 }

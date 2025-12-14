@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  background-color: #0b1f24;
+  /* background-color: #0b1f24; */
 }
 
 .main-heading {
@@ -35,7 +35,6 @@
   font-size: 1.1rem;
   line-height: 1.7;
   color: #b8c7c9;
-  background: rgba(20, 60, 66, 0.35);
   padding: 1.75rem;
   border-radius: 14px;
   border-left: 4px solid #1e6f6d;
@@ -51,7 +50,6 @@
 }
 
 .highlights {
-  background: rgba(20, 60, 66, 0.35);
   border: 1px solid rgba(228, 179, 99, 0.35);
   padding: 1.75rem;
   border-radius: 16px;
@@ -60,7 +58,7 @@
 }
 
 .highlights:hover {
-  background: rgba(20, 60, 66, 0.55);
+  background: rgba(20, 60, 66, 0.35);
   transform: translateY(-6px);
   border-color: #e4b363;
 }

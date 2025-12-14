@@ -12,7 +12,7 @@ const Hero = () => {
   return (
     <motion.div
       className="hero-wrapper"
-      initial={{ y: 20 }}
+      initial={{ y: -20 }}
       animate={{ y: 0 }}
       transition={{ duration: 1 }}
     >
