@@ -51,7 +51,7 @@ const G20 = () => {
 
       {/* World Map Section */}
       <div className="committee-map">
-        <WorldMap title="G20" mapDataFile="mapdata.js" />
+        <WorldMap title={<span className="hover-underline">G20</span>} mapDataFile="mapdata.js" />
       </div>
 
       {/* Committee Content Section */}

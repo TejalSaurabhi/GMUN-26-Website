@@ -694,7 +694,7 @@ class InfiniteGridMenu {
 
   #initTexture() {
     const gl = this.gl;
-    this.tex = createAndSetupTexture(gl, gl.LINEAR, gl.LINEAR, gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE);
+    this.tex = createAndSetupTexture(gl, gl.LINEAR_MIPMAP_LINEAR, gl.LINEAR, gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE);
 
     const itemCount = Math.max(1, this.items.length);
     this.atlasSize = Math.ceil(Math.sqrt(itemCount));
@@ -705,55 +705,77 @@ class InfiniteGridMenu {
     canvas.width = this.atlasSize * cellSize;
     canvas.height = this.atlasSize * cellSize;
 
-    Promise.all(
-      this.items.map(
-        item =>
-          new Promise(resolve => {
-            const img = new Image();
-            const primarySrc = item.image || '';
-            const fallbackSrc = item.fallback || '';
-            const isAbsolute = /^https?:\/\//i.test(primarySrc);
-            const isSameOrigin = !isAbsolute || primarySrc.startsWith(window.location.origin);
-            let triedFallback = false;
+    // Initialize with placeholder (dark cells with loading indicator)
+    ctx.fillStyle = '#1a1a1a';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < itemCount; i++) {
+      const x = (i % this.atlasSize) * cellSize;
+      const y = Math.floor(i / this.atlasSize) * cellSize;
+      ctx.fillStyle = '#333';
+      ctx.beginPath();
+      ctx.arc(x + cellSize/2, y + cellSize/2, 30, 0, Math.PI * 2);
+      ctx.fill();
+    }
 
-            // Only set crossOrigin for third-party absolute URLs; omit for same-origin/public assets.
-            if (!isSameOrigin) {
-              img.crossOrigin = 'anonymous';
-            }
+    // Upload initial placeholder texture
+    gl.bindTexture(gl.TEXTURE_2D, this.tex);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, canvas);
+    gl.generateMipmap(gl.TEXTURE_2D);
 
-            img.onload = () => resolve(img);
-            img.onerror = () => {
-              if (fallbackSrc && !triedFallback) {
-                triedFallback = true;
-                img.src = fallbackSrc;
-                return;
-              }
-              // Fallback: create a placeholder canvas if the image fails to load
-              const ph = document.createElement('canvas');
-              ph.width = ph.height = 512;
-              const c = ph.getContext('2d');
-              c.fillStyle = '#111';
-              c.fillRect(0, 0, ph.width, ph.height);
-              c.fillStyle = '#FFD700';
-              c.font = 'bold 28px system-ui';
-              c.textAlign = 'center';
-              c.textBaseline = 'middle';
-              c.fillText('Image unavailable', ph.width / 2, ph.height / 2);
-              resolve(ph);
-            };
-            img.src = primarySrc;
-          })
-      )
-    ).then(images => {
-      images.forEach((img, i) => {
+    // Load images progressively - update texture as each loads
+    let loadedCount = 0;
+    this.items.forEach((item, i) => {
+      const img = new Image();
+      const primarySrc = item.image || '';
+      const fallbackSrc = item.fallback || '';
+      const isAbsolute = /^https?:\/\//i.test(primarySrc);
+      const isSameOrigin = !isAbsolute || primarySrc.startsWith(window.location.origin);
+      let triedFallback = false;
+
+      // Only set crossOrigin for third-party absolute URLs; omit for same-origin/public assets.
+      if (!isSameOrigin) {
+        img.crossOrigin = 'anonymous';
+      }
+
+      const drawToAtlas = (source) => {
         const x = (i % this.atlasSize) * cellSize;
         const y = Math.floor(i / this.atlasSize) * cellSize;
-        ctx.drawImage(img, x, y, cellSize, cellSize);
-      });
+        ctx.drawImage(source, x, y, cellSize, cellSize);
+        loadedCount++;
 
-      gl.bindTexture(gl.TEXTURE_2D, this.tex);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, canvas);
-      gl.generateMipmap(gl.TEXTURE_2D);
+        // Update texture after each image (or batch for performance)
+        if (loadedCount % 3 === 0 || loadedCount === this.items.length) {
+          gl.bindTexture(gl.TEXTURE_2D, this.tex);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, canvas);
+          gl.generateMipmap(gl.TEXTURE_2D);
+        }
+      };
+
+      img.onload = () => drawToAtlas(img);
+      img.onerror = () => {
+        if (fallbackSrc && !triedFallback) {
+          triedFallback = true;
+          img.src = fallbackSrc;
+          return;
+        }
+        // Fallback: create a placeholder canvas if the image fails to load
+        const ph = document.createElement('canvas');
+        ph.width = ph.height = 512;
+        const c = ph.getContext('2d');
+        c.fillStyle = '#111';
+        c.fillRect(0, 0, ph.width, ph.height);
+        c.fillStyle = '#FFD700';
+        c.font = 'bold 28px system-ui';
+        c.textAlign = 'center';
+        c.textBaseline = 'middle';
+        c.fillText('Image unavailable', ph.width / 2, ph.height / 2);
+        drawToAtlas(ph);
+      };
+
+      // Stagger loading slightly to avoid overwhelming the network
+      setTimeout(() => {
+        img.src = primarySrc;
+      }, i * 50);
     });
   }
 

@@ -1,6 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import "./committee.css"; // Ensure popup styles are loaded immediately
 
 const WorldMap = ({ title }) => {
+  const titleRef = useRef(null);
+  const [titleInView, setTitleInView] = useState(false);
+
+  // Observe title for in-view animation
+  useEffect(() => {
+    const element = titleRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setTitleInView(entry.isIntersecting),
+      { threshold: 0.5 }
+    );
+    observer.observe(element);
+
+    return () => {
+      if (element) observer.unobserve(element);
+    };
+  }, []);
+
   useEffect(() => {
     const hasWindow = typeof window !== "undefined";
     const map = hasWindow ? window.simplemaps_worldmap : null;
@@ -151,9 +171,19 @@ const WorldMap = ({ title }) => {
     };
   }, []);
 
+  // Clone title element and add in-view class if it's a React element with hover-underline
+  const renderTitle = () => {
+    if (React.isValidElement(title) && title.props?.className?.includes('hover-underline')) {
+      return React.cloneElement(title, {
+        className: `${title.props.className} ${titleInView ? 'in-view' : ''}`
+      });
+    }
+    return title;
+  };
+
   return (
     <div id="World-Map">
-      <h2>{title}</h2>
+      <h2 ref={titleRef}>{renderTitle()}</h2>
       <div id="map" style={{ width: "auto", height: "auto" }} />
     </div>
   );

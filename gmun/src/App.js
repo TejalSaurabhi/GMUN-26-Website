@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import NavBar from "./components/Navbar";
+import ScrollToTop from "./components/ScrollToTop";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { BASE_URL } from "./constants.js";
 import { useDispatch } from "react-redux";
@@ -48,6 +49,7 @@ const App = () => {
   } else {
     return (
       <>
+        <ScrollToTop />
         <ToastContainer position="top-left" />
         <div>
           {/* Navbar will always be displayed */}

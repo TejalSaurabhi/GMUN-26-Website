@@ -50,7 +50,7 @@ const LokSabha = () => {
 
       {/* World Map Section */}
       <div className="committee-map">
-        <WorldMap title="Lok Sabha" mapDataFile="mapdata.js" />
+        <WorldMap title={<span className="hover-underline">LOK SABHA</span>} mapDataFile="mapdata.js" />
       </div>
 
       {/* Committee Content Section */}
