@@ -1,12 +1,11 @@
 import React from 'react';
-import './Sponsors.css'; // Import your CSS file for styling
+import './Sponsors.css';
 import bhumun from "./bhumun.png";
 import vhere from "./sponsor1.webp";
 import iQuanta from "./iQuanta.png";
 import finnacle from "./finnacle.jpg";
 import shantitrip from "./shantitrip.png";
 import unstopng from "./unstopng.png";
-import Headingall from './Headingall';
 import VisionIAS2 from "./VisionIAS2.webp";
 import nomura from "./nomura.png";
 import spykar from "./Spykar.jpg";
@@ -137,9 +136,19 @@ const Sponsor = ({ name, logo, description, url }) => (
 
 const Sponsors = () => {
   return (
-    <div className="overall-spons-page">
-      <Headingall headingname={"SPONSORS"} />
-      <div className="sponsors">
+    <div className="sponsors-page">
+      {/* Header */}
+      <div className="sponsors-header">
+        <p className="sponsors-badge">GMUN 4.0</p>
+        <h1 className="sponsors-title">Our Sponsors</h1>
+        <p className="sponsors-subtitle">
+          We are grateful to our partners who make GMUN possible.
+        </p>
+      </div>
+
+      {/* Current Sponsors Section */}
+      <div className="sponsors-section">
+        <h2 className="sponsors-section-title">Current Sponsors</h2>
         <div className="sponsor-list">
           {currentSponsors.map((sponsor) => (
             <Sponsor
@@ -153,8 +162,9 @@ const Sponsors = () => {
         </div>
       </div>
 
-      <Headingall headingname={"PREVIOUS SPONSORS"} />
-      <div className="sponsors">
+      {/* Previous Sponsors Section */}
+      <div className="sponsors-section">
+        <h2 className="sponsors-section-title">Previous Sponsors</h2>
         <div className="sponsor-list">
           {previousSponsors.map((sponsor) => (
             <Sponsor

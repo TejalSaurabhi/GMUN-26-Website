@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store/authSlice";
 import axios from "axios";
@@ -7,13 +7,20 @@ import { BASE_URL } from "../constants";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import gmunlogo from "../images/GMUN Gold.png";
-import edition from "../images/3rd.png";
+import edition from "../images/4thBackLogo.webp";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
   const authStatus = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
+  
+  // Helper to check if a path is active
+  const isActive = (path) => {
+    if (path === '/') return location.pathname === '/';
+    return location.pathname.startsWith(path);
+  };
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -63,15 +70,13 @@ const Navbar = () => {
 
         {/* Links */}
         <ul className={`nav-links ${isMobileMenuOpen ? "active" : ""}`}>
-          <li><Link to="/" className="roll-text" data-text="Home" onClick={closeMobileMenu}>Home</Link></li>
-          <li><Link to="/sec" className="roll-text" data-text="Secretariat" onClick={closeMobileMenu}>Secretariat</Link></li>
-          <li><Link to="/how-to-mun" className="roll-text" data-text="How to MUN" onClick={closeMobileMenu}>How to MUN</Link></li>
+          <li><Link to="/" className={`roll-text ${isActive('/') ? 'active' : ''}`} onClick={closeMobileMenu}>Home</Link></li>
+          <li><Link to="/sec" className={`roll-text ${isActive('/sec') ? 'active' : ''}`} onClick={closeMobileMenu}>Secretariat</Link></li>
+          <li><Link to="/how-to-mun" className={`roll-text ${isActive('/how-to-mun') ? 'active' : ''}`} onClick={closeMobileMenu}>How to MUN</Link></li>
           
-          {/* FIX: "dropdown-trigger" handles the menu (Overflow Visible)
-             "roll-text" handles the animation (Overflow Hidden) 
-          */}
-          <li className={`dropdown-trigger ${isDropdownOpen ? 'active' : ''}`} onClick={toggleDropdown}>
-            <span className="roll-text" data-text="Committees">Committees</span>
+          {/* Dropdown for Committees */}
+          <li className={`dropdown-trigger ${isDropdownOpen ? 'open' : ''} ${isActive('/committee') ? 'active' : ''}`} onClick={toggleDropdown}>
+            <span className={`roll-text ${isActive('/committee') ? 'active' : ''}`}>Committees</span>
             
             <ul className="dropdown-panel">
               <li><Link to="/committee/1">UNSC</Link></li>
@@ -82,11 +87,10 @@ const Navbar = () => {
             </ul>
           </li>
 
-          <li><Link to="/FAQs" className="roll-text" data-text="FAQs" onClick={closeMobileMenu}>FAQs</Link></li>
-          <li><Link to="/discuss" className="roll-text" data-text="Discuss" onClick={closeMobileMenu}>Discuss</Link></li>
-          <li><Link to="/AboutUs" className="roll-text" data-text="About" onClick={closeMobileMenu}>About</Link></li>
-          <li><Link to="/gallery" className="roll-text" data-text="Gallery" onClick={closeMobileMenu}>Gallery</Link></li>
-          <li><Link to="/Sponsors" className="roll-text" data-text="Sponsors" onClick={closeMobileMenu}>Sponsors</Link></li>
+          <li><Link to="/FAQs" className={`roll-text ${isActive('/FAQs') ? 'active' : ''}`} onClick={closeMobileMenu}>FAQs</Link></li>
+          <li><Link to="/AboutUs" className={`roll-text ${isActive('/AboutUs') ? 'active' : ''}`} onClick={closeMobileMenu}>About</Link></li>
+          <li><Link to="/gallery" className={`roll-text ${isActive('/gallery') ? 'active' : ''}`} onClick={closeMobileMenu}>Gallery</Link></li>
+          <li><Link to="/Sponsors" className={`roll-text ${isActive('/Sponsors') ? 'active' : ''}`} onClick={closeMobileMenu}>Sponsors</Link></li>
 
           {/* Auth Button */}
           <li className="auth-item">

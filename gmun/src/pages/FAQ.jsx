@@ -3,10 +3,30 @@ import React, { useState } from "react";
 import "../styles/FAQ.css";
 
 const FAQ_DATA = [
-  { q: "What is your name?", a: "My name is Global Model United Nations (GMUN)." },
-  { q: "Where do you live?", a: "I live in IIT Kharagpur." },
-  { q: "Who organises you?", a: "I am organised by Communiqué, IIT Kharagpur." },
-  { q: "Who made this page?", a: "We made this page with love ❤️ and creativity." },
+  { 
+    q: "How do I register for the conference?", 
+    a: "Registration is conducted through Unstop. Please click the Register button on the HOME page, which will redirect you to the official Unstop listing." 
+  },
+  { 
+    q: "Is GMUN 4.0 being held online or offline?", 
+    a: "GMUN 4.0 will feature six offline committees hosted on the IIT Kharagpur campus and one online committee. Delegates may choose their preferred mode during registration." 
+  },
+  { 
+    q: "What does the registration fee include?", 
+    a: "The registration fee covers access to all committee sessions, conference materials and delegate kits, and meals and accommodation for the duration of the event." 
+  },
+  { 
+    q: "Can first-time delegates participate in GMUN?", 
+    a: "Absolutely. GMUN welcomes delegates of all experience levels. Our experienced Executive Board will guide participants through procedures and ensure a constructive learning environment." 
+  },
+  { 
+    q: "How are committee and country allotments decided?", 
+    a: "Allotments are based on the information provided during registration, including committee and country preferences, prior MUN experience (if any), and quality of responses submitted. The Secretariat ensures balanced representation across committees. Allotments are released a few weeks prior to the conference and are final." 
+  },
+  { 
+    q: "What documents should delegates carry to the conference?", 
+    a: "Delegates must carry a valid government-issued photo ID and their registration confirmation." 
+  },
 ];
 
 export default function FAQ() {

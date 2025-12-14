@@ -51,7 +51,6 @@ const Footer = () => {
                 <a href="https://mail.google.com/mail/?view=cm&to=cq.iitkharagpur@gmail.com">Contact Us</a>
                 <Link to="/AboutUs">About</Link>
                 <Link to="/login">Login</Link>
-                <Link to="/discuss">Discuss</Link>
 
             </div>}
         </footer>

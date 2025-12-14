@@ -1,22 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap');
+
 /* ------------------------------------------- */
 /* --- 1. PALETTE & VARIABLES --- */
 /* ------------------------------------------- */
 :root {
     --font-body: 'Poppins', sans-serif;
 
-    /* --- YOUR PALETTE --- */
     --c-cream: #E6DFD7;
     --c-teal: #1F3E43;
     --c-gold: #B38C6A;
     --c-berry: #5B2C36;
 
-    /* --- DIMENSIONS --- */
     --card-width: 300px;
     --card-gap: 60px;
     --image-height: 320px;
     --reveal-height: 200px;
-    
-    /* 3D SETTINGS */
+
+    /* fixed height for info box */
+    --info-height: 160px;
+
     --perspective: 1000px;
     --rotX: 0deg;
     --rotY: 0deg;
@@ -24,6 +26,7 @@
     --shineX: 50%;
     --shineY: 50%;
 }
+
 
 /* ------------------------------------------- */
 /* --- 2. MAIN PAGE STAGE --- */
@@ -38,7 +41,8 @@
     display: flex; 
     flex-direction: column;
     align-items: center;
-    padding: 60px 20px 100px 20px;
+    /* was: 120px 20px 100px 20px; */
+    padding: 90px 20px 90px 20px;
     box-sizing: border-box;
     overflow-x: hidden;
 }
@@ -51,6 +55,7 @@
     align-items: center;
     position: relative;
     z-index: 2;
+    scroll-margin-top: 140px;
 }
 
 /* ------------------------------------------- */
@@ -59,11 +64,20 @@
 
 .teamHeader {
     text-align: center;
-    margin-bottom: 50px;
+    /* was: 50px */
+    margin-bottom: 35px;
     position: relative;
 }
 
+.headerContent {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .headerTitle {
+    font-family: 'Cinzel', 'Times New Roman', serif;
     font-size: 4.5rem;
     font-weight: 800;
     color: var(--c-cream);
@@ -73,13 +87,41 @@
     text-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
+/* gold line directly under SECRETARIAT */
+.animationLine {
+    width: 80px;
+    height: 3px;
+    background: var(--c-gold);
+    border-radius: 999px;
+    margin: 20px auto 0;
+    box-shadow: 0 0 15px rgba(179,140,106,0.5);
+}
+
+/* simple states so JS classes work */
+.none {
+    opacity: 1;
+    transform: scaleX(1);
+}
+.usg-start,
+.secretariat-start {
+    opacity: 0.95;
+    transform: scaleX(1.05);
+    transition: all 0.3s ease;
+}
+.usg-end,
+.secretariat-end {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
 .headerSubtitle {
     font-size: 1.1rem;
     color: var(--c-gold);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 3px;
-    margin-top: 15px;
+    /* was: 15px */
+    margin-top: 10px;
     opacity: 0.9;
 }
 
@@ -87,9 +129,9 @@
     display: flex;
     justify-content: center;
     gap: 40px;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     border-bottom: 1px solid rgba(230, 223, 215, 0.1);
-    padding-bottom: 10px;
+    padding-bottom: 6px;
 }
 
 .tabButton {
@@ -138,8 +180,8 @@
     width: 100%;
     
     /* STYROFOAM TEXTURE BACKGROUND */
-    background-image: url('./Screenshot 2025-12-03 161312.png'); /* Using the provided styrofoam image (project-relative) */
-    background-repeat: repeat; /* Tile the texture */
+    background-image: url('./Screenshot 2025-12-03 161312.png');
+    background-repeat: repeat;
     
     /* Double Border Effect */
     border: 1px solid var(--c-gold);
@@ -164,16 +206,31 @@
     opacity: 0.3;
 }
 
+/* Decorative Gold Line at Bottom of row of images */
+.cardWrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    height: 3px;
+    background: var(--c-gold);
+    opacity: 0.35;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
 .cardRow {
     display: flex;
     gap: var(--card-gap);
-    padding: 60px 80px 250px 80px;
+    /* top   right  bottom left  */
+    padding: 60px 80px 60px 80px;  
     overflow-x: scroll;
     overflow-y: visible;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     box-shadow: inset 0 0 80px rgba(0,0,0,0.05);
+    align-items: stretch;
 }
 .cardRow::-webkit-scrollbar { display: none; }
 
@@ -184,7 +241,10 @@
 .teamCard {
     min-width: var(--card-width);
     max-width: var(--card-width);
-    height: auto;
+
+    /* fixed total height → all cards equal */
+    height: calc(var(--image-height) + 40px + var(--info-height));
+
     position: relative;
     transform-style: preserve-3d;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -193,13 +253,16 @@
     scroll-snap-align: center;
     border-radius: 12px;
     border: 2px solid transparent;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .teamCard.isHovering {
     transform: rotateX(var(--rotX)) rotateY(var(--rotY)) scale(1.05) translateY(-20px);
     z-index: 10;
-    margin-bottom: -200px;
-    box-shadow: 
+    box-shadow:
         0 20px 50px rgba(0,0,0,0.4),
         0 0 0 2px var(--c-gold);
 }
@@ -207,7 +270,7 @@
 .cardRevealBacking {
     position: absolute;
     inset: 0;
-    background: var(--c-berry); 
+    background: var(--c-berry);
     border-radius: 10px;
     transform: translateZ(-30px);
     transition: transform 0.4s ease;
@@ -222,6 +285,11 @@
     transition: transform 0.4s ease;
     border-radius: 10px;
     z-index: 2;
+
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .cardContent::before {
@@ -235,8 +303,12 @@
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-.teamCard.isHovering .cardContent { transform: translateZ(40px); }
-.teamCard.isHovering .cardRevealBacking { transform: translateZ(-60px) rotate(-1deg); }
+.teamCard.isHovering .cardContent {
+    transform: translateZ(40px);
+}
+.teamCard.isHovering .cardRevealBacking {
+    transform: translateZ(-60px) rotate(-1deg);
+}
 
 .image {
     width: 100%;
@@ -249,6 +321,7 @@
     align-items: center;
     transform: translateZ(10px);
     transition: all 0.4s ease;
+    position: relative;
 }
 
 .image img {
@@ -266,40 +339,43 @@
 }
 
 .textRevealWrapper {
-    position: absolute;
-    top: calc(var(--image-height) + 20px);
-    left: 10px; 
-    right: 10px;
-    height: var(--reveal-height);
-    overflow: hidden;
-    pointer-events: none;
+    width: 100%;
+    margin-top: 16px;
+    height: auto;
+    overflow: visible;
+    pointer-events: auto;
     z-index: 5;
 }
 
 .text {
     background: var(--c-teal);
     border: 1px solid var(--c-gold);
+    border-top-width: 3px;              /* thicker gold line at top of teal box */
     color: var(--c-cream);
     padding: 20px;
     text-align: center;
     border-radius: 8px;
-    transform: translateY(-150%);
-    opacity: 0;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    height: var(--info-height);
+    transform: none;
+    opacity: 1;
+    box-sizing: border-box;
+
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     pointer-events: auto;
-}
 
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
 .teamCard.isHovering .text {
-    transform: translateY(0%);
-    opacity: 1;
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
 .text h2 {
+    font-family: 'Cinzel', 'Times New Roman', serif;
     font-size: 1.4rem;
     color: var(--c-gold);
     margin: 0;
@@ -327,6 +403,7 @@
     color: var(--c-gold);
     transform: scale(1.2);
 }
+
 
 /* ------------------------------------------- */
 /* --- 6. NAVIGATION ARROWS --- */
@@ -397,23 +474,46 @@
     }
     
     .teamCard {
-        transform: none !important;
-        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 540px; 
+        height: auto;
     }
     
     .textRevealWrapper {
         position: static;
+        width: 100%;
+        margin-top: 16px;
         height: auto;
-        margin-top: -15px;
-        padding: 0 10px;
-    }
+        overflow: visible;
+        pointer-events: auto;
+        z-index: 5;
+    }         
     
     .text {
-        transform: none !important;
-        opacity: 1;
         background: var(--c-teal);
         border: 1px solid var(--c-gold);
-    }
+        border-top-width: 3px;
+        color: var(--c-cream);
+        padding: 20px;
+        text-align: center;
+        border-radius: 8px;
+    
+        transform: none;
+        opacity: 1;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        pointer-events: auto;
+        box-sizing: border-box;
+    
+        min-height: 150px;
+        justify-content: center;
+    }    
     
     .image {
         transform: none !important;
