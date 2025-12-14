@@ -33,6 +33,12 @@ const Navbar = () => {
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+  
+  // Handle link click - close menu and scroll to top
+  const handleLinkClick = () => {
+    closeMobileMenu();
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  };
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const toggleDropdown = (e) => {
@@ -60,7 +66,7 @@ const Navbar = () => {
         
         {/* Logo */}
         <div className="logo-section">
-          <Link to="/" onClick={closeMobileMenu}>
+          <Link to="/" onClick={handleLinkClick}>
             <div className="logo-3d-wrapper">
               <img src={gmunlogo} alt="GMUN" className="logo-face front" />
               <img src={edition} alt="3rd" className="logo-face back" />
@@ -70,34 +76,34 @@ const Navbar = () => {
 
         {/* Links */}
         <ul className={`nav-links ${isMobileMenuOpen ? "active" : ""}`}>
-          <li><Link to="/" className={`roll-text ${isActive('/') ? 'active' : ''}`} onClick={closeMobileMenu}>Home</Link></li>
-          <li><Link to="/sec" className={`roll-text ${isActive('/sec') ? 'active' : ''}`} onClick={closeMobileMenu}>Secretariat</Link></li>
-          <li><Link to="/how-to-mun" className={`roll-text ${isActive('/how-to-mun') ? 'active' : ''}`} onClick={closeMobileMenu}>How to MUN</Link></li>
+          <li><Link to="/" className={`roll-text ${isActive('/') ? 'active' : ''}`} onClick={handleLinkClick}>Home</Link></li>
+          <li><Link to="/sec" className={`roll-text ${isActive('/sec') ? 'active' : ''}`} onClick={handleLinkClick}>Secretariat</Link></li>
+          <li><Link to="/how-to-mun" className={`roll-text ${isActive('/how-to-mun') ? 'active' : ''}`} onClick={handleLinkClick}>How to MUN</Link></li>
           
           {/* Dropdown for Committees */}
           <li className={`dropdown-trigger ${isDropdownOpen ? 'open' : ''} ${isActive('/committee') ? 'active' : ''}`} onClick={toggleDropdown}>
             <span className={`roll-text ${isActive('/committee') ? 'active' : ''}`}>Committees</span>
             
             <ul className="dropdown-panel">
-              <li><Link to="/committee/1">UNSC</Link></li>
-              <li><Link to="/committee/2">UNHRC</Link></li>
-              <li><Link to="/committee/3">DISEC</Link></li>
-              <li><Link to="/committee/4">LokSabha</Link></li>
-              <li><Link to="/committee/5">G20</Link></li>
+              <li><Link to="/committee/1" onClick={handleLinkClick}>UNSC</Link></li>
+              <li><Link to="/committee/2" onClick={handleLinkClick}>UNHRC</Link></li>
+              <li><Link to="/committee/3" onClick={handleLinkClick}>DISEC</Link></li>
+              <li><Link to="/committee/4" onClick={handleLinkClick}>LokSabha</Link></li>
+              <li><Link to="/committee/5" onClick={handleLinkClick}>G20</Link></li>
             </ul>
           </li>
 
-          <li><Link to="/FAQs" className={`roll-text ${isActive('/FAQs') ? 'active' : ''}`} onClick={closeMobileMenu}>FAQs</Link></li>
-          <li><Link to="/AboutUs" className={`roll-text ${isActive('/AboutUs') ? 'active' : ''}`} onClick={closeMobileMenu}>About</Link></li>
-          <li><Link to="/gallery" className={`roll-text ${isActive('/gallery') ? 'active' : ''}`} onClick={closeMobileMenu}>Gallery</Link></li>
-          <li><Link to="/Sponsors" className={`roll-text ${isActive('/Sponsors') ? 'active' : ''}`} onClick={closeMobileMenu}>Sponsors</Link></li>
+          <li><Link to="/FAQs" className={`roll-text ${isActive('/FAQs') ? 'active' : ''}`} onClick={handleLinkClick}>FAQs</Link></li>
+          <li><Link to="/AboutUs" className={`roll-text ${isActive('/AboutUs') ? 'active' : ''}`} onClick={handleLinkClick}>About</Link></li>
+          <li><Link to="/gallery" className={`roll-text ${isActive('/gallery') ? 'active' : ''}`} onClick={handleLinkClick}>Gallery</Link></li>
+          <li><Link to="/Sponsors" className={`roll-text ${isActive('/Sponsors') ? 'active' : ''}`} onClick={handleLinkClick}>Sponsors</Link></li>
 
           {/* Auth Button */}
           <li className="auth-item">
             {authStatus ? (
               <button onClick={handlelogout} className="magnetic-btn">Logout</button>
             ) : (
-              <Link to="/login" className="magnetic-btn" onClick={closeMobileMenu}>Login</Link>
+              <Link to="/login" className="magnetic-btn" onClick={handleLinkClick}>Login</Link>
             )}
           </li>
         </ul>

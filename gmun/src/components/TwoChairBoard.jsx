@@ -1,11 +1,14 @@
 import React from "react";
 import "./committee.css";
+import useInView from "../hooks/useInView";
 
 const TwoChairBoard = ({ title, subtitle, chairs, message }) => {
+  const [titleRef, titleInView] = useInView({ threshold: 0.5 });
+
   return (
     <div className="cards two-chair-board fade-in">
       <h3>{subtitle}</h3>
-      <h1 className="clean-heading">{title}</h1>
+      <h1 ref={titleRef} className={`clean-heading ${titleInView ? 'in-view' : ''}`}>{title}</h1>
 
       <div className="two-chair-photos">
         {chairs.map((chair, index) => (

@@ -179,28 +179,6 @@ const Sec = () => {
     loadData();
   }, []);
 
-  useEffect(() => {
-    const handleHorizontalWheel = e => {
-      const container = e.currentTarget;
-      if (!container) return;
-      if (container.scrollWidth > container.clientWidth) {
-        e.preventDefault();
-        container.scrollBy({ left: e.deltaY, behavior: 'auto' });
-      }
-    };
-    const activeContainer =
-      activeTab === 'usg' ? USGScrollRef.current : secretariatScrollRef.current;
-    if (activeContainer)
-      activeContainer.addEventListener('wheel', handleHorizontalWheel, {
-        passive: false,
-      });
-    return () => {
-      if (USGScrollRef.current)
-        USGScrollRef.current.removeEventListener('wheel', handleHorizontalWheel);
-      if (secretariatScrollRef.current)
-        secretariatScrollRef.current.removeEventListener('wheel', handleHorizontalWheel);
-    };
-  }, [activeTab]);
 
   const updateScrollState = (ref, setState) => {
     if (!ref.current) return;

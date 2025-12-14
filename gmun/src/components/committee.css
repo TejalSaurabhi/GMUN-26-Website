@@ -46,20 +46,22 @@
   align-items: center;
   width: 100%;
   padding: 40px 35px;
-  background-color: #363537a8;
-  border: 5px solid #B69354;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.40);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(182, 147, 84, 0.6);
+  border-radius: 1.4rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   position: relative;
   z-index: 2;
   margin-top: 30px; 
   margin-bottom: 30px;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .committee-content:hover {
-  box-shadow: 0 0 20px 5px #574A73, 0 4px 10px rgba(0, 0, 0, 0.1);
-  transform: scale(1.02);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(216, 184, 119, 0.85);
+  box-shadow: 0 0 14px rgba(243, 212, 138, 0.35);
 }
 
 /* === TEXT STYLES === */
@@ -88,16 +90,23 @@
 }
 
 .cards {
-  background-color: #36353767;
-  border: 5px solid #B69354;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(182, 147, 84, 0.6);
   max-width: 100%;
   margin: auto;
-  border-radius: 15px;
-  box-shadow: 0px 10px 20px 20px rgba(0, 0, 0, 0.17);
+  border-radius: 1.4rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   display: inline-block;
   padding: 25px 30px;
   text-align: center;
   min-width: 595px;
+  transition: all 0.3s ease;
+}
+
+.cards:hover {
+  border-color: rgba(216, 184, 119, 0.85);
+  box-shadow: 0 0 14px rgba(243, 212, 138, 0.35);
 }
 
 .cards h1 {
@@ -115,28 +124,32 @@
   margin-bottom: 5px;
 }
 
+/* Emblem container for proper spacing below navbar */
+.emblem {
+  padding-top: 100px;
+  text-align: center;
+}
+
 .UNSCLogo {
-  width: 16vw; 
-  min-width: 200px; 
+  width: 10vw; 
+  min-width: 120px;
+  max-width: 160px;
   height: auto;
   display: block;
-  margin: 50px auto 30px auto;
+  margin: 0 auto 20px auto;
   border-radius: 50%;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.35);
   border: 1px solid rgba(182, 147, 84, 0.5);
-  outline: 2px solid #B69354;
-  outline-offset: 10px;
-  padding: 35px;
-  background: radial-gradient(circle, rgba(182, 147, 84, 0.1) 0%, rgba(25, 11, 37, 0) 70%);
-  filter: sepia(1) saturate(1.2) brightness(0.9);
-  transition: all 0.4s ease;
+  filter: sepia(1) saturate(1.2) brightness(0.95);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(182, 147, 84, 0.15);
 }
 
 .UNSCLogo:hover {
-  transform: translateY(-5px);
-  border-color: rgba(182, 147, 84, 0.9);
-  outline-color: #d2aa5b;
-  box-shadow: 0 0 25px rgba(182, 147, 84, 0.4);
-  
+  transform: translateY(-3px);
+  border-color: rgba(216, 184, 119, 0.8);
+  box-shadow: 0 0 25px rgba(243, 212, 138, 0.35);
   cursor: pointer;
 }
 
@@ -151,34 +164,32 @@
 }
 
 .two-chair-board {
-  background: rgba(36, 33, 45, 0.6);
-  border: 2px solid rgba(182, 147, 84, 0.85);
-  border-radius: 20px;
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(182, 147, 84, 0.6);
+  border-radius: 1.4rem;
+  backdrop-filter: blur(12px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  padding: 40px 40px;
+  padding: 40px 50px;
   max-width: 950px;
   position: relative;
   transition: all 0.3s ease;
-  padding: 40px 50px;
-  max-width: 950px;
   margin: 30px auto;
 }
 
 .two-chair-board::before {
   content: "";
   position: absolute;
-  inset: 10px;
-  border: 1px solid rgba(182, 147, 84, 0.45);
-  border-radius: 16px;
+  inset: 8px;
+  border: 1px solid rgba(182, 147, 84, 0.25);
+  border-radius: 1.1rem;
   pointer-events: none;
   z-index: 1;
 }
 
 .two-chair-board:hover {
-  transform: translateY(-5px);
-  border-color: #d2aa5b;
-  box-shadow: 0 12px 30px rgba(182, 147, 84, 0.25);
+  transform: translateY(-3px);
+  border-color: rgba(216, 184, 119, 0.85);
+  box-shadow: 0 0 18px rgba(243, 212, 138, 0.4);
 }
 
 .clean-heading {
@@ -194,7 +205,8 @@
   margin-bottom: 20px;
 }
 
-.clean-heading:hover {
+.clean-heading:hover,
+.clean-heading.in-view {
   color: #d5b97a;
 }
 
@@ -210,7 +222,8 @@
   border-radius: 2px;
 }
 
-.clean-heading:hover::after {
+.clean-heading:hover::after,
+.clean-heading.in-view::after {
   width: 100%;
 }
 
@@ -236,19 +249,25 @@
 .chair-image-wrapper {
   position: relative;
   overflow: hidden;
-  border-radius: 15px;
-  border: 2px solid #b69354;
+  border-radius: 1rem;
+  border: 1px solid rgba(182, 147, 84, 0.7);
   aspect-ratio: 3 / 4;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.chair-image-wrapper:hover {
+  border-color: rgba(216, 184, 119, 0.9);
+  box-shadow: 0 0 12px rgba(243, 212, 138, 0.3);
 }
 
 .chair-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 15px;
+  border-radius: 1rem;
   transition: transform 0.4s ease, filter 0.4s ease;
 }
 
@@ -258,7 +277,7 @@
   inset: 0;
   background: rgba(0, 0, 0, 0);
   transition: background 0.4s ease;
-  border-radius: 15px;
+  border-radius: 1rem;
 }
 
 .chair-image-wrapper:hover::after {
@@ -351,11 +370,14 @@
 }
 
 .hover-underline:hover::after,
-.hover-underline:hover::before {
+.hover-underline:hover::before,
+.hover-underline.in-view::after,
+.hover-underline.in-view::before {
   transform: scaleX(1);
 }
 
-.hover-underline:hover {
+.hover-underline:hover,
+.hover-underline.in-view {
   color: #d5b97a;
 }
 
@@ -412,7 +434,7 @@
   .chair-image-wrapper {
     width: 100%;
     aspect-ratio: 3/4;
-    border-radius: 10px; 
+    border-radius: 0.8rem; 
   }
   
   .clean-heading {
@@ -450,14 +472,16 @@
     margin-top: 0px !important;
   }
 
+  .emblem {
+    padding-top: 80px;
+  }
+
   .UNSCLogo {
-    width: 60vw;
-    max-width: 220px;
-    min-width: 150px;
-    padding: 20px; 
-    outline-offset: 6px; 
-    margin-top: 40px;
-    margin-bottom: 30px;
+    width: 28vw;
+    max-width: 130px;
+    min-width: 100px;
+    padding: 15px; 
+    margin-bottom: 15px;
   }
 
   .two-chair-board {
@@ -475,8 +499,9 @@
     font-size: 42px !important;
     margin-bottom: 40px !important;
   }
+}
 
-  /* COUNTRY POPUP (DESKTOP + MOBILE) */
+/* COUNTRY POPUP (DESKTOP + MOBILE) */
 .tt_sm,
 .tt_mobile_sm {
   display: inline-flex !important;
@@ -531,6 +556,4 @@
     opacity: 1;
     transform: translateY(-1px) scale(1);
   }
-}
-
 }

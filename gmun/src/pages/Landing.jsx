@@ -2,8 +2,6 @@ import Countdown from '../components/Countdown';
 import Commendations from '../components/commendationpage';
 // import { useEffect } from "react";
 import Announcements from "../components/Announcements";
-import Footer from "../components/Footer";
- 
 import Reviews from "../components/reviews/Reviews";
 import Timeline from "../components/Timeline";
 // import { useAuthStore } from "../store/authStore";
@@ -67,10 +65,6 @@ const Landing = () => {
       <div className="reviews">
         <Reviews />
       </div>
-
-      <footer>
-        <Footer />
-      </footer>
     </div>
   );
 };
