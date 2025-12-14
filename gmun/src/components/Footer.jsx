@@ -85,8 +85,8 @@ const Footer = () => {
           <div className="underline"></div>
           <p>
             <strong>Venue:</strong> Nalanda, IIT Kharagpur<br />
-            <strong>Dates:</strong> 9th – 11th January 2026<br />
-            Kharagpur, West Bengal – 721302
+            Kharagpur, West Bengal – 721302<br />
+            <strong>Dates:</strong> 9th – 11th January 2026
           </p>
         </div>
       </div>
@@ -94,7 +94,7 @@ const Footer = () => {
       {/* COPYRIGHT AREA */}
       <div className="copyright-area">
         <div className="copyright-content">
-          <span>© {new Date().getFullYear()} Communiqué IIT Kharagpur</span>
+          <span>© 2026 Communiqué IIT Kharagpur</span>
           <span className="divider">|</span>
           <span>Developed by the Communiqué Tech Team</span>
         </div>
