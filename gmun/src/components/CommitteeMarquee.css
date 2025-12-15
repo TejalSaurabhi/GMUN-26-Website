@@ -3,16 +3,17 @@
 /* Section wrapper */
 .committee-marquee-section {
   width: 100%;
-  padding: 2rem 0;
+  padding: 1rem 0 2rem;
   overflow: hidden;
   position: relative;
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(15, 30, 40, 0.5) 20%,
-    rgba(15, 30, 40, 0.5) 80%,
+    rgba(0, 0, 0, 0.35) 20%,
+    rgba(0, 0, 0, 0.35) 80%,
     transparent 100%
   );
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 /* Fade edges */
@@ -41,7 +42,8 @@
 .committee-marquee-track {
   display: flex;
   width: fit-content;
-  animation: marquee-scroll 30s linear infinite;
+  /* Slower, more relaxed scroll */
+  animation: marquee-scroll 60s linear infinite;
 }
 
 .committee-marquee-track:hover {
@@ -64,35 +66,35 @@
 /* Committee name styling */
 .committee-name {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(2rem, 5vw, 4rem);
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: clamp(1.3rem, 2.6vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   
-  /* Gold gradient matching Hero */
-  background: radial-gradient(
-    ellipse at 50% 30%,
-    #f5ebe0 0%,
-    #e8c9a0 25%,
-    #d4b08c 50%,
-    #B38C6A 80%
+  /* Solid colour matching muted timeline gold (using gradient for compatibility) */
+  background: linear-gradient(
+    90deg,
+    rgba(201, 174, 138, 0.9) 0%,
+    rgba(201, 174, 138, 0.9) 50%,
+    rgba(201, 174, 138, 0.9) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   
-  filter: drop-shadow(0 0 20px rgba(179, 140, 106, 0.25));
+  /* Even more subtle glow */
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.45));
   transition: filter 0.3s ease;
 }
 
 .committee-item:hover .committee-name {
-  filter: drop-shadow(0 0 30px rgba(179, 140, 106, 0.5));
+  filter: drop-shadow(0 0 15px rgba(179, 140, 106, 0.3));
 }
 
 /* Separator dot */
 .committee-separator {
   font-size: clamp(1.5rem, 3vw, 2.5rem);
-  color: rgba(179, 140, 106, 0.4);
+  color: rgba(248, 231, 176, 0.4);
   margin: 0 1.5rem;
 }
 

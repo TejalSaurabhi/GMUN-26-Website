@@ -1,31 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Accent colors */
-  --gm-gold: #d4af37; /* Metallic Gold accent */
-  --gm-gold-bright: #ffe9a3;
-  --gm-primary: #d4af37; /* Primary action color is Gold */
+  /* Accent colors - gently aligned with Hero's brownish golds */
+  --gm-gold: #B38C6A;           /* match Hero accent-gold */
+  --gm-gold-bright: #e8c9a0;    /* match Hero accent-gold-bright */
+  --gm-gold-light: #d4b08c;     /* match Hero accent-gold-light */
+  --gm-primary: #B38C6A;        /* primary action color uses Hero gold */
 
   /* Dark theme backgrounds */
   --gm-bg: #071022; /* Deep navy page background */
   --gm-bg-secondary: #0e1a2a; /* Slightly lighter card/modal background */
 
   /* Text colors adapted for dark theme */
-  --gm-maroon: #e6dfd7; /* Light cream (primary text on dark) */
-  --gm-teal: #9fd6ce; /* Soft teal for accents/secondary text */
+  --gm-maroon: #fefdf8; /* Updated cream to match HowToMUN */
+  --gm-teal: rgba(243, 243, 243, 0.86); /* Updated to match HowToMUN text muted */
 
   /* Layout */
   --header-height: 12px;
   --card-border: 1px;
   --card-radius: 18px;
   /* Helpful RGB variables when using rgba(var(--var-rgb)) */
-  --gm-maroon-rgb: 230, 223, 215;
-  --gm-gold-rgb: 212, 175, 55;
+  --gm-maroon-rgb: 254, 253, 248;
+  --gm-gold-rgb: 179, 140, 106;
   /* extra utility variables for variants */
-  --gm-gold-dark: #b69354; /* richer darker gold */
-  --gm-gold-light: #ffd700; /* lighter gold tone */
+  --gm-gold-dark: #6a5038;             /* deeper brown from Hero gradient */
+  --gm-gold-glow: rgba(179, 140, 106, 0.4); /* glow matching Hero gold-glow */
   --gm-on-dark: #ffffff; /* light-on-dark text fallback for highlights */
-  --gm-on-gold: #071022; /* text color used when on gold backgrounds */
+  --gm-on-gold: #000; /* text color used when on gold backgrounds */
+  
+  /* Font stack matching HowToMUN */
+  --gm-font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --gm-font-heading: 'Playfair Display', Georgia, serif;
 }
 
 /* layout safety */
@@ -41,7 +46,7 @@ main {
 body {
   background: var(--gm-bg);
   color: var(--gm-maroon);
-  font-family: "system-ui", sans-serif;
+  font-family: var(--gm-font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -60,20 +65,22 @@ section.mb-8::before,
   display: none !important;
 }
 
-/* GM card baseline */
+/* GM card baseline - Updated to match HowToMUN card style */
 .gm-card {
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.40);
   backdrop-filter: blur(12px);
   border-radius: 1.4rem;
-  border: 1px solid rgba(184, 155, 94, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5);
   padding: 1.5rem;
-  transition: all 0.3s ease-out;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .gm-card:hover {
-  border-color: rgba(212, 175, 55, 0.6);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.15);
+  background: rgba(255, 235, 150, 0.06);
+  border-color: rgba(179, 140, 106, 0.5);
+  box-shadow: 0 0 10px rgba(179, 140, 106, 0.3);
 }
 
 /* ensure cards stretch to same height and use flex column for bottom alignment */
@@ -88,25 +95,28 @@ section.mb-8::before,
   flex-direction: column;
 }
 
-/* typography base colors and style */
+/* typography base colors and style - muted gold to match hero/navbar */
 .gm-title {
-  color: var(--gm-gold);
-  font-family: 'Playfair Display', Georgia, serif;
-  font-weight: 700;
-  font-size: 3rem;
-  text-shadow: 0 0 25px rgba(255, 215, 0, 0.25);
+  color: var(--gm-gold-light);
+  font-family: var(--gm-font-heading);
+  font-weight: 800;
+  font-size: clamp(2.8rem, 5vw, 3.8rem);
+  text-shadow: 0 0 18px rgba(0, 0, 0, 0.65);
 }
 .gm-subtitle {
-  color: var(--gm-teal);
-  font-size: 0.85rem !important;
-  letter-spacing: 0.15em;
+  color: var(--gm-gold-light);
+  font-size: 1rem !important;
+  letter-spacing: 0.12em;
+  font-family: var(--gm-font-body);
 }
 .gm-small {
-  color: rgba(243, 243, 243, 0.8);
-  font-size: 1.1rem;
+  color: rgba(243, 243, 243, 0.86);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  font-family: var(--gm-font-body);
 }
 
-/* chip */
+/* chip - Updated to match HowToMUN number badge */
 .gm-chip {
   width: 54px;
   height: 54px;
@@ -114,34 +124,54 @@ section.mb-8::before,
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--gm-gold);
-  color: var(--gm-bg);
-  font-weight: 700;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--gm-gold-light);
+  font-weight: 600;
   font-size: 1.2rem;
+  transition: all 0.3s ease;
 }
 
-/* button */
+.gm-chip:hover,
+.gm-chip.active {
+  background: #f3d48a;
+  color: #000;
+  box-shadow: 0 0 15px rgba(243, 212, 138, 0.8);
+}
+
+/* button - Updated to match HowToMUN pill style */
 .gm-btn {
-  border-radius: 8px;
-  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  transition: background 0.2s, transform 0.1s;
+  transition: all 0.2s ease;
+  font-family: var(--gm-font-body);
+  font-size: 1rem;
 }
 .gm-btn:hover {
   transform: translateY(-1px);
 }
 .gm-btn-primary {
-  background: var(--gm-primary);
-  color: var(--gm-bg);
-  border: none;
-} /* Dark text on gold button */
+  background: rgba(184, 149, 103, 0.9);
+  color: #000;
+  border: 1px solid rgba(247, 227, 165, 0.7);
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.6);
+}
+.gm-btn-primary:hover {
+  background: rgba(184, 149, 103, 0.7);
+  border-color: rgba(179, 140, 106, 0.6);
+  color: #000;
+}
 .gm-btn-secondary {
-  background: transparent;
-  color: var(--gm-maroon);
-  border: 1px solid rgba(230, 223, 215, 0.08);
+  background: rgba(0, 0, 0, 0.35);
+  color: #f5f5f5;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.gm-btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: rgba(179, 140, 106, 0.5);
 }
 
 /* keep main container above decorations */

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../styles/Timeline.css";
-import image1 from "../images/an1.jpg";
+import heroOpening from "../images/ApplicationLive.JPG";
+import comingSoon from "../images/ComingSoon.jpeg";
 
 const Timeline = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -11,28 +12,28 @@ const Timeline = () => {
   const timelineItems = [
     {
       year: "Opening Ceremony",
-      img: image1,
-      desc: "A fun and interactive Opening Ceremony, to mark the beginning of the Global Model United Nations Event."
+      img: heroOpening,
+      desc: "An engaging opening ceremony marking the commencement of Global Model United Nations 2026."
     },
     {
       year: "GMUN Day-1",
-      img: image1,
+      img: comingSoon,
       desc: "First Committee Meeting and Discussion."
     },
     {
       year: "Social Night after Day-1",
-      img: image1,
-      desc: "Come and have fun at our first Social Night of the Event."
+      img: comingSoon,
+      desc: "Have fun at our exhilerating Social Night"
     },
     {
       year: "GMUN Day-2",
-      img: image1,
+      img: comingSoon,
       desc: "Final day of Committee discussions."
     },
     {
       year: "Closing Ceremony",
-      img: image1,
-      desc: "Join us for the Closing Ceremony of GMUN-2025."
+      img: comingSoon,
+      desc: "Closing Ceremony of GMUN-2026."
     }
   ];
 
@@ -85,7 +86,7 @@ const Timeline = () => {
 
   return (
     <>
-      <div className="timeline-page-title">GMUN TIMELINE</div>
+      <div className="timeline-page-title">Timeline</div>
 
       <div className="timeline-wrapper">
 

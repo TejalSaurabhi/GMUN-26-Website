@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import "./stars.css";
 
 const StarsBackground = () => {
-  const stars = Array.from({ length: 360 });
+  const stars = Array.from({ length: 300 });
 
   return (
     <div className="stars-container">

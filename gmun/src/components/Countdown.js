@@ -136,11 +136,8 @@ function CountdownTimer({ targetDate = null }) {
       <div className="countdown-corner-accent" />
 
       <div className="countdown-header">
-        <div className="countdown-badge">
-          <SplitText text={"GMUN — Opening"} stagger={0.02} />
-        </div>
         <h2 className="countdown-title">
-          <SplitText text={"Event starts in"} stagger={0.02} />
+          <SplitText text={"OPENING CEREMONY IN"} stagger={0.02} />
         </h2>
       </div>
 
@@ -160,8 +157,20 @@ function CountdownTimer({ targetDate = null }) {
   );
 }
 
+// Compact sticker-style countdown (for floating usage) – reuses full timer UI, just scaled
+export function CountdownSticker() {
+  // Opening Ceremony: 9 Jan 2026, 6:00 PM local time
+  const target = "2026-01-09T18:00:00";
+  return (
+    <div className="countdown-sticker-shell">
+      <CountdownTimer targetDate={target} />
+    </div>
+  );
+}
+
 export default function Countdown() {
-  const target = "2026-01-15T09:00:00";
+  // Opening Ceremony: 9 Jan 2026, 6:00 PM local time
+  const target = "2026-01-09T18:00:00";
   return (
     <div className="countdown-outer">
       <CountdownTimer targetDate={target} />

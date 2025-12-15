@@ -1,4 +1,3 @@
-import Countdown from '../components/Countdown';
 import Commendations from '../components/commendationpage';
 // import { useEffect } from "react";
 import Announcements from "../components/Announcements";
@@ -55,27 +54,23 @@ const Landing = () => {
           className="hero-light-rays"
         />
         <Hero />
-        <Countdown />
       </header>
 
       <Highlights />
 
       <CommitteeMarquee />
 
-      <div className="countdown-section">
+      {/* Timeline comes before letters from ambassadors */}
+      <div className="timeline">
+        <Timeline />
+      </div>
+
+      <div className="commendations-section">
         <Commendations />
       </div>
 
-      {/* <div className="committees-section">
-        <Committees />
-      </div> */}
-
       <div className="announcements">
         <Announcements />
-      </div>
-
-      <div className="timeline">
-        <Timeline />
       </div>
 
       <div className="reviews">
