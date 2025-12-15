@@ -103,9 +103,12 @@ export default function OurStory() {
 .container {
   position: relative;
   z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
   max-width: 980px;
   margin: 48px auto 80px;
-  padding: 48px 40px 96px;
+  padding: 48px 32px 96px;
   text-align: center;
 
   background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
@@ -116,18 +119,41 @@ export default function OurStory() {
   -webkit-backdrop-filter: blur(10px) saturate(120%);
 
   box-shadow: 0 18px 50px rgba(2,6,8,0.32);
-  overflow: visible;
+  overflow: hidden;
   height: auto;
 }
+
+@media (max-width: 768px) {
+
+  /* Clip glass background */
+  .page-bg {
+    overflow-x: hidden;
+  }
+
+  /* Mobile-safe glass card */
+  .container {
+    max-width: 100%;
+    margin: 24px 16px 48px;
+    padding: 24px 18px 48px;
+
+    overflow: hidden;        /* 🔑 prevents blur bleed */
+    border-radius: 14px;
+  }
+}
+
 
 /* Typography + helpers */
 .since { letter-spacing: 6px; font-size: 50px; margin-top: 6px; color: #ffffffff; }
 
-.title { font-family: 'Playfair Display', serif; font-weight: 700; color: #05290cff; font-size: 130px; line-height: 0.82; margin: 18px 0 6px; }
+.title { font-family: 'Playfair Display', serif; font-weight: 700; color: #05290cff; font-size: clamp(36px, 9vw, 130px);
+  line-height: 1; margin: 18px 0 6px; }
 .subtitle { font-size: 40px; letter-spacing: 1px; margin-top: 30px; margin-bottom: 40px; color:#ffffffff; font-family: Poppins (sans) ;}
 
 /* IMAGE WRAP (keep as-is, sits inside frosted container) */
-.image-wrap { width: 700px; height: 260px; margin: 28px auto 14px; border-radius: 14px; overflow: hidden; box-shadow: 0 14px 35px rgba(0,0,0,0.12); position: relative; }
+.image-wrap { width: 100%;
+  max-width: 700px;
+  height: auto;
+  aspect-ratio: 16 / 9; height: 260px; margin: 28px auto 14px; border-radius: 14px; overflow: hidden; box-shadow: 0 14px 35px rgba(0,0,0,0.12); position: relative; }
 .image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* ---------------- LEAD (glass paragraph) ---------------- */
@@ -750,24 +776,24 @@ function OurEvents() {
 
 
   const bootcampSlides = [
-    { id: "boot-1", image: "/product.jpg", title: "Product Profile", text: "The Placement Bootcamp begins with a deep dive into the Product profile. Panelists Anushka Singh, Subhayan Dey, and Gautam Jaju shared insights on product preparation, case frameworks, and strategies to excel in product interviews.", 
-      youtube: ""
+    { id: "boot-1", image: "/product.jpg", title: "Product Profile", text: "The Placement Bootcamp begins with a deep dive into the Product profile. Panelists shared insights on product preparation, case frameworks, and strategies to excel in product interviews.", 
+      youtube: "https://www.youtube.com/watch?v=GbJ4EXgUGIs"
      },
     {
       id: "boot-2", image: "finance.jpg", title: "Finance Profile",
-      text: "The Finance session of our Placement Bootcamp featured insights from Vaibhav Maheshwari and Lakshya Jindal. Both panelists shared their journeys into high-impact finance roles, and interview mindsets required for the industry.They addressed common questions about finance recruitments."
+      youtube:"https://www.youtube.com/watch?v=vP6cdtPvKDQ",      text: "The Finance session of our Placement Bootcamp featured the panelists' journeys into high-impact finance roles, and interview mindsets required for the industry.They addressed common questions about finance recruitments."
     },
     {
-      id: "boot-3", image: "core.jpg", title: "Core Profile",
-      text: "The Core session of our Placement Bootcamp brought together insights from Yash Agarwal, Nikhil Kandregula and Srijan Agrawal. This session helped participants gain a real understanding of the core placement landscape."
+      id: "boot-3", image: "core.jpg", title: "Core Profile",youtube:"https://www.youtube.com/watch?v=tJWIYhKkaYo",
+      text: "The Core session of our Placement Bootcamp brought together valuable insights. This session helped participants gain a real understanding of the core placement landscape."
     },
     {
-      id: "boot-4", image: "data.jpg", title: "Data Profile",
-      text: "The Data session of our Placement Bootcamp featured insights from Suraj Gupta, Aaditya Shah and Mritunjay Agrahari. This session provided a clear roadmap for students aspiring to break into data-driven role."
+      id: "boot-4", image: "data.jpg", title: "Data Profile",youtube:"https://www.youtube.com/watch?v=Gqttf-9klgQ",
+      text: "The Data session of our Placement Bootcamp featured valuable insights. This session provided a clear roadmap for students aspiring to break into data-driven roles."
     },
     {
-      id: "boot-5", image: "sde.jpg", title: "SDE & Quant Profile",
-      text: "The SDE & Quant session of our Placement Bootcamp featured an accomplished panel: Harshith Chowdary, Mayukha Marla, Pranav Nyati and Abhinav Cillanki."
+      id: "boot-5", image: "sde.jpg", title: "SDE & Quant Profile",youtube:"https://www.youtube.com/watch?v=Q0_nEkvXhKQ",
+      text: "The SDE & Quant session of our Placement Bootcamp featured an accomplished panel offering key insights."
     },
   ]
   return (
@@ -869,6 +895,25 @@ function OurEvents() {
           .oe-slide-img { width: 260px; height: 260px; }
           .oe-slide-copy { width: 100%; }
           .oe-arrow { display: none; }
+          
+  /* Ensure carousel never exceeds screen */
+  .oe-carousel {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  /* Viewport must clamp content */
+  .oe-viewport {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  /* Slides should take full width */
+  .oe-slide {
+    width: 100%;
+    padding: 0;
+  }
         }
           .oe-carousel-description {
   font-size: 20px;
@@ -1304,7 +1349,7 @@ function EvalueBook() {
 
           {/* CTA */}
           <a
-            href="/evalue.pdf"   // put PDF in public folder
+            href="https://drive.google.com/file/d/1fClejiFgnOdN7UBCcpKLzDinHHUA5tto/view?usp=sharing"   // put PDF in public folder
             target="_blank"
             rel="noopener noreferrer"
             className="evalue-btn"
