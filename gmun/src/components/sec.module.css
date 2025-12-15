@@ -36,9 +36,10 @@
     position: relative;
     width: 100vw;
     min-height: 100vh;
-    background-color: var(--c-teal);
-    background-image: radial-gradient(circle at 50% 30%, #2a5259 0%, var(--c-teal) 70%);
-    display: flex; 
+    /* Use global stars background */
+    /* background-color: var(--c-teal); */
+    /* background-image: radial-gradient(circle at 50% 30%, #2a5259 0%, var(--c-teal) 70%); */
+    display: flex;
     flex-direction: column;
     align-items: center;
     /* was: 120px 20px 100px 20px; */

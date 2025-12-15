@@ -147,7 +147,7 @@ const sample = [
       > 
         <div className="gm-subtitle uppercase" style={{ color: "var(--gm-teal)",fontSize: isMobile ? '3rem' : undefined }}><SplitText text={"COMMENDATIONS"} stagger={0.01} /></div>
         <div className="text-4xl font-bold gm-title" style={{ color: "var(--gm-gold)", marginTop: 8, fontSize: isMobile ? '1.4rem' : undefined }}><SplitText text={"Letters from Ambassadors"} stagger={0.01} /></div> 
-        <div className="gm-small mt-3" style={{ color: "var(--gm-teal)" }}>Trusted endorsements from partner embassies</div> 
+        <div className="gm-small mt-3" style={{ color: "var(--gm-teal)" }}>Messages of support from global diplomatic leaders</div> 
       </div>
     </div>
     <div className={containerClass} >

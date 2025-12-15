@@ -1,17 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap");
 
-/* Variables matching Hero section */
+/* Variables using HowToMUN structure but Hero's warmer brown-gold */
 :root {
-  --countdown-text-light: #E6DFD7;
-  --countdown-text-muted: rgba(230, 223, 215, 0.7);
+  --countdown-text-light: #fefdf8;
+  --countdown-text-muted: rgba(243, 243, 243, 0.86);
   --countdown-gold: #B38C6A;
   --countdown-gold-light: #d4b08c;
   --countdown-gold-bright: #e8c9a0;
   --countdown-gold-glow: rgba(179, 140, 106, 0.4);
-  --countdown-glass-bg: rgba(20, 40, 45, 0.6);
-  --countdown-glass-border: rgba(179, 140, 106, 0.3);
-  --countdown-bg-dark: rgba(15, 30, 35, 0.4);
+  --countdown-glass-bg: rgba(0, 0, 0, 0.40);
+  --countdown-glass-border: rgba(255, 255, 255, 0.15);
+  --countdown-bg-dark: rgba(0, 0, 0, 0.35);
+  --countdown-font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --countdown-font-heading: 'Playfair Display', Georgia, serif;
 }
 
 /* Outer wrapper for spacing */
@@ -23,7 +24,7 @@
   z-index: 10;
 }
 
-/* Main container - card style kept from original */
+/* Main container - card style matching HowToMUN */
 .countdown-container {
   display: flex;
   flex-direction: column;
@@ -32,10 +33,18 @@
   background: var(--countdown-glass-bg);
   backdrop-filter: blur(12px);
   border: 1px solid var(--countdown-glass-border);
-  border-radius: 24px;
+  border-radius: 1.4rem;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.25);
+  font-family: var(--countdown-font-body);
+  transition: all 0.3s ease;
+}
+
+.countdown-container:hover {
+  background: rgba(255, 235, 150, 0.09);
+  border-color: #f3d48a;
+  box-shadow: 0 0 14px rgba(243, 212, 138, 0.45);
 }
 
 /* Decorative corner accent - kept from original */
@@ -60,22 +69,23 @@
 }
 
 .countdown-badge {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.75rem;
+  font-family: var(--countdown-font-body);
+  font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--countdown-text-muted);
+  color: rgba(248, 231, 176, 0.8);
   margin-bottom: 0.4rem;
 }
 
 .countdown-title {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--countdown-gold-bright);
-  text-shadow: 0 0 30px var(--countdown-gold-glow);
+  font-family: var(--countdown-font-body);
+  text-transform: uppercase;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: 0.035em;
+  color: rgba(248, 231, 176, 0.9);
+  text-shadow: 0 0 18px rgba(0, 0, 0, 0.6);
 }
 
 /* Dials container */
@@ -113,16 +123,16 @@
 /* SVG styling */
 .countdown-dial-svg {
   transform: rotate(-90deg);
-  filter: drop-shadow(0 0 8px rgba(179, 140, 106, 0.15));
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.4));
 }
 
 .countdown-dial-bg {
-  stroke: var(--countdown-bg-dark);
+  stroke: rgba(255, 255, 255, 0.08);
 }
 
 .countdown-dial-progress {
-  stroke: var(--countdown-gold);
-  filter: drop-shadow(0 0 6px var(--countdown-gold-glow));
+  stroke: rgba(248, 231, 176, 0.85);
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.4));
 }
 
 /* Value container */
@@ -144,21 +154,21 @@
 }
 
 .countdown-dial-number {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--countdown-font-heading);
   font-size: 1.8rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.02em;
-  color: var(--countdown-gold-bright);
-  text-shadow: 0 0 15px var(--countdown-gold-glow);
+  color: rgba(248, 231, 176, 0.95);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
 
 /* Label below dial */
 .countdown-dial-label {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.7rem;
+  font-family: var(--countdown-font-body);
+  font-size: 0.75rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   color: var(--countdown-text-muted);
   margin-top: 0.5rem;
 }
@@ -166,6 +176,21 @@
 /* Inline block for SplitText */
 .inline-block {
   display: inline-block;
+}
+
+/* === Compact sticker variant (used in announcement toggle) === */
+.countdown-sticker-shell {
+  transform: scale(0.5);
+  transform-origin: bottom right;
+}
+
+.countdown-sticker-shell .countdown-outer {
+  padding: 0;
+  margin: 0;
+}
+
+.countdown-sticker-shell .countdown-container {
+  padding: 1rem 1.25rem 1.25rem;
 }
 
 /* Responsive */
