@@ -280,11 +280,23 @@
     text-align: center;
   }
   .footer-logo {
-    justify-content: center;
+    flex-direction: column;       /* stack logo + text */
     align-items: center;
+    justify-content: center;
   }
+
+  .footer-logo img {
+    margin-right: 0;              /* remove side offset */
+    margin-bottom: 10px;          /* spacing between logo & text */
+  }
+
   .footer-brand-text {
     align-items: center;
+    text-align: center;
+  }
+
+  .footer-brand-title {
+    white-space: normal;          /* allow proper wrapping */
   }
   .footer-desc {
     text-align: center;
