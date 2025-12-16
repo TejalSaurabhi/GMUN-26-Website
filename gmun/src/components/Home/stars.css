@@ -1,0 +1,14 @@
+.stars-container {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at bottom, #043132ff, #000);
+  overflow: hidden;
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}

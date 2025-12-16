@@ -1,104 +1,179 @@
-import React, { useState, useEffect } from "react";
-import "../styles/Countdown.css";
+import { useEffect, useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import "./Countdown.css";
 
-const Countdown = () => {
-    const [timeLeft, setTimeLeft] = useState({});
-    const [fact, setFact] = useState("");
-    const [usedFacts, setUsedFacts] = useState([]);
+// small util
+const pad = (n) => String(n).padStart(2, "0");
 
-    const targetDate = new Date("January 11, 2025 10:00:00").getTime();
+// SplitText - kept from original
+function SplitText({ text = "", className = "", stagger = 0.02 }) {
+  const chars = useMemo(() => text.split("").map((c, i) => ({ c, i })), [text]);
+  const container = {
+    hidden: {},
+    show: { transition: { staggerChildren: stagger } },
+  };
+  const char = {
+    hidden: { opacity: 0, y: 8 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.36 } },
+  };
 
-    const funFacts = [
+  return (
+    <motion.div
+      variants={container}
+      initial="hidden"
+      animate="show"
+      className={className}
+      aria-hidden
+    >
+      {chars.map((ch) => (
+        <motion.span
+          key={ch.i}
+          variants={char}
+          className="inline-block leading-none mr-0.5"
+        >
+          {ch.c === " " ? "\u00A0" : ch.c}
+        </motion.span>
+      ))}
+    </motion.div>
+  );
+}
 
-        "Debating fosters critical thinking and diplomacy skills.",
-        "The UN’s first official language was French.",
-        "Model UN started in the 1920s as League of Nations simulations.",
-        "Over 400,000 students participate in MUN conferences worldwide every year!",
-        "The first-ever MUN conference was organized at Harvard University in 1947.",
-        "Many professional diplomats credit MUN for sparking their interest in international relations.",
-        "The term 'Model United Nations' refers to the simulation of actual United Nations committees and procedures.",
-        "Delegates from more than 150 countries participate in MUN annually.",
-        "Some MUN conferences run crisis simulations, including zombie apocalypses or alien invasions!",
-        "A delegate’s outfit is as important as their arguments. Business formal is non-negotiable!",
-        "The most dreaded but rewarding part of any MUN preparation is writing position papers.",
-        "The unmoderated caucus is the only time you can stand up and run around—technically!",
-        "Terms like 'working paper,' 'bloc formation,' and 'GA Dance' are part of every MUNer's vocabulary.",
-        "MUN is often cited as the best way to overcome stage fright.",
-        "Delegates learn to dive deep into global issues, from climate change to cybersecurity.",
-        "MUN conferences teach you how to argue your point while respecting others’ perspectives.",
-        "Learning to word resolutions precisely is a skill that MUNers use even outside conferences.",
-        "Some lifelong friendships and professional connections start at MUN conferences.",
-        "MUN was inspired by the League of Nations, the UN's predecessor.",
-        "MUN began as a collegiate activity but has expanded to high schools and even middle schools.",
-        "Some MUNs recreate historical committees like the Cuban Missile Crisis or the founding of the UN.",
-        "Every great MUNer has forgotten their country’s name during roll call at least once.",
-        "Snack trades during unmoderated caucuses are the real secret to building alliances!",
-        "The real reward is the confidence and skills you gain, not just awards.",
-        "Everyone was a nervous first-timer once. It only gets better!"
+// Circular Progress Dial Component - kept from original, restyled
+const TimeDial = ({ value, displayValue, max, label, isAnimated = false }) => {
+  const radius = 56;
+  const stroke = 2.5;
+  const normalizedRadius = radius - stroke * 2;
+  const circumference = normalizedRadius * 2 * Math.PI;
+  const strokeDashoffset = circumference - (value / max) * circumference;
 
-    ];
-
-    // Timer logic
-    useEffect(() => {
-        const updateTimer = () => {
-            const now = new Date().getTime();
-            const timeRemaining = targetDate - now;
-
-            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-            setTimeLeft({ days, hours, minutes, seconds });
-        };
-
-        const timer = setInterval(updateTimer, 1000);
-        updateTimer();
-
-        return () => clearInterval(timer);
-    }, [targetDate]);
-
-    // Handle fact change on button click
-    const changeFact = () => {
-        if (usedFacts.length === funFacts.length) {
-            setUsedFacts([]);
-        }
-
-        const remainingFacts = funFacts.filter((fact) => !usedFacts.includes(fact));
-        const randomFact = remainingFacts[Math.floor(Math.random() * remainingFacts.length)];
-        setUsedFacts((prev) => [...prev, randomFact]);
-        setFact(randomFact);
-    };
-
-    return (
-        <div className="countdown-container">
-            <h1 className="countdown-heading">
-                Countdown to <span>GMUN 2025</span>
-            </h1>
-            <div className="countdown-wrapper">
-                <div className="countdown-card">
-                    <div className="countdown-number">{"00"}</div>
-                    <div className="countdown-label">Days</div>
-                </div>
-                <div className="countdown-card">
-                    <div className="countdown-number">{"00"}</div>
-                    <div className="countdown-label">Hours</div>
-                </div>
-                <div className="countdown-card">
-                    <div className="countdown-number">{"00"}</div>
-                    <div className="countdown-label">Minutes</div>
-                </div>
-                <div className="countdown-card">
-                    <div className="countdown-number">{"00"}</div>
-                    <div className="countdown-label">Seconds</div>
-                </div>
-            </div>
-            <p className="fun-fact">{fact || "Click below to reveal a fun fact about GMUN!"}</p>
-            <button className="fact-button" onClick={changeFact}>
-                Show Fun Fact
-            </button>
+  return (
+    <div className="countdown-dial-wrapper">
+      <div className="countdown-dial">
+        <div className="countdown-dial-scale">
+          <svg
+            height={radius * 2}
+            width={radius * 2}
+            className="countdown-dial-svg"
+          >
+            {/* Background circle */}
+            <circle
+              className="countdown-dial-bg"
+              strokeWidth={stroke}
+              fill="transparent"
+              r={normalizedRadius}
+              cx={radius}
+              cy={radius}
+            />
+            {/* Progress circle */}
+            <motion.circle
+              className="countdown-dial-progress"
+              strokeWidth={stroke + 0.5}
+              strokeDasharray={circumference + " " + circumference}
+              animate={{ strokeDashoffset }}
+              transition={{ duration: isAnimated ? 0.05 : 0.5, ease: "linear" }}
+              fill="transparent"
+              r={normalizedRadius}
+              cx={radius}
+              cy={radius}
+              strokeLinecap="round"
+            />
+          </svg>
         </div>
-    );
+
+        <div className="countdown-dial-value-container">
+          {isAnimated ? (
+            <div className="countdown-dial-animated">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={displayValue}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.3 }}
+                  className="countdown-dial-number"
+                >
+                  {pad(displayValue)}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          ) : (
+            <div className="countdown-dial-number">{pad(displayValue)}</div>
+          )}
+        </div>
+      </div>
+      <div className="countdown-dial-label">{label}</div>
+    </div>
+  );
 };
 
-export default Countdown;
+// Countdown component
+function CountdownTimer({ targetDate = null }) {
+  const [now, setNow] = useState(Date.now());
+
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 50);
+    return () => clearInterval(id);
+  }, []);
+
+  const end = new Date(targetDate).getTime();
+  const diff = Math.max(0, end - now);
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const secondsInt = Math.floor((diff / 1000) % 60);
+  const secondsFloat = (diff / 1000) % 60;
+
+  return (
+    <motion.div
+      className="countdown-container"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.6 }}
+    >
+      {/* Decorative corner accent */}
+      <div className="countdown-corner-accent" />
+
+      <div className="countdown-header">
+        <h2 className="countdown-title">
+          <SplitText text={"OPENING CEREMONY IN"} stagger={0.02} />
+        </h2>
+      </div>
+
+      <div className="countdown-dials">
+        <TimeDial value={days} displayValue={days} max={60} label="Days" />
+        <TimeDial value={hours} displayValue={hours} max={24} label="Hours" />
+        <TimeDial value={minutes} displayValue={minutes} max={60} label="Minutes" />
+        <TimeDial
+          value={secondsFloat}
+          displayValue={secondsInt}
+          max={60}
+          label="Seconds"
+          isAnimated={true}
+        />
+      </div>
+    </motion.div>
+  );
+}
+
+// Compact sticker-style countdown (for floating usage) – reuses full timer UI, just scaled
+export function CountdownSticker() {
+  // Opening Ceremony: 9 Jan 2026, 6:00 PM local time
+  const target = "2026-01-09T18:00:00";
+  return (
+    <div className="countdown-sticker-shell">
+      <CountdownTimer targetDate={target} />
+    </div>
+  );
+}
+
+export default function Countdown() {
+  // Opening Ceremony: 9 Jan 2026, 6:00 PM local time
+  const target = "2026-01-09T18:00:00";
+  return (
+    <div className="countdown-outer">
+      <CountdownTimer targetDate={target} />
+    </div>
+  );
+}

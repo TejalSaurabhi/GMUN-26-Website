@@ -1,10 +1,3 @@
-#root {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0;
-  text-align: center;
-}
-
 .heading-all{
   font-family: 'Poppins', sans-serif;
     font-size: 64px;
@@ -14,7 +7,7 @@
     text-align: center;
     letter-spacing: 4px;
     position: relative;
-    margin: 30px 0;
+    margin: 40px 0 30px;
     animation: breathing 3s ease-in-out infinite;
 }
 
@@ -75,13 +68,13 @@
 }
 
 .announcements-container h2 {
-  color: #574A73; /* Dark Purple */
+  color: #574A73; 
   font-weight: 600;
   font-size: 2rem;
   text-shadow: 1px 1px 5px rgba(54, 53, 55, 0.3);
   transition: transform 0.5s ease, text-shadow 0.5s ease;
-  margin-bottom: 40px; /* Increased space below heading */
-  padding-top: 40px; /* Increased space above heading */
+  margin-bottom: 40px; 
+  padding-top: 40px; 
 }
 
 .announcement {
@@ -89,10 +82,10 @@
   padding: 15px;
   border: 1px solid #ddd;
   border-radius: 15px;
-  background: #f3ede3; /* Light beige background for questions */
+  background: #f3ede3; 
   box-shadow: 5px 5px 15px rgba(54, 53, 55, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.6);
   transition: transform 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
-  color: #574A73; /* Dark Purple */
+  color: #574A73; 
 }
 
 .announcement:hover {
@@ -138,9 +131,9 @@
 }
 
 .question {
-  font-size: 1.5rem; /* Slightly decreased font size */
+  font-size: 1.5rem; 
   font-weight: bold;
-  color: #574A73; /* Dark Purple */
+  color: #574A73; 
   transition: color 0.5s ease, transform 0.5s ease;
 }
 
@@ -148,7 +141,7 @@
   margin-top: 10px;
   font-size: 1.4rem;
   font-weight: normal;
-  color: #574A73; /* Dark Purple */
+  color: #574A73; 
   transition: color 0.5s ease, transform 0.5s ease;
 }
 
@@ -158,13 +151,14 @@
 }
 
 .faq-header {
-  font-size: 2.5rem; /* Increased font size for FAQ header */
+  font-size: 2.5rem; 
   font-weight: 600;
-  color: #574A73; /* Dark Purple */
+  color: #574A73; 
   text-shadow: 2px 2px 5px rgba(54, 53, 55, 0.4);
   text-align: center;
-  margin-bottom: 40px; /* Increased space below FAQ header */
-  padding-top: 40px; /* Increased space above FAQ header */
+  margin-top: 10px;
+  margin-bottom: 50px;
+  padding-top: 50px; 
 }
 
 @media (max-width: 600px) {

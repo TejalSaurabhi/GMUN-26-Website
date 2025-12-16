@@ -49,7 +49,7 @@ const DISEC = () => {
       
       {/* World Map Section */}
       <div className="committee-map">
-        <WorldMap title="DISARMAMENT AND INTERNATIONAL SECURITY COMMITTEE" mapDataFile="mapdata.js" />
+        <WorldMap title={<span className="hover-underline">DISARMAMENT AND INTERNATIONAL SECURITY COMMITTEE</span>} mapDataFile="mapdata.js" />
       </div>
 
       {/* Committee Content Section */}

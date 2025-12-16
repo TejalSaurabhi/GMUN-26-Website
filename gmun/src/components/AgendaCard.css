@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600&display=swap');
+
+.agenda-card-wrapper {
+  width: 100%;
+  max-width: 950px;
+  margin: 0px auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+}
+
+.agenda-card {
+  position: relative;
+  background: rgba(0, 0, 0, 0.45);        
+  border: 1px solid rgba(182, 147, 84, 0.6); 
+  backdrop-filter: blur(12px);               
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border-radius: 1.4rem;
+  padding: 45px 50px;
+  text-align: center;
+  color: #f3ede3;
+  transition: all 0.3s ease;
+  overflow: hidden; 
+}
+
+.agenda-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(216, 184, 119, 0.85);
+  box-shadow: 0 0 18px rgba(243, 212, 138, 0.4);
+}
+
+.agenda-card::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(182, 147, 84, 0.25);
+  border-radius: 1.1rem;
+  pointer-events: none;
+}
+
+/* === AGENDA Title === */
+.agenda-card__title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #f3ede3;
+  letter-spacing: -0.5px;
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+.agenda-card__title.in-view {
+  color: #d5b97a;
+}
+
+.agenda-card__title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(to right, #b69354, #e8d18c, #b69354);
+  border-radius: 2px;
+  transition: transform 0.5s ease;
+}
+
+.agenda-card__title.in-view::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* === Agenda Text === */
+.agenda-card__text {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  max-width: 750px;
+  margin: 25px auto 0 auto;
+  color: #f3ede3;
+  opacity: 0.9;
+  z-index: 2;
+  position: relative;
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 1024px) {
+  .agenda-card {
+    padding: 35px 40px;
+  }
+  .agenda-card__title {
+    font-size: 2rem;
+  }
+  .agenda-card__text {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .agenda-card {
+    padding: 30px 25px;
+  }
+  .agenda-card__title {
+    font-size: 1.8rem;
+  }
+  .agenda-card__text {
+    font-size: 1rem;
+  }
+}

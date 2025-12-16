@@ -1,8 +1,39 @@
+/**
+ * This file was last changed on 12-11-2025 by Ishan Sekhar
+ * 
+ * This is the main entry point of the backend application.
+ * 
+ * Before running this file, make sure to install:
+ * mailtrap - for sending mails to registered users for verifying email, welcoming, resetting password, etc.
+ * nodemon - for auto-restarting the server on code changes during development
+ * crypto - for generating secure random tokens for email verification and password reset
+ * bcrypt - for hashing user passwords before storing them in the database
+ * jsonwebtoken - for generating and verifying JWT tokens for user authentication
+ * To install the packages, run:
+ * npm install mailtrap nodemon crypto bcrypt jsonwebtoken cors cookie-parser dotenv express mongoose
+ *
+ * To start the server with nodemon, add the following script to your package.json:
+ * "scripts": {
+ *  existing code...
+ *   "start": "nodemon src/app.js"
+ *  existing code...
+ *  }
+ * 
+ * After deploying the website, go to gmun/src/store/authStore.js file and change the API_URL parameter value to the appropriate value.
+ */
+
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import connectDB from "./db/connectDB.js";
+import userRoutes from "./routes/User.routes.js";
+import qnaRoutes from "./routes/qna.routes.js";
+import healthCheckRoutes from "./routes/healthCheck.routes.js";
+import authRoutes from "./routes/auth.routes.js";
+import dotenv from "dotenv";
 
 const app = express();
+dotenv.config();
 
 app.use(
   cors({
@@ -17,12 +48,18 @@ app.use(express.static("public"));
 app.use(cookieParser()); // setup to send and recieve cookies
 
 
+connectDB()
+  .then(() => {
+    app.listen(process.env.PORT || 5000, () => {
+      console.log(`Server is running on port ${process.env.PORT || 5000}`);
+    });
+  })
+  .catch((err) => {
+    console.log("MONGO DB connection failed !!!", err);
+    process.exit(1);
+  }); 
 
-//routes
-import userRoutes from "./routes/User.routes.js";
-import qnaRoutes from "./routes/qna.routes.js";
-import healthCheckRoutes from "./routes/healthCheck.routes.js";
-
+app.use("/api/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/posts", qnaRoutes);
 app.use("/api/v1/health", healthCheckRoutes);
@@ -38,4 +75,3 @@ app.use((err, req, res, next) => {
   });
 });
 
-export { app };

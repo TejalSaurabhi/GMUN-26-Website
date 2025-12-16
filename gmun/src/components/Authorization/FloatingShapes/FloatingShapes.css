@@ -1,0 +1,7 @@
+.fs-parent {
+  border-radius: 50%;
+  opacity: 20%;
+  position: absolute;
+  -webkit-filter: blur(20px);   /* blur-xl ≈ 20px (approx) */
+  filter: blur(20px);
+}

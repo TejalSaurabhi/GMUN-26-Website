@@ -1,61 +1,105 @@
-import React from 'react';
-import '../styles/Footer.css';
+import React from "react";
 import { Link } from "react-router-dom";
+import "../styles/Footer.css";
+import cqLogo from "../images/CQ_Logo_White.webp";
+
+const QUICK_LINKS = [
+  { name: "Home", path: "/" },
+  { name: "About Us", path: "/AboutUs" },
+  { name: "Committees", path: "/committees" },
+  { name: "FAQs", path: "/faqs" },
+  { name: "Gallery", path: "/gallery" },
+];
+
+const SOCIAL_LINKS = [
+  { href: "https://facebook.com", icon: "fab fa-facebook-f", label: "Facebook" },
+  { href: "https://linkedin.com", icon: "fab fa-linkedin-in", label: "LinkedIn" },
+  { href: "https://instagram.com", icon: "fab fa-instagram", label: "Instagram" },
+  { href: "https://youtube.com", icon: "fab fa-youtube", label: "YouTube" },
+];
+
 const Footer = () => {
-    return (
-        <footer className="footer">
-            <div className="footer-icons">
-                <a href="https://www.facebook.com/profile.php?id=100088188648912&mibextid=kFxxJD"
-                    aria-label="Facebook"
-                    className="icon-link"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    <i className="fab fa-facebook"></i>
-                </a>
-                <a href="https://www.linkedin.com/company/communiqu%C3%A9-iit-kharagpur/"
-                    aria-label="Linkedin"
-                    className="icon-link"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    <i className="fab fa-linkedin"></i>
-                </a>
-                <a href="https://www.instagram.com/gmun.iitkgp?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-                    aria-label="Instagram"
-                    className="icon-link"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    <i className="fab fa-instagram"></i>
-                </a>
-                <a href="https://medium.com/@cq-iitkharagpur"
-                    aria-label="Medium"
-                    className="icon-link"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    <i className="fab fa-medium"></i>
-                </a>
-                <a href="https://youtube.com/channel/UCHDd6pfVicWGwIIbqIRP64g?si=niYg6vJUfjsNGfDG"
-                    aria-label="youtube"
-                    className="icon-link"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    <i className="fab fa-youtube"></i>
-                </a>
+  return (
+    <footer className="footer-wrapper">
+      <div className="footer-container">
+
+        {/* BRAND COLUMN */}
+        <div className="footer-column brand-column">
+          
+          <div className="footer-logo">
+            {/* Logo Image */}
+            <Link to="/">
+              <img src={cqLogo} alt="Communiqué Logo" />
+            </Link>
+            
+            {/* Brand Text Stack */}
+            <div className="footer-brand-text">
+              <Link to="/" style={{ textDecoration: 'none' }}>
+                <span className="footer-brand-title">Communiqué</span>
+                <div style={{ display: 'block' }}>
+                   <span className="footer-brand-sub">IIT Kharagpur</span>
+                </div>
+              </Link>
+              
+              <p className="footer-desc">
+                The Official Soft Skills & Personality Development Society of IIT Kharagpur.
+              </p>
             </div>
+          </div>
 
-            <div className="footer-logo">
-                <a href="https://cqiitkgp.com/" target="_blank" rel="noopener noreferrer" className="cq1">Communiqué</a>
-                <p>&copy; 2024 Communiqué. All Rights Reserved.</p>
-            </div>
+          <a href="mailto:cq.iitkharagpur@gmail.com" className="footer-mail">
+            cq.iitkharagpur@gmail.com
+          </a>
 
-            {<div className="footer-links">
-                <a href="https://mail.google.com/mail/?view=cm&to=cq.iitkharagpur@gmail.com">Contact Us</a>
-                <Link to="/AboutUs">About</Link>
-                <Link to="/login">Login</Link>
-                <Link to="/discuss">Discuss</Link>
+          <div className="social-wrapper">
+            {SOCIAL_LINKS.map((item, index) => (
+              <a
+                key={index}
+                href={item.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={item.label}
+              >
+                <i className={item.icon}></i>
+              </a>
+            ))}
+          </div>
+        </div>
 
-            </div>}
-        </footer>
-    );
+        {/* QUICK LINKS */}
+        <div className="footer-column">
+          <h3>QUICK LINKS</h3>
+          <div className="underline"></div>
+          <ul>
+            {QUICK_LINKS.map((link, index) => (
+              <li key={index}>
+                <Link to={link.path}>{link.name}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* EVENT INFO */}
+        <div className="footer-column event-column">
+          <h3>EVENT INFO</h3>
+          <div className="underline"></div>
+          <p>
+            <strong>Venue:</strong> Nalanda, IIT Kharagpur<br />
+            Kharagpur, West Bengal – 721302<br />
+            <strong>Dates:</strong> 9th – 11th January 2026
+          </p>
+        </div>
+      </div>
+
+      {/* COPYRIGHT AREA */}
+      <div className="copyright-area">
+        <div className="copyright-content">
+          <span>© 2026 Communiqué IIT Kharagpur</span>
+          <span className="divider">|</span>
+          <span>Developed by the Communiqué Tech Team</span>
+        </div>
+      </div>
+    </footer>
+  );
 };
-
 export default Footer;

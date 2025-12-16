@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body,
 html {
   margin: 0;
@@ -11,32 +15,73 @@ html {
 }
 
 body {
-  margin: 0;
-  padding-top: 70px;
-
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Scrollbar */
+
+/* Firefox */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(248, 231, 176, 0.55) rgba(0, 0, 0, 0.35);
+}
+
+/* Chrome, Edge, Safari */
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 50%;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(248, 231, 176, 0.9),
+    rgba(243, 212, 138, 0.9)
+  );
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.4);
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 .heading {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 64px;
   font-weight: 700;
-  color: #D4AF37;
+  color: #d4af37;
   text-transform: uppercase;
   text-align: center;
   letter-spacing: 4px;
   position: relative;
   margin: 30px 0;
   animation: breathing 3s ease-in-out infinite;
+}
+
+/* Inline topo word, used for small instances like 'GMUN 2026' inside headings and labels */
+.gm-topo-word {
+  font-family: "KK-Topo Regular", "Poppins", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 1.15em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 480px) {
+  .gm-topo-word {
+    font-size: 1.05em;
+  }
 }
 
 .heading::before {
@@ -46,14 +91,19 @@ code {
   left: -150%;
   height: 100%;
   width: 150%;
-  background: linear-gradient(120deg, transparent, rgba(255, 215, 0, 0.5), transparent);
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 215, 0, 0.5),
+    transparent
+  );
   transform: skewX(-20deg);
   animation: shiimmer 3s linear infinite;
 }
 
 .heading:hover {
   transform: scale(1.05);
-  color: #FFD700;
+  color: #ffd700;
   text-shadow: 0 0 12px rgba(255, 215, 0, 0.9), 0 0 24px rgba(255, 215, 0, 0.7);
 }
 
@@ -65,13 +115,12 @@ code {
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, #D4AF37, #FFD700, #D4AF37);
+  background: linear-gradient(90deg, #d4af37, #ffd700, #d4af37);
   border-radius: 2px;
   animation: glowingUnderline 2s ease-in-out infinite;
 }
 
 @keyframes breathing {
-
   0%,
   100% {
     transform: scale(1);
@@ -93,7 +142,6 @@ code {
 }
 
 @keyframes glowingUnderline {
-
   0%,
   100% {
     box-shadow: 0 0 8px rgba(255, 215, 0, 0.7), 0 0 16px rgba(255, 215, 0, 0.5);

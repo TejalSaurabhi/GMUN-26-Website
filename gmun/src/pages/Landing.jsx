@@ -1,225 +1,84 @@
-import React from 'react';
-import Countdown from '../components/Countdown';
-import Announcements from '../components/Announcements';
-import Footer from "../components/Footer";
-import Carousel from '../components/carousel';
-import Timeline from '../components/Timeline';
+import Commendations from '../components/commendationpage';
+// import { useEffect } from "react";
+import Announcements from "../components/Announcements";
+import Reviews from "../components/reviews/Reviews";
+import Timeline from "../components/Timeline";
+// import { useAuthStore } from "../store/authStore";
+// import LoadingSpinner from "../components/LoadingSpinner";
+import Hero from "../components/Home/Hero/Hero";
+import LightRays from "../components/LightRays/LightRays";
+import "./landing.css";
+import Highlights from "../components/Home/Highlights/Highlights";
+import CommitteeMarquee from "../components/CommitteeMarquee";
+
+// Redireceting already authenticated users to home page if they try to go to signup page
+// The verified property is causing trouble
+// export const RedirectAuthenticatedUsers = ({ children }) => {
+//   const { user, isAuthenticated, checkAuth } = useAuthStore();
+
+//   useEffect(() => {
+//     checkAuth();
+//   }, [checkAuth]);
+
+//   console.log("user from check auth", user);
+//   if(user.verified && isAuthenticated) {
+//     return <Navigate to="/" replace />
+//   }
+
+//   return children;
+// };
 
 const Landing = () => {
-    return (
-        <div>
-            <header>
-                <h1 className="heading">GMUN 2025</h1>
-            </header>
+  // const { isCheckingAuth, checkAuth } = useAuthStore();
 
-            <section id="carousel" style={{ marginBottom: '50px' }}>
-                <Carousel />
-            </section>
+  // useEffect(() => {
+  //   checkAuth();
+  // }, [checkAuth]);
 
-            <div className="countdown-section" style={{ marginTop: '500px' }}>
-                <Countdown />
+  // if (isCheckingAuth) {
+  //   return <LoadingSpinner />;
+  // } else {
+  return (
+    <div>
+      <header className="header-wrapper">
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#e8d4b8"
+          raysSpeed={0.8}
+          lightSpread={0.8}
+          rayLength={1.2}
+          followMouse={true}
+          mouseInfluence={0.1}
+          noiseAmount={0.1}
+          distortion={0.05}
+          className="hero-light-rays"
+        />
+        <Hero />
+      </header>
 
-                {/* <section id="about" style={{ color: '#B69354' }}>
-                    <h2
-                        style={{
-                            color: '#B69354',
-                            textShadow: `
-                0 0 12px rgba(0, 0, 0, 0.9), 
-                0 0 24px rgba(0, 0, 0, 0.8), 
-                0 0 36px rgba(0, 0, 0, 0.7), 
-                0 0 48px rgba(0, 0, 0, 0.6), 
-                0 0 60px rgba(0, 0, 0, 0.5)
-            `,
-                        }}
-                    >
-                        Welcome to GMUN 2025 IIT KGP
-                    </h2>
-                    <p
-                        style={{
-                            fontStyle: 'italic',
-                            color: '#B69354',
-                            textShadow: `
-                0 0 12px rgba(0, 0, 0, 0.9), 
-                0 0 24px rgba(0, 0, 0, 0.8), 
-                0 0 36px rgba(0, 0, 0, 0.7), 
-                0 0 48px rgba(0, 0, 0, 0.6), 
-                0 0 60px rgba(0, 0, 0, 0.5)
-            `,
-                        }}
-                    >
-                        "Today's students... to tomorrow's leaders"
-                    </p>
-                </section>
+      <Highlights />
 
-                <section id="events" style={{ color: '#B69354' }}>
-                    <h2
-                        style={{
-                            color: '#B69354',
-                            textShadow: `
-                0 0 12px rgba(0, 0, 0, 0.9), 
-                0 0 24px rgba(0, 0, 0, 0.8), 
-                0 0 36px rgba(0, 0, 0, 0.7), 
-                0 0 48px rgba(0, 0, 0, 0.6), 
-                0 0 60px rgba(0, 0, 0, 0.5)
-            `,
-                        }}
-                    >
-                        Event Timeline
-                    </h2>
-                    <ul>
-                        <li
-                            style={{
-                                color: '#B69354',
-                                textShadow: `
-                    0 0 12px rgba(0, 0, 0, 0.9), 
-                    0 0 24px rgba(0, 0, 0, 0.8), 
-                    0 0 36px rgba(0, 0, 0, 0.7), 
-                    0 0 48px rgba(0, 0, 0, 0.6), 
-                    0 0 60px rgba(0, 0, 0, 0.5)
-                `,
-                            }}
-                        >
-                            GMUN Conference
-                        </li>
-                        <li
-                            style={{
-                                color: '#B69354',
-                                textShadow: `
-                    0 0 12px rgba(0, 0, 0, 0.9), 
-                    0 0 24px rgba(0, 0, 0, 0.8), 
-                    0 0 36px rgba(0, 0, 0, 0.7), 
-                    0 0 48px rgba(0, 0, 0, 0.6), 
-                    0 0 60px rgba(0, 0, 0, 0.5)
-                `,
-                            }}
-                        >
-                            Workshops on Public Speaking
-                        </li>
-                        <li
-                            style={{
-                                color: '#B69354',
-                                textShadow: `
-                    0 0 12px rgba(0, 0, 0, 0.9), 
-                    0 0 24px rgba(0, 0, 0, 0.8), 
-                    0 0 36px rgba(0, 0, 0, 0.7), 
-                    0 0 48px rgba(0, 0, 0, 0.6), 
-                    0 0 60px rgba(0, 0, 0, 0.5)
-                `,
-                            }}
-                        >
-                            Networking Gala
-                        </li>
-                    </ul>
-                </section>
+      <CommitteeMarquee />
 
-                <section id="registration" style={{ color: '#B69354' }}>
-                    <h2
-                        style={{
-                            color: '#B69354',
-                            textShadow: `
-                0 0 12px rgba(0, 0, 0, 0.9), 
-                0 0 24px rgba(0, 0, 0, 0.8), 
-                0 0 36px rgba(0, 0, 0, 0.7), 
-                0 0 48px rgba(0, 0, 0, 0.6), 
-                0 0 60px rgba(0, 0, 0, 0.5)
-            `,
-                        }}
-                    >
-                        Registration
-                    </h2>
-                    <p
-                        style={{
-                            color: '#B69354',
-                            textShadow: `
-                0 0 12px rgba(0, 0, 0, 0.9), 
-                0 0 24px rgba(0, 0, 0, 0.8), 
-                0 0 36px rgba(0, 0, 0, 0.7), 
-                0 0 48px rgba(0, 0, 0, 0.6), 
-                0 0 60px rgba(0, 0, 0, 0.5)
-            `,
-                        }}
-                    >
-                        Register now to secure your spot at GMUN 2025!
-                    </p>
-                    <a
-                        href="registration.html"
-                        style={{
-                            color: '#0000FF',
-                            textShadow: `
-                0 0 12px rgba(0, 0, 0, 0.9), 
-                0 0 24px rgba(0, 0, 0, 0.8), 
-                0 0 36px rgba(0, 0, 0, 0.7), 
-                0 0 48px rgba(0, 0, 0, 0.6), 
-                0 0 60px rgba(0, 0, 0, 0.5)
-            `,
-                        }}
-                    >
-                        Click here to register
-                    </a>
-                </section>
+      {/* Timeline comes before letters from ambassadors */}
+      <div className="timeline">
+        <Timeline />
+      </div>
 
-                <section id="contact" style={{ color: '#B69354' }}>
-                    <h2
-                        style={{
-                            color: '#B69354',
-                            textShadow: `
-                0 0 12px rgba(0, 0, 0, 0.9), 
-                0 0 24px rgba(0, 0, 0, 0.8), 
-                0 0 36px rgba(0, 0, 0, 0.7), 
-                0 0 48px rgba(0, 0, 0, 0.6), 
-                0 0 60px rgba(0, 0, 0, 0.5)
-            `,
-                        }}
-                    >
-                        Contact Us
-                    </h2>
-                    <p
-                        style={{
-                            color: '#B69354',
-                            textShadow: `
-                0 0 12px rgba(0, 0, 0, 0.9), 
-                0 0 24px rgba(0, 0, 0, 0.8), 
-                0 0 36px rgba(0, 0, 0, 0.7), 
-                0 0 48px rgba(0, 0, 0, 0.6), 
-                0 0 60px rgba(0, 0, 0, 0.5)
-            `,
-                        }}
-                    >
-                        If you have any questions, feel free to reach out!
-                    </p>
-                    <p
-                        style={{
-                            color: '#B69354',
-                            textShadow: `
-                0 0 12px rgba(0, 0, 0, 0.9), 
-                0 0 24px rgba(0, 0, 0, 0.8), 
-                0 0 36px rgba(0, 0, 0, 0.7), 
-                0 0 48px rgba(0, 0, 0, 0.6), 
-                0 0 60px rgba(0, 0, 0, 0.5)
-            `,
-                        }}
-                    >
-                        Email: <a href="mailto:info@communique.org" style={{ color: '#0000FF' }}>communique</a>
-                    </p>
-                </section> */}
+      <div className="commendations-section">
+        <Commendations />
+      </div>
 
+      <div className="announcements">
+        <Announcements />
+      </div>
 
-            </div>
-
-            
-            <div className="announcements" style={{marginTop:"120px"}}>
-                <Announcements />
-            </div>
-
-            <div className="timeline">
-                <Timeline/>
-            </div>
-
-            <footer>
-                <Footer />
-            </footer>
-        </div>
-    );
+      <div className="reviews">
+        <Reviews />
+      </div>
+    </div>
+  );
 };
+// };
 
 export default Landing;

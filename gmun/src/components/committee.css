@@ -1,448 +1,559 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+US+Trad:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
+/* === GENERAL COMMITTEE LAYOUT === */
 #Committee {
   width: 100%;
   align-items: center;
   height: 100%;
-  background-color:#190b2500 ;
-}
-
-.committee-container{
   background-color: #190b2500;
-
 }
 
-#World-Map h2{
-font-size: 48px;
-    color: #F3EDE3;
-    text-align:center;
- padding-bottom:50px;
- font-family: 'Montserrat',sans-serif;
- font-weight: 700;
+.committee-container {
+  background-color: #190b2500;
+  display: flex;
+  flex-direction: column;
+  /* Use gap for consistent minimum spacing, margins will add to this */
+  gap: 0px; 
+  padding-bottom: 50px;
+}
 
+/* === MAP SECTION === */
+#World-Map h2 {
+  font-size: 4rem !important; 
+  
+  /* Ensures lines don't drift too far apart */
+  line-height: 1.2 !important;
+  color: #F3EDE3;
+  text-align: center;
+  margin-bottom: 60px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  margin-top:-30px;
 }
 
 .committee-map {
-  padding-bottom:50px;
-  width: 100%;  
-  height: 80%;  
-  max-height:60vh;
+  width: 100%;
+  height: auto;
+  min-height:40vh;
   position: relative;
-  z-index: 1; 
-  flex: 1 1 auto; 
-  margin-top: 20px; 
-  margin: 0 auto; /* Center the map */
+  z-index: 1;
+  margin: 0 auto;
+  margin-top:30px;
 }
 
 .committee-content {
   align-items: center;
   width: 100%;
-  padding: 50px; /* Default padding for larger screens */
-  background-color: #363537a8;
-  border: 5px solid #B69354;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 40px 35px;
+  background: rgba(0, 0, 0, 0.40);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(182, 147, 84, 0.6);
+  border-radius: 1.4rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   position: relative;
   z-index: 2;
-  margin-top: 40vh; /* Default margin for large screens */
-  flex: 1 1 auto;
-  margin-bottom: 100px;
-  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition */
+  margin-top: 30px; 
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
 }
 
-/* Outer glow on hover or touch */
-.committee-content:hover,
-.committee-content:active {
-  box-shadow: 0 0 20px 5px #574A73, 0 4px 10px rgba(0, 0, 0, 0.1); /* Glow effect */
-  transform: scale(1.02); /* Slight scale effect for emphasis */
+.committee-content:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(216, 184, 119, 0.85);
+  box-shadow: 0 0 14px rgba(243, 212, 138, 0.35);
 }
 
+/* === TEXT STYLES === */
 .committee-content h2 {
-  font-family: 'Montserrat',sans-serif;
+  font-family: 'Montserrat', sans-serif;
   text-align: left;
   font-size: 36px;
   font-weight: 700;
   color: #F3EDE3;
+  margin-bottom: 30px;
 }
+
 .committee-content h3 {
   font-size: 20px;
   text-align: left;
-  line-height: 1.8;
+  line-height: 1.6;
   color: #B69354;
 }
 
 .committee-content p {
   font-size: 20px;
   text-align: left;
-  margin: 15px 0;
-  line-height: 1.8;
+  margin: 10px 0;
+  line-height: 1.6;
   color: #B69354;
-
 }
 
-
-
-
 .cards {
-  background-color: #36353767;
-  border: 5px solid #B69354;
-  flex-shrink:1;
-  max-width: 100%; /* Ensure it doesn't exceed parent width */
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(182, 147, 84, 0.6);
+  max-width: 100%;
   margin: auto;
-  border-radius: 15px;
-  box-shadow: 0px 10px 20px 20px rgba(0, 0, 0, 0.17);
+  border-radius: 1.4rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   display: inline-block;
-  padding: 30px 35px;
-  perspective: 1800px;
+  padding: 25px 30px;
   text-align: center;
-  transform-origin: 50% 50%;
-  transform-style: preserve-3d;
-  transform: rotateX(0deg) rotateY(16.5deg);
   min-width: 595px;
+  transition: all 0.3s ease;
+}
+
+.cards:hover {
+  border-color: rgba(216, 184, 119, 0.85);
+  box-shadow: 0 0 14px rgba(243, 212, 138, 0.35);
 }
 
 .cards h1 {
-  font-family: 'Montserrat',sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #F3EDE3;
-  font-size:32px;
+  font-size: 32px;
   font-weight: 800;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  transform: translateZ(35px);
+  margin-bottom: 20px;
 }
 
-.cards h3{
-  font-family: 'Montserrat',sans-serif;
+.cards h3 {
+  font-family: 'Montserrat', sans-serif;
   color: #B69354;
   font-size: 16px;
-  margin-bottom: 6px;
-  transform: translateZ(25px);
+  margin-bottom: 5px;
 }
 
-
-
-.card {
-  border-radius: 15px;
-  box-shadow: 5px 5px 20px -5px rgba(0,0,0,0.6);
-  cursor: pointer;
-  display: inline-block;
-  height: 250px;
-  overflow: hidden;
-  perspective: 1200px;
-  position: relative;
-  transform-style: preserve-3d;
-  transform: translatez(35px);
-  transition: transform 200ms ease-out;
-  width: 175px;
+/* Emblem container for proper spacing below navbar */
+.emblem {
+  padding-top: 100px;
   text-align: center;
-  
-   &:hover {
-     box-shadow: 5px 5px 20px -7px rgba(0,0,0,0.5);
-     transform: translatez(60px);
-    }
-  
-  &:not(:last-child) {
-    margin-right: 30px;
-  }
 }
 
-.card__img {
-  width: 100%; /* Adjust width to fill parent container */
-  height:100%; /* Maintain aspect ratio */
-  object-fit: cover; /* Optional: Ensure it looks good for uneven aspect ratios */
-  border-radius: 15px;
+.UNSCLogo {
+  width: 10vw; 
+  min-width: 120px;
+  max-width: 160px;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px auto;
+  border-radius: 50%;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(182, 147, 84, 0.5);
+  filter: sepia(1) saturate(1.2) brightness(0.95);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(182, 147, 84, 0.15);
 }
 
-.card__bg {
-  bottom: -50px;
-  left: -50px;
-  position: absolute;
-  right: -50px;
-  top: -50px;
-  transform-origin: 50% 50%;
-  transform: translateZ(-50px);
-  z-index: 0;
+.UNSCLogo:hover {
+  transform: translateY(-3px);
+  border-color: rgba(216, 184, 119, 0.8);
+  box-shadow: 0 0 25px rgba(243, 212, 138, 0.35);
+  cursor: pointer;
 }
 
-.card__one {
-  .card__img {
-    top:-10px;
-    width: 100%; /* Adjust width to fill parent container */
-    height:110%; /* Maintain aspect ratio */
-    object-fit: cover; /* Optional: Ensure it looks good for uneven aspect ratios */
-  }
-  .card__bg {
-    background-color: #f3ede300;
-  }
-  .card__text {
-    background-color: #00040637;
-    position:absolute;
-   
-    
-  }
-}
-
-.card__two {
-  .card__img {
-    top:-10px;
-    width: 100%; /* Adjust width to fill parent container */
-    height:110%; /* Maintain aspect ratio */
-    object-fit: cover; /* Optional: Ensure it looks good for uneven aspect ratios */
-  }
-  .card__bg {
-    background-color: #9a090900;
-  }
-  .card__text {
-    background-color: #00040637;
-    position:absolute;
-    
-  }
-  
-}
-
-.card__three {
-  .card__img {
-    top: 5px;
-    left: -4px;
-    height: 110%;
-  }
-  .card__bg {
-    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/62105/3dr_howlbg.jpg') center / cover no-repeat;
-  }
- 
-}
-
-.card__text {
-  align-items: center;
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.55) 100%);
-  bottom: 0;
-  display: flex;
-  flex-direction: column; 
-  height: 70px;
-  justify-content: center;
-  position: absolute;
-  width: 100%;
+.agenda-card-container {
+  position: relative;
   z-index: 2;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.card__title {
-  color: #fff;
-  font-size: 18px;
-  font-weight: 700;
-  padding: 0 10px;
-  margin-bottom: 3px;
+.two-chair-board {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(182, 147, 84, 0.6);
+  border-radius: 1.4rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  padding: 40px 50px;
+  max-width: 950px;
+  position: relative;
+  transition: all 0.3s ease;
+  margin: 30px auto;
 }
 
-.card__hover-text {
+.two-chair-board::before {
+  content: "";
   position: absolute;
-  top: 0;
+  inset: 8px;
+  border: 1px solid rgba(182, 147, 84, 0.25);
+  border-radius: 1.1rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.two-chair-board:hover {
+  transform: translateY(-3px);
+  border-color: rgba(216, 184, 119, 0.85);
+  box-shadow: 0 0 18px rgba(243, 212, 138, 0.4);
+}
+
+.clean-heading {
+  position: relative;
+  display: inline-block;
+  color: #f3ede3;
+  font-family: "Montserrat", sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  transition: color 0.3s ease;
+  cursor: default;
+  margin-bottom: 20px;
+}
+
+.clean-heading:hover,
+.clean-heading.in-view {
+  color: #d5b97a;
+}
+
+.clean-heading::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
   left: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(to right, #b69354, #e8d18c, #b69354);
+  transition: width 0.5s ease;
+  border-radius: 2px;
+}
+
+.clean-heading:hover::after,
+.clean-heading.in-view::after {
+  width: 100%;
+}
+
+.two-chair-photos {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.chair-card {
+  width: 230px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+}
+
+.chair-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgba(182, 147, 84, 0.7);
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.chair-image-wrapper:hover {
+  border-color: rgba(216, 184, 119, 0.9);
+  box-shadow: 0 0 12px rgba(243, 212, 138, 0.3);
+}
+
+.chair-img {
   width: 100%;
   height: 100%;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  text-align: center;
-  font-size: 1.2rem;
-  border-radius: 15px; /* Matches card's border-radius for a seamless effect */
+  object-fit: cover;
+  border-radius: 1rem;
+  transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-.card:hover .card__hover-text {
-  opacity: 1;
+.chair-image-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.4s ease;
+  border-radius: 1rem;
 }
 
-.unhrcLogo{
-  margin-top: 2.5vh;
-  width: 20vw;
-  height: 20vh;
-  align-items: center;
+.chair-image-wrapper:hover::after {
+  background: rgba(0, 0, 0, 0.2);
+}
 
+.chair-image-wrapper:hover .chair-img {
+  transform: scale(1.05);
+  filter: brightness(1.04);
 }
-.UNSCLogo{
-  width: 20vw;
-  height: 20vh;
-  align-items: center;
-  margin-top: 2vh;
-  margin-bottom: 2vh;
-  filter: sepia(1) saturate(2) brightness(0.8) hue-rotate(0deg);
-}
-.Disec{
-  width: 30vw;
-  height: 30vh;
-  align-items: center;
-  margin-top: -2vh;
-  margin-bottom: -8vh;
 
+/* Chair Info Text */
+.chair-info {
+  margin-top: 10px;
+  line-height: 1.2;
 }
-.loksabhaLogo{
-  width: 18vw;
-  height: 18vh;
-  margin-left:-20px;
-  align-items: center;
-  margin-top: 1.5vh;
 
+.chair-name {
+  color: #f3ede3;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 4px;
 }
-.G20{
-  margin-top: 2.5vh;
-  width: 20vw;
-  height: 20vh;
-  align-items: center;
+
+.chair-role {
+  color: #b69354;
+  font-size: 16px;
+  font-weight: 500;
 }
-/* Responsive adjustments */
+
+.chair-card:last-child {
+  margin-bottom: 0;
+}
+
+/* === Two Chair Message === */
+.two-chair-message {
+  margin-top: 30px;
+  text-align: left;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #f3ede3;
+  font-family: "Open Sans", sans-serif;
+  padding: 10px 20px;
+  border-left: 3px solid rgba(182, 147, 84, 0.6);
+  animation: fadeUp 1s ease-in-out;
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up { animation: fadeUp 1.2s ease both; }
+
+/* === TITLE HOVER EFFECTS === */
+.hover-underline {
+  font-size: 2rem;
+  color: #f3ede3;
+  position: relative;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
+
+.hover-underline::after,
+.hover-underline::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #b69354, #e8d18c, #b69354);
+  left: 0;
+  transform: scaleX(0);
+  transition: transform 0.4s ease-out;
+}
+
+.hover-underline::before {
+  top: -6px;
+  transform-origin: left;
+}
+
+.hover-underline::after {
+  bottom: -6px;
+  transform-origin: right;
+}
+
+.hover-underline:hover::after,
+.hover-underline:hover::before,
+.hover-underline.in-view::after,
+.hover-underline.in-view::before {
+  transform: scaleX(1);
+}
+
+.hover-underline:hover,
+.hover-underline.in-view {
+  color: #d5b97a;
+}
+
 @media (max-width: 1024px) {
- 
-  .committee-map {
-    height: 50vh; /* Scale down for medium screens */
+  .committee-container {
+    gap: 0px; 
   }
+  
+  .two-chair-board,
+  .committee-content,
+  .agenda-card-container {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 30px 20px;
+  }
+
+  .two-chair-photos {
+    gap: 20px;
+  }
+  
   #World-Map h2 {
-    font-size: 32px; /* Smaller title */
-    margin-bottom: 5vh;
-  }
-  .committee-content {
-    width: 90%; /* Slightly narrower on medium screens */
-    margin-top:15vh;
-    margin-left:5vw;
-    margin-bottom: 1vh;
-    align-items: center;
-  }
-  
-  .cards {
-    transform: none; /* Remove 3D rotation on smaller screens */
-    margin: 2vw auto;
-  }
-  
-  .cards h1 {
-    font-size: 28px;
-    margin-bottom: 20px;
-  }
-  
-  .card {
-    width: 150px;
-    height: 200px;
+    margin-bottom: 15px;
   }
 }
-
 @media (max-width: 768px) {
-  .committee-map {
-    height: 40vh;
+  .two-chair-photos {
+    flex-direction: row !important; /* Force side-by-side */
+    flex-wrap: nowrap !important;   /* Prevent stacking */
+    align-items: flex-start;
+    justify-content: center;
+    gap: 15px; /* Small gap to fit both */
   }
 
-
-  #World-Map h2 {
-    font-size: 28px;
-  }
- 
-
-  .committee-content {
-    width: 90%; /* Almost full width */
-    padding: 20px; /* Compact padding for smaller screens */
-    margin-top: 9vh; /* Reduced spacing for small screens */
-    margin-bottom: 30px;
-    font-size: 14px; /* Adjust font size for readability */
+  .chair-card {
+    /* Each card takes roughly half the space */
+    width: 48%; 
+    max-width: 180px; /* Cap size */
+    margin-bottom: 0;
   }
 
-  .committee-content h2 {
-    font-size: 28px;
+  .chair-img {
+    height: auto; /* Allow height to adjust naturally */
+    aspect-ratio: 3/4; /* Maintain portrait ratio */
   }
 
-  .committee-content p {
-    font-size: 16px;
+  .two-chair-board,
+  .committee-content,
+  .agenda-card-container {
+    padding: 25px 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
-  .cards {
-    transform: none; /* Remove 3D rotation on smaller screens */
-    width: 10vw;
-    
+  .chair-image-wrapper {
+    width: 100%;
+    aspect-ratio: 3/4;
+    border-radius: 0.8rem; 
   }
-
-  .card {
-    width: auto;
-    height: 180px;
-    margin: 10px;
+  
+  .clean-heading {
+    font-size: 24px;
+    white-space: normal;
+    word-wrap: break-word;
   }
-
-  .card__title {
-    font-size: 14px;
+  
+  .chair-name {
+    font-size: 16px !important;
+    margin-top: 8px;
   }
-}
-@media (max-width: 480px) {
-  .committee-map {
-    height: 30vh; /* Slightly reduced height for very small screens */
+  
+  .chair-role {
+    font-size: 13px !important;
+    line-height: 1.3;
   }
 
   
-  .committee-content {
-    margin-top: 20vh; /* Further reduced margin-top for small screens */
-    width: 90%; /* Full width */
-    margin-bottom: 20px; /* Reduced bottom margin */
-    font-size: 12px; /* Adjust font size to be smaller */
-  }
-
-  .committee-content h2 {
-    font-size: 22px; /* Reduced heading size */
-  }
-
-  .committee-content p {
-    font-size: 14px; /* Adjusted paragraph font size */
-  }
-  .cards {
-    display: flex;
-    flex-direction: column;
-    min-width: 90%; /* Ensure the cards fit within the screen width */
-    padding: 20px 15px;
-    transform: none; /* Remove 3D rotation for better readability */
-  }
-
-  .cards h1 {
-    
-    font-size: 24px; /* Reduce heading font size */
-    margin-bottom: 20px;
-    transform: none;
-  }
-
-  .cards h3 {
-    font-size: 14px; /* Adjust font size */
-    margin-bottom: 10px;
-    transform: none;
-  }
-
-  .card {
-    flex:1;
-    display: flex;
-    flex-direction: column;
-    width: 90%; /* Cards take full width on smaller screens */
-    height: auto; /* Let the height adjust to content */
-    margin-bottom: 15px; /* Add spacing between cards */
-    transform: none; /* Simplify transform for better performance */
-    box-shadow: none; /* Reduce shadow for a cleaner look */
-  }
-
-  .card:not(:last-child) {
-    margin-right: 0; /* Remove right margin to avoid overflow */
-  }
-
-  .card__img {
-    flex:1;
-    height: 5vh; /* Restrict image height for smaller screens */
-  }
-
-  .card__text {
-    height: auto; /* Adjust height to content */
-    padding: 10px; /* Add padding for better readability */
-  }
-
-  .card__title {
-    font-size: 16px; /* Reduce title font size */
-  }
-
- 
-
   #World-Map h2 {
-    font-size: 24px; /* Slightly smaller font for map heading */
+    font-size: 32px;
+    margin-bottom: 20px !important;
+  }
+  
+  .committee-map {
+    margin-bottom: 10px !important;
+    margin-top: 10px !important;
+  }
+  
+  .committee-content {
+    margin-top: 0px !important;
+  }
+  
+  .agenda-card-container {
+    margin-top: 0px !important;
+  }
+
+  .emblem {
+    padding-top: 80px;
+  }
+
+  .UNSCLogo {
+    width: 28vw;
+    max-width: 130px;
+    min-width: 100px;
+    padding: 15px; 
+    margin-bottom: 15px;
+  }
+
+  .two-chair-board {
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin: 30px 15px !important; 
+    box-sizing: border-box !important;
+    padding: 30px 15px !important; 
+  }
+
+  #Committee .committee-content-wrapper h2,
+  #World-Map h2 {
+    margin-top:10px;
+    font-size: 42px !important;
+    margin-bottom: 40px !important;
+  }
+}
+
+/* COUNTRY POPUP (DESKTOP + MOBILE) */
+.tt_sm,
+.tt_mobile_sm {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 2px 8px !important;      /* small pill – same on desktop & mobile */
+  max-width: 70vw !important;
+  white-space: nowrap !important;
+
+  /* Shape & background */
+  border-radius: 999px !important;
+  background: #ffffff !important;     /* bright white interior */
+  border: 1px solid #B69354 !important;  /* gold border */
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(243, 237, 227, 0.9) !important;
+
+  /* Typography */
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 0.7rem !important;       /* same size everywhere */
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  color: #18191d !important;
+
+  /* Subtle motion */
+  transform: translateY(-1px) !important;
+  animation: popupFadeIn 0.25s ease-out !important;
+}
+
+/* Country name text */
+.tt_name_sm,
+.tt_mobile_name_sm {
+  float: none !important;
+  margin: 0 !important;
+}
+
+/* Hide close icons */
+.xmark_sm,
+.xmark_mobile_sm {
+  display: none !important;
+}
+
+/* Fade/slide in animation */
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-1px) scale(1);
   }
 }

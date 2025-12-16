@@ -1,0 +1,139 @@
+/* Wrapper */
+.committees-wrapper {
+  width: 100%;
+  overflow: hidden;
+  padding: 40px 0;
+  /* background: rgba(3, 38, 37); */
+  position: relative;
+  padding: 6rem 2rem;
+}
+
+/* Wrapper title styling */
+.committees-wrapper h1 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 2.4rem;
+  letter-spacing: 1px;
+  margin-bottom: 35px;
+  color: #e9a751;
+  text-transform: uppercase;
+  position: relative;
+}
+
+/* Decorative underline */
+.committees-wrapper h1::after {
+  content: "";
+  width: 120px;
+  height: 4px;
+  background: #e9a751;
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 4px;
+  opacity: 0.8;
+}
+
+/* Responsive scale */
+@media (max-width: 600px) {
+  .committees-wrapper h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Animation Track */
+.committees-track {
+  display: flex;
+  gap: 20px;
+  animation: scroll 24s linear infinite;
+  will-change: transform;
+}
+
+/* Pause on hover */
+.committees-track:hover {
+  animation-play-state: paused;
+}
+
+/* Continuous scrolling keyframes */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-232%);
+  }
+}
+
+/* Committee card */
+.committee-card {
+  flex-shrink: 0;
+  width: 30vw;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(233, 167, 81, 0.3);
+  border-radius: 16px;
+  padding: 18px;
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 0.4s ease;
+  cursor: pointer;
+}
+
+/* Hover effect */
+.committee-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 0 18px rgba(233, 167, 81, 0.4);
+  border-color: #e9a751;
+}
+
+/* Abbreviation (big headline) */
+.committee-abrv h2 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 1px;
+  color: #e9a751;
+}
+
+/* Full name */
+.committee-name p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin: 0 0 0.2rem 0;
+  color: #0a5a5b;
+}
+
+/* Mode tag */
+.committee-mode {
+  margin-top: 4px;
+  font-size: 0.75rem;
+  background: rgba(233, 167, 81, 0.22);
+  color: #e9a751;
+  padding: 3px 8px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.committee-about {
+  margin: 2rem 0;
+}
+
+.committee-about {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  color: #d9ccc4;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .committee-card {
+    min-width: 200px;
+    height: 150px;
+    padding: 14px;
+  }
+  .committee-abrv h2 {
+    font-size: 1.3rem;
+  }
+  .committee-name p {
+    font-size: 0.8rem;
+  }
+}

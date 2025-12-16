@@ -1,479 +1,524 @@
-/* sec.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap');
 
-/* 1. Override Global Background */
+/* ------------------------------------------- */
+/* --- 1. PALETTE & VARIABLES --- */
+/* ------------------------------------------- */
+:root {
+    --font-body: 'Poppins', sans-serif;
 
-.galleryP {
-  display: flex;
-  flex-direction: column;
-  width: 100%; /* Ensure full width */
-  background-color: pink !important; /* Override global background */
-  background-image: none !important; /* Remove any inherited background image */
-  /* Add top padding to prevent overlap with fixed navbar */
-  /* padding-top: 70px; */ /* Optional: Uncomment if needed */
+    --c-cream: #E6DFD7;
+    --c-teal: #1F3E43;
+    --c-gold: #B38C6A;
+    --c-berry: #5B2C36;
+
+    --card-width: 300px;
+    --card-gap: 60px;
+    --image-height: 320px;
+    --reveal-height: 200px;
+
+    /* fixed height for info box */
+    --info-height: 160px;
+
+    --perspective: 1000px;
+    --rotX: 0deg;
+    --rotY: 0deg;
+    --imgScale: 1.0;
+    --shineX: 50%;
+    --shineY: 50%;
 }
 
-.container {
-  width: 100%; /* Ensure full width */
-  height: 100%;
-  background-color: blue !important; /* Ensure container has its own background */
-  box-sizing: border-box;
-  padding: 0 !important; /* Remove padding to utilize full width */
-  margin: 0 !important; /* Remove margin to utilize full width */
-  background-image: none !important; /* Remove any inherited background image */
+
+/* ------------------------------------------- */
+/* --- 2. MAIN PAGE STAGE --- */
+/* ------------------------------------------- */
+
+.gallery {
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    /* Use global stars background */
+    /* background-color: var(--c-teal); */
+    /* background-image: radial-gradient(circle at 50% 30%, #2a5259 0%, var(--c-teal) 70%); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* was: 120px 20px 100px 20px; */
+    padding: 90px 20px 90px 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
-/* 2. Ensure Full-Width Layout */
-
-/* Content Sections */
-.contentSection {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 60px 40px; /* Adjust padding as needed */
-  /* Removed min-height: 100vh; to allow sections to size based on content */
-  background-color: #F3EDE3; /* Default background color */
-  transition: background-color 1s ease;
-  box-sizing: border-box;
-  width: 100%; /* Ensure full width */
+.mainSection {
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    scroll-margin-top: 140px;
 }
 
-/* Adjusted padding for better spacing */
-.contentSection:not(:first-child) {
-  padding-top: 40px; /* Increased padding */
-  padding-bottom: 40px; /* Increased padding */
-}
+/* ------------------------------------------- */
+/* --- 3. HEADER & TABS --- */
+/* ------------------------------------------- */
 
-/* Reduce the height of the first content-section to accommodate header and picture */
-.contentSection:first-child {
-  /* Removed min-height to allow dynamic height */
-  padding-top: 20px; /* Reduced top padding */
-  padding-bottom: 20px; /* Added bottom padding */
-}
-
-.text {
-  flex: 1; /* Allow text to take available space */
-  color: black; /* Set text color */
-  padding-left: 40px; /* Shift text to the right */
-  display: flex;
-  flex-direction: column; /* Arrange children vertically */
-  align-items: flex-start; /* Align items to the start (left) */
-  text-align: left; /* Ensure text is left-aligned */
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(100px);
-  transition: all 0.5s ease-out;
-}
-
-.image {
-  /* Change from flex: 1 to fixed size to prevent resizing */
-  flex: none;
-  width: 375px; /* Increased from 300px to 375px for desktop */
-  height: 375px; /* Increased from 300px to 375px for desktop */
-  position: relative;
-}
-
-/* Fixed size for images on desktop */
-.desktopPhoto {
-  /* Removed any width settings that make it flexible */
-}
-
-.desktopPhoto img {
-  width: 375px; /* Increased from 300px to 375px */
-  height: 375px; /* Increased from 300px to 375px */
-  object-fit: cover; /* Ensure the image covers the container without distortion */
-  border: 7px solid #B69354; /* Default border color */
-  border-radius: 10px; /* Rounded corners */
-  box-sizing: border-box; /* Include border in dimensions */
-  transition: all 1s ease-out;
-}
-
-/* Social Icons Styling */
-.socialIcons {
-  margin-top: 10px; /* Reduced top margin to bring icons closer to the name */
-  display: flex;
-  gap: 20px; /* Spacing between icons */
-  align-items: center; /* Vertically center the icons */
-}
-
-.socialIcons a {
-  color: #363537; /* Icon color */
-  font-size: 1.5rem; /* Icon size */
-  transition: color 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  /* White circle with golden border */
-  background-color: #FFFFFF; /* White background */
-  border: 2px solid #B69354; /* Golden border */
-  border-radius: 50%; /* Circular shape */
-  width: 50px; /* Icon container size */
-  height: 50px;
-}
-
-/* Hover Effects */
-.socialIcons a:hover {
-  /* Customizable hover effects */
-}
-
-.socialIcons a:nth-child(1):hover {
-  color: #3b5998; /* Facebook Blue */
-}
-
-.socialIcons a:nth-child(2):hover {
-  color: #0077b5; /* LinkedIn Blue */
-}
-
-.socialIcons a:nth-child(3):hover {
-  color: #C13584; /* Instagram Gradient Approximation */
-}
-
-/* Increase Text Size */
-.text h2 {
-  font-size: 2.3rem; /* Larger headings */
-}
-
-.text p {
-  font-size: 1.5rem; /* Larger role texts */
-}
-
-/* Scroll Down Text Styling */
-.scrollDown {
-  position: fixed;
-  bottom: 20px;
-  right: 20px; /* Positioned at bottom right */
-  font-size: 1.5rem;
-  color: #FFD700; /* Gold color */
-  opacity: 0.9; /* Increased opacity for better visibility */
-  animation: bounce 2s infinite;
-  z-index: 1000;
-  
-  /* Shiny Text Effect */
-  text-shadow: 
-    0 0 5px rgba(255, 215, 0, 0.8),
-    0 0 10px rgba(255, 215, 0, 0.6),
-    0 0 15px rgba(255, 215, 0, 0.4);
-}
-
-/* Bounce Animation for Scroll Down */
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-  }
-  40% {
-      transform: translateY(-5px);
-  }
-  60% {
-      transform: translateY(-3px);
-  }
-}
-
-/* Dynamic Border Colors Based on Background */
-.bgLightCream .desktopPhoto img,
-.bgLightCream .socialIcons a {
-  border-color: #B69354; /* Golden border when background is light cream */
-}
-
-.bgGolden .desktopPhoto img,
-.bgGolden .socialIcons a {
-  border-color: #F3EDE3; /* Light cream border when background is golden */
-}
-
-.bgLightPurple .desktopPhoto img,
-.bgLightPurple .socialIcons a {
-  border-color: #574A73; /* Dark purple border when background is light purple */
-}
-
-.bgDarkPurple .desktopPhoto img,
-.bgDarkPurple .socialIcons a {
-  border-color: #CDC9E3; /* Light purple border when background is dark purple */
-}
-
-/* Responsive Styles */
-@media (max-width: 665px) {
-  /* Mobile Styles */
-  .headerContent {
-      flex-direction: column;
-      padding: 0 20px;
-      width: 100%; /* Ensure full width on mobile */
-      max-width: none; /* Remove max-width constraint */
-      margin: 0; /* Remove auto margins */
-  }
-
-  .headerTitle {
-      margin-bottom: 15px;
-      font-size: 2rem;
-      text-align: center; /* Ensure centered text on small devices */
-  }
-
-  .showSecretariatBtn {
-      /* Remove absolute positioning */
-      position: static;
-      transform: none;
-      margin: 10px auto 0; /* Center the button with top margin */
-      width: auto; /* Adjust width to content */
-      padding: 8px 16px; /* Reduce padding for smaller size */
-      font-size: 0.9rem; /* Decrease font size */
-      border-radius: 4px; /* Slightly smaller border radius */
-      
-      /* Merged Styles from .button-74 */
-      background-color: #fbeee0; /* Light background */
-      border: 2px solid #422800; /* Dark brown border */
-      border-radius: 30px; /* Rounded corners */
-      box-shadow: #422800 4px 4px 0 0; /* Shadow effect */
-      color: #422800; /* Text color */
-      display: inline-block;
-      font-weight: 600;
-      font-size: 18px;
-      padding: 0 18px;
-      line-height: 50px;
-      text-align: center;
-      text-decoration: none;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: manipulation;
-      
-      min-width: 120px; /* Ensure minimum width */
-      padding: 0 25px; /* Adjust padding */
-      
-      /* Responsive adjustments */
-      background-color: #fbeee0; /* Ensure background color persists */
-      border-radius: 30px; /* Ensure border-radius persists */
-      box-shadow: #422800 4px 4px 0 0; /* Ensure box-shadow persists */
-      font-size: 18px; /* Ensure font-size persists */
-    }
-
-  .contentSection {
-      flex-direction: column;
-      text-align: center; /* Changed from left to center for small devices */
-      padding: 30px 20px; /* Increased padding to add height */
-      width: 100%; /* Ensure full width */
-  }
-
-  .text, .image {
-      width: 100%;
-      padding-left: 0; /* Remove padding on mobile */
-      align-items: center; /* Center align text and icons */
-      text-align: center; /* Center text */
-  }
-
-  .socialIcons {
-      margin-top: 15px; /* Adjust top margin */
-      justify-content: center; /* Center align icons */
-      gap: 15px; /* Adjust gap between icons */
-  }
-
-  .image {
-      width: 250px; /* Increased from 200px to 250px for mobile */
-      height: 250px; /* Increased from 200px to 250px for mobile */
-      margin-top: 20px;
-  }
-
-  .desktopPhoto img {
-      width: 250px; /* Increased from 200px to 250px for mobile */
-      height: 250px; /* Increased from 200px to 250px for mobile */
-      object-fit: cover; /* Ensure the image covers the container without distortion */
-      margin: 0 auto;
-  }
-
-  .socialIcons a {
-      width: 40px;
-      height: 40px;
-      font-size: 1.2rem;
-  }
-
-  .text h2 {
-      font-size: 1.6rem;
-  }
-
-  .text p {
-      font-size: 1.1rem;
-  }
-
-  .scrollDown {
-      font-size: 1.2rem;
-      bottom: 15px;
-      right: 15px; /* Adjusted to match right positioning */
-  }
-
-  /* Ensure text and icons are centered without animation interference */
-  .reveal {
-      opacity: 1;
-      transform: translateY(0);
-      transition: none;
-  }
-}
-
-/* Additional Small Screen Adjustments */
-@media (max-width: 480px) {
-  /* Further adjustments for very small screens */
-  .headerTitle {
-      font-size: 1.5rem;
-  }
-
-  .showSecretariatBtn {
-      font-size: 0.9rem; /* Maintain smaller font size */
-      padding: 8px 16px; /* Maintain padding */
-      width: auto; /* Ensure auto width */
-  }
-
-  .image {
-      width: 190px; /* Increased from 150px to 190px for very small screens */
-      height: 190px; /* Increased from 150px to 190px for very small screens */
-  }
-
-  .desktopPhoto img {
-      width: 190px; /* Increased from 150px to 190px for very small screens */
-      height: 190px; /* Increased from 150px to 190px for very small screens */
-  }
-}
-
-/* Accessibility: Focus States */
-.socialIcons a:focus {
-  outline: 2px solid #B69354; /* Golden focus outline */
-  outline-offset: 2px;
-}
-
-/* Team Header */
 .teamHeader {
-  background-color: #B69354; /* Golden color from existing palette */
-  width: 100%; /* Ensure full width */
-  padding: 20px 0;
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+    /* was: 50px */
+    margin-bottom: 35px;
+    position: relative;
 }
 
 .headerContent {
-  display: flex;
-  justify-content: center; /* Center items horizontally */
-  align-items: center;
-  width: 100%; /* Ensure full width */
-  padding: 0 40px;
-  position: relative; /* Allows absolute positioning of the button */
-  /* Removed max-width and margin to allow full-width layout */
-}
-
-/* Header Title */
-.headerTitle {
-  color: #F3EDE3; /* Light cream color from existing palette */
-  font-size: 2.5rem;
-  margin: 0;
-  text-align: center;
-  /* Removed flex-grow: 1; */
-}
-
-/* Show Secretariat Button */
-.showSecretariatBtn {
-  /* Original Styles Removed */
-  
-  /* Merged Styles from .button-74 */
-  background-color: #fbeee0; /* Light background */
-  border: 2px solid #422800; /* Dark brown border */
-  border-radius: 30px; /* Rounded corners */
-  box-shadow: #422800 4px 4px 0 0; /* Shadow effect */
-  color: #422800; /* Text color */
-  display: inline-block;
-  font-weight: 600;
-  font-size: 18px;
-  padding: 0 18px;
-  line-height: 50px;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
-  
-  position: absolute; /* Position the button to the right */
-  right: 40px; /* Align it with the original padding */
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Adjust for exact centering */
-}
-
-/* Hover State */
-.showSecretariatBtn:hover {
-  background-color: #fff; /* Change background on hover */
-  /* Additional hover styles if needed */
-}
-
-/* Active State */
-.showSecretariatBtn:active {
-  box-shadow: #422800 2px 2px 0 0; /* Adjust shadow on active */
-  transform: translate(2px, 2px); /* Move button on active */
-}
-
-/* Responsive Styles for Header */
-@media (max-width: 665px) {
-  /* Mobile Styles */
-  .headerContent {
+    position: relative;
+    display: flex;
     flex-direction: column;
-    padding: 0 20px;
-    width: 100%; /* Ensure full width on mobile */
-    max-width: none; /* Remove max-width constraint */
-    margin: 0; /* Remove auto margins */
-  }
-
-  .headerTitle {
-    margin-bottom: 15px;
-    font-size: 2rem;
-    text-align: center; /* Ensure centered text on small devices */
-  }
-
-  .showSecretariatBtn {
-    /* Remove absolute positioning */
-    position: static;
-    transform: none;
-    margin: 10px auto 0; /* Center the button with top margin */
-    width: auto; /* Adjust width to content */
-    padding: 8px 16px; /* Reduce padding for smaller size */
-    font-size: 0.9rem; /* Decrease font size */
-    border-radius: 4px; /* Slightly smaller border radius */
-    
-    /* Merged Styles from .button-74 */
-    background-color: #fbeee0; /* Light background */
-    border: 2px solid #422800; /* Dark brown border */
-    border-radius: 30px; /* Rounded corners */
-    box-shadow: #422800 4px 4px 0 0; /* Shadow effect */
-    color: #422800; /* Text color */
-    display: inline-block;
-    font-weight: 600;
-    font-size: 18px;
-    padding: 0 18px;
-    line-height: 50px;
-    text-align: center;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    
-    min-width: 120px; /* Ensure minimum width */
-    padding: 0 25px; /* Adjust padding */
-  }
+    align-items: center;
 }
 
-@media (max-width: 480px) {
-  /* Additional Small Screen Adjustments */
-  .headerTitle {
+.headerTitle {
+    font-family: 'Cinzel', 'Times New Roman', serif;
+    font-size: 4.5rem;
+    font-weight: 800;
+    color: var(--c-cream);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* gold line directly under SECRETARIAT */
+.animationLine {
+    width: 80px;
+    height: 3px;
+    background: var(--c-gold);
+    border-radius: 999px;
+    margin: 20px auto 0;
+    box-shadow: 0 0 15px rgba(179,140,106,0.5);
+}
+
+/* simple states so JS classes work */
+.none {
+    opacity: 1;
+    transform: scaleX(1);
+}
+.usg-start,
+.secretariat-start {
+    opacity: 0.95;
+    transform: scaleX(1.05);
+    transition: all 0.3s ease;
+}
+.usg-end,
+.secretariat-end {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+.headerSubtitle {
+    font-size: 1.1rem;
+    color: var(--c-gold);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    /* was: 15px */
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+.tabContainer {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(230, 223, 215, 0.1);
+    padding-bottom: 6px;
+}
+
+.tabButton {
+    background: transparent;
+    border: none;
+    font-size: 1.1rem;
+    color: rgba(230, 223, 215, 0.5);
+    font-weight: 600;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.tabButton:hover {
+    color: var(--c-cream);
+}
+
+.tabButton.activeTab {
+    color: var(--c-gold);
+}
+
+.tabButton.activeTab::after {
+    content: '';
+    position: absolute;
+    bottom: -11px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--c-gold);
+    box-shadow: 0 -2px 10px rgba(179, 140, 106, 0.6);
+}
+
+/* ------------------------------------------- */
+/* --- 4. THE CAROUSEL BOX (STYROFOAM TEXTURE) --- */
+/* ------------------------------------------- */
+
+.carouselSection {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.cardWrapper {
+    max-width: calc(var(--card-width) * 3.5 + var(--card-gap) * 3 + 60px);
+    width: 100%;
+    
+    /* STYROFOAM TEXTURE BACKGROUND */
+    background-image: url('./Screenshot 2025-12-03 161312.png');
+    background-repeat: repeat;
+    
+    /* Double Border Effect */
+    border: 1px solid var(--c-gold);
+    box-shadow: 
+        0 0 0 5px var(--c-teal),
+        0 0 0 7px var(--c-gold),
+        0 30px 60px rgba(0,0,0,0.5);
+        
+    border-radius: 6px;
+    position: relative;
+    perspective: var(--perspective);
+    overflow: visible;
+}
+
+/* Decorative Gold Line at Top */
+.cardWrapper::before {
+    content: '';
+    position: absolute;
+    top: 8px; left: 8px; right: 8px;
+    height: 2px;
+    background: var(--c-gold);
+    opacity: 0.3;
+}
+
+/* Decorative Gold Line at Bottom of row of images */
+.cardWrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    height: 3px;
+    background: var(--c-gold);
+    opacity: 0.35;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.cardRow {
+    display: flex;
+    gap: var(--card-gap);
+    /* top   right  bottom left  */
+    padding: 60px 80px 60px 80px;  
+    overflow-x: scroll;
+    overflow-y: visible;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    box-shadow: inset 0 0 80px rgba(0,0,0,0.05);
+    align-items: stretch;
+}
+.cardRow::-webkit-scrollbar { display: none; }
+
+/* ------------------------------------------- */
+/* --- 5. CARDS --- */
+/* ------------------------------------------- */
+
+.teamCard {
+    min-width: var(--card-width);
+    max-width: var(--card-width);
+
+    /* fixed total height → all cards equal */
+    height: calc(var(--image-height) + 40px + var(--info-height));
+
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform: rotateX(var(--rotX)) rotateY(var(--rotY));
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    border-radius: 12px;
+    border: 2px solid transparent;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.teamCard.isHovering {
+    transform: rotateX(var(--rotX)) rotateY(var(--rotY)) scale(1.05) translateY(-20px);
+    z-index: 10;
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.4),
+        0 0 0 2px var(--c-gold);
+}
+
+.cardRevealBacking {
+    position: absolute;
+    inset: 0;
+    background: var(--c-berry);
+    border-radius: 10px;
+    transform: translateZ(-30px);
+    transition: transform 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.cardContent {
+    background: transparent;
+    width: 100%;
+    position: relative;
+    transform: translateZ(0px);
+    transition: transform 0.4s ease;
+    border-radius: 10px;
+    z-index: 2;
+
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardContent::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--c-teal);
+    border-radius: 10px;
+    z-index: -1;
+    height: var(--image-height);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.teamCard.isHovering .cardContent {
+    transform: translateZ(40px);
+}
+.teamCard.isHovering .cardRevealBacking {
+    transform: translateZ(-60px) rotate(-1deg);
+}
+
+.image {
+    width: 100%;
+    height: var(--image-height);
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--c-berry);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateZ(10px);
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+    filter: sepia(0.2);
+    transition: transform 0.4s ease;
+}
+
+.teamCard.isHovering .image {
+    transform: translateZ(-30px) scale(0.95);
+    background: var(--c-gold);
+}
+
+.textRevealWrapper {
+    width: 100%;
+    margin-top: 16px;
+    height: auto;
+    overflow: visible;
+    pointer-events: auto;
+    z-index: 5;
+}
+
+.text {
+    background: var(--c-teal);
+    border: 1px solid var(--c-gold);
+    border-top-width: 3px;              /* thicker gold line at top of teal box */
+    color: var(--c-cream);
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+
+    height: var(--info-height);
+    transform: none;
+    opacity: 1;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    pointer-events: auto;
+
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.teamCard.isHovering .text {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.text h2 {
+    font-family: 'Cinzel', 'Times New Roman', serif;
+    font-size: 1.4rem;
+    color: var(--c-gold);
+    margin: 0;
+    font-weight: 700;
+}
+
+.text p {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.socialIcons {
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
+}
+.socialIcons a {
+    color: var(--c-cream);
+    font-size: 1.2rem;
+    transition: 0.2s;
+}
+.socialIcons a:hover {
+    color: var(--c-gold);
+    transform: scale(1.2);
+}
+
+
+/* ------------------------------------------- */
+/* --- 6. NAVIGATION ARROWS --- */
+/* ------------------------------------------- */
+
+.horizontalNav {
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: calc(var(--card-width) * 3.5 + var(--card-gap) * 3 + 180px); 
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 20;
+}
+
+.arrowBtn {
+    pointer-events: auto;
+    width: 55px; 
+    height: 55px;
+    border-radius: 50%;
+    background: var(--c-gold);
+    border: 2px solid var(--c-cream);
+    color: var(--c-teal);
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
     font-size: 1.5rem;
-  }
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
 
-  .showSecretariatBtn {
-    font-size: 0.9rem; /* Maintain smaller font size */
-    padding: 8px 16px; /* Maintain padding */
-    width: auto; /* Ensure auto width */
-  }
+.arrowBtn:hover:not(:disabled) {
+    transform: scale(1.15);
+    background: var(--c-teal);
+    color: var(--c-gold);
+    border-color: var(--c-gold);
+}
 
-  .image {
-    width: 190px; /* Increased from 150px to 190px for very small screens */
-    height: 190px; /* Increased from 150px to 190px for very small screens */
-  }
+.arrowBtn:disabled {
+    opacity: 0;
+    cursor: default;
+}
 
-  .desktopPhoto img {
-    width: 190px; /* Increased from 150px to 190px for very small screens */
-    height: 190px; /* Increased from 150px to 190px for very small screens */
-  }
+/* ------------------------------------------- */
+/* --- 7. MOBILE --- */
+/* ------------------------------------------- */
+
+@media (max-width: 768px) {
+    .headerTitle { font-size: 2.8rem; }
+    
+    .cardWrapper {
+        background: transparent;
+        background-image: none;
+        box-shadow: none;
+        border: none;
+        overflow: visible;
+        margin-top: 20px;
+    }
+    
+    .cardRow {
+        padding: 20px;
+        gap: 20px;
+        box-shadow: none;
+    }
+    
+    .teamCard {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 540px; 
+        height: auto;
+    }
+    
+    .textRevealWrapper {
+        position: static;
+        width: 100%;
+        margin-top: 16px;
+        height: auto;
+        overflow: visible;
+        pointer-events: auto;
+        z-index: 5;
+    }         
+    
+    .text {
+        background: var(--c-teal);
+        border: 1px solid var(--c-gold);
+        border-top-width: 3px;
+        color: var(--c-cream);
+        padding: 20px;
+        text-align: center;
+        border-radius: 8px;
+    
+        transform: none;
+        opacity: 1;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        pointer-events: auto;
+        box-sizing: border-box;
+    
+        min-height: 150px;
+        justify-content: center;
+    }    
+    
+    .image {
+        transform: none !important;
+    }
+    
+    .horizontalNav { display: none; }
 }

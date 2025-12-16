@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+.bg-guide-link {
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  margin: 0px auto;
+  margin-top:30px;
+}
+
+.bg-guide-card {
+  border: 1px solid rgba(182, 147, 84, 0.6);
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 1.4rem;
+  backdrop-filter: blur(12px);
+  text-align: center;
+  padding: 45px 32px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.bg-guide-card::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 1.1rem;
+  border: 1px solid rgba(182, 147, 84, 0.25);
+  pointer-events: none;
+}
+
+.bg-guide-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(216, 184, 119, 0.85);
+  box-shadow: 0 0 18px rgba(243, 212, 138, 0.4);
+}
+
+.bg-guide-text {
+  color: #f3ede3;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin: 0;
+  position: relative;
+}
+
+.bg-guide-card:hover .bg-guide-text {
+  color: #e8d18c;
+  text-shadow: 0 0 10px rgba(182, 147, 84, 0.25);
+}
+
+@media (max-width: 768px) {
+  .bg-guide-card {
+    padding: 35px 24px;
+    margin-left: 10px;
+    margin-right:10px;
+  }
+  .bg-guide-text {
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+  }
+}

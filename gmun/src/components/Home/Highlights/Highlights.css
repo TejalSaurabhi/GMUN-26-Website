@@ -1,0 +1,183 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap");
+
+.about-highlights-wrapper {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 5rem 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  position: relative;
+  /* Match HowToMUN font */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: #fefdf8;
+}
+
+/* Decorative top border */
+.about-highlights-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #d8b877, transparent);
+}
+
+.main-heading {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.8rem, 5vw, 3.8rem);
+  font-weight: 800;
+  text-align: center;
+  color: #e8c9a0;
+  letter-spacing: 0.035em;
+}
+
+.heading-gradient {
+  /* Match hero main heading warm gold gradient */
+  background: radial-gradient(
+    ellipse at 50% 15%,
+    #f5ebe0 0%,
+    #eedccc 10%,
+    #e8c9a0 22%,
+    #d4b08c 38%,
+    #b38c6a 55%,
+    #96704d 75%,
+    #6a5038 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.content-wrapper {
+  display: flex;
+  gap: 3rem;
+  align-items: stretch;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.about-paragraph {
+  flex: 1;
+  max-width: 600px;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(248, 248, 248, 0.96);
+  padding: 2rem;
+  border-radius: 1.4rem;
+  border: 1px solid rgba(184, 155, 94, 0.6);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  position: relative;
+  text-align: justify;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+/* Gold accent line on left */
+.about-paragraph::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.5rem;
+  bottom: 1.5rem;
+  width: 3px;
+  background: linear-gradient(to bottom, transparent, #d8b877, transparent);
+  border-radius: 2px;
+}
+
+.highlights-container {
+  flex: 1;
+  max-width: 550px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin: auto 0;
+}
+
+.highlights {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 1.75rem 1.5rem;
+  border-radius: 1.4rem;
+  transition: all 0.3s ease;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+}
+
+.highlights:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-6px);
+  border-color: rgba(216, 184, 119, 0.7);
+  box-shadow: 0 0 14px rgba(243, 212, 138, 0.45);
+}
+
+.heading-icon {
+  color: #f8e7b0;
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  padding: 0.9rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(216, 184, 119, 0.3);
+  transition: all 0.3s ease;
+  color: #f8e7b0;
+}
+
+.highlights:hover .icon {
+  background: #f3d48a;
+  color: #000;
+  box-shadow: 0 0 15px rgba(243, 212, 138, 0.8);
+}
+
+.higlight {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #ffe9a3;
+  margin-bottom: 0.25rem;
+  text-shadow: 0 0 25px rgba(255, 215, 0, 0.35);
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+.highlight-adjective {
+  font-size: 0.9rem;
+  color: rgba(243, 243, 243, 0.86);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about-highlights-wrapper {
+    padding: 4rem 1.25rem 3rem;
+  }
+
+  .about-paragraph {
+    font-size: 0.95rem;
+    padding: 1.5rem;
+  }
+
+  .highlights-container {
+    gap: 1rem;
+  }
+
+  .highlights {
+    padding: 1.25rem 1rem;
+  }
+
+  .higlight {
+    font-size: 1.8rem;
+  }
+}

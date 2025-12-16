@@ -4,33 +4,62 @@ import "./styles/index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Login from "./components/Login";
 import Register from "./components/Register";
-import AuthLayout from "./components/AuthLayout";
-import Profile from "./components/Profile";
-import EditDetails from "./components/EditDetails";
 import Landing from "./pages/Landing";
+import HowToMun from "./pages/howToMun";
 import Committee from "./components/Committee";
 import Contacts from "./components/Contacts";
 import Guide from "./components/Guide";
 import WorldMap from "./components/WorldMap";
-import Gallery from "./components/Gallery";
-import LogoutBtn from "./components/LogoutBtn";
-import FAQs from "./components/FAQs";
-import Discuss from "./components/Discuss";
+import Gallery2Page from "./components/Gallery2Page";
 import AboutUs from "./pages/aboutUs";
 import Sec from "./components/sec";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
-import PostPage from "./components/PostPage.jsx";
 import Sponsors from "./components/Sponsors.jsx";
+import AuthLayout from "./pages/Authorization/AuthLayout.jsx";
+import SignUpPage from "./pages/Authorization/SignUpPage.jsx";
+import LoginPage from "./pages/Authorization/LoginPage.jsx";
+import ForgotPassword from "./pages/Authorization/ForgotPassword.jsx";
+import VerifyEmail from "./pages/Authorization/VerifyEmail.jsx";
+import { Toaster } from "react-hot-toast";
+import StarsBackground from "./components/Home/StarsBackground.jsx";
+import FAQ from "./pages/FAQ";
 
 const router = createBrowserRouter([
   {
-    path: "/logout",
+    path: "/api/auth",
+    element: <AuthLayout />,
+  },
+  {
+    path: "/api/auth/signup",
     element: (
       <AuthLayout>
-        <LogoutBtn />
+        <SignUpPage />
+      </AuthLayout>
+    ),
+  },
+  {
+    path: "/api/auth/login",
+    element: (
+      <AuthLayout>
+        <LoginPage />
+      </AuthLayout>
+    ),
+  },
+  {
+    path: "/api/auth/forgot-password",
+    element: (
+      <AuthLayout>
+        <ForgotPassword />
+      </AuthLayout>
+    ),
+  },
+  {
+    path: "/api/auth/verify-email",
+    element: (
+      <AuthLayout>
+        <VerifyEmail />
       </AuthLayout>
     ),
   },
@@ -45,34 +74,6 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/edit",
-        element: (
-          <AuthLayout>
-            <EditDetails />
-          </AuthLayout>
-        ),
-      },
-      {
-        path: "/profile",
-        element: (
-          <AuthLayout>
-            <Profile />
-          </AuthLayout>
-        ),
-      },
-      {
-        path: "/posts/:postId",
-        element: (
-          <AuthLayout>
-            <PostPage />
-          </AuthLayout>
-        ),
       },
       {
         path: "/AboutUs",
@@ -95,24 +96,25 @@ const router = createBrowserRouter([
         element: <WorldMap />,
       },
       {
+        path: "/how-to-mun",
+        element: <HowToMun />,
+      },
+      {
         path: "/FAQs",
-        element: <FAQs />,
+        element: <FAQ />,
       },
       {
         path: "/Sponsors",
-        element: <Sponsors/>,
+        element: <Sponsors />,
       },
-      {
-        path: "/Discuss",
-        element: (
-          <AuthLayout>
-            <Discuss />
-          </AuthLayout>
-        ),
-      },
+
       {
         path: "/gallery",
-        element: <Gallery />,
+        element: <Gallery2Page />,
+      },
+      {
+        path: "/gallery2",
+        element: <Gallery2Page />,
       },
       {
         path: "/sec",
@@ -125,9 +127,11 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <StarsBackground />
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
+    <Toaster />
   </React.StrictMode>
 );
 

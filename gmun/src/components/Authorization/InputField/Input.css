@@ -1,0 +1,47 @@
+.form-input-parent {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.form-input {
+  position: absolute; /* absolute */
+
+  top: 0; /* inset-y-0 */
+  bottom: 0;
+
+  left: 0; /* left-0 */
+
+  display: flex; /* flex */
+  align-items: center; /* items-center */
+
+  padding-left: 0.75rem; /* pl-3 */
+
+  pointer-events: none;
+}
+
+.input-el {
+  width: 100%; /* w-full */
+
+  padding-left: 2.5rem; /* pl-10 */
+  padding-right: 0.75rem; /* pr-3 */
+  padding-top: 0.5rem; /* py-2 */
+  padding-bottom: 0.5rem;
+
+  background-color: rgba(31, 41, 55, 0.5); /* bg-gray-800 bg-opacity-50 */
+
+  border-radius: 0.5rem; /* rounded-lg */
+  border: 1px solid #374151; /* border + border-gray-700 */
+
+  color: #ffffff; /* text-white */
+  ::placeholder {
+    color: #9ca3af; /* placeholder-gray-400 */
+  }
+
+  transition: all 0.2s;
+}
+
+.input-el:focus {
+  border-color: #22c55e; /* focus:border-green-500 */
+  box-shadow: 0 0 0 2px #22c55e; /* focus:ring-green-500 */
+  outline: none;
+}

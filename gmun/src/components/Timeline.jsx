@@ -1,107 +1,133 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../styles/Timeline.css";
-import image1 from "../images/an1.jpg";
+import { motion } from "framer-motion";
+import heroOpening from "../images/ApplicationLive.JPG";
+import comingSoon from "../images/ComingSoon.jpeg";
 
 const Timeline = () => {
-  const [activeIndex, setActiveIndex] = useState(-1); // Track the active timeline item
-  const timelineRefs = useRef([]); // Refs for each timeline item
+  const [activeIndex, setActiveIndex] = useState(0);
+  const sectionsRef = useRef([]);
+  // Ref for the scrollable container to fix the parallax/scroll listener
+  const scrollContainerRef = useRef(null);
 
   const timelineItems = [
     {
-      year: "GMUN Workshop",
-      img: image1,
-      desc: "Come join us in this Global Model United Nations Workshop, to begin this great journey.",
-    },
-    {
       year: "Opening Ceremony",
-      img: image1,
-      desc: "A fun and interactive Opening Ceremony, to mark the beginning of the Global Model United Nations Event",
+      img: heroOpening,
+      desc: "An engaging opening ceremony marking the commencement of Global Model United Nations 2026.",
     },
     {
       year: "GMUN Day-1",
-      img: image1,
+      img: comingSoon,
       desc: "First Committee Meeting and Discussion.",
     },
     {
-      year: "SOCIAL NIGHT after Day-1",
-      img: image1,
-      desc: "Come and have fun at our first Social Night of the Event.",
+      year: "Social Night after Day-1",
+      img: comingSoon,
+      desc: "Have fun at our exhilerating Social Night",
     },
     {
       year: "GMUN Day-2",
-      img: image1,
+      img: comingSoon,
       desc: "Final day of Committee discussions.",
     },
     {
       year: "Closing Ceremony",
-      img: image1,
-      desc: "Join us for Closing ceremony of GMUN-2025",
+      img: comingSoon,
+      desc: "Closing Ceremony of GMUN-2026.",
     },
   ];
 
+  /* RIGHT SIDE OBSERVER - DRIVER OF STATE */
   useEffect(() => {
-    const observerOptions = {
-      root: null, // Viewport
-      rootMargin: "0px",
-      threshold: 0.7,
-    };
-
-    const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        const index = timelineRefs.current.indexOf(entry.target);
-        if (entry.isIntersecting) {
-          setActiveIndex(index);
-        }
-      });
-    };
-
     const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions
+      (entries) => {
+        entries.forEach((entry) => {
+          // Only update if the element is actually intersecting/visible
+          if (entry.isIntersecting) {
+            const index = sectionsRef.current.indexOf(entry.target);
+            if (index !== -1) setActiveIndex(index);
+          }
+        });
+      },
+      // Lower threshold slightly to catch smaller sections or fast scrolls
+      { threshold: 0.5, root: scrollContainerRef.current }
     );
 
-    // Store a snapshot of the current refs in a variable
-    const currentRefs = timelineRefs.current;
-    currentRefs.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
+    sectionsRef.current.forEach((ref) => ref && observer.observe(ref));
+    return () =>
+      sectionsRef.current.forEach((ref) => ref && observer.unobserve(ref));
+  }, []);
 
-    return () => {
-      currentRefs.forEach((ref) => {
-        if (ref) observer.unobserve(ref);
+  /* PARALLAX EFFECT - FIXED TO LISTEN TO CONTAINER, NOT WINDOW */
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      sectionsRef.current.forEach((section) => {
+        if (!section) return;
+        const rect = section.getBoundingClientRect();
+        // Calculate ratio based on container height (window.innerHeight acts as proxy for viewport height)
+        const viewHeight = window.innerHeight;
+        const ratio = Math.min(Math.max(0, 1 - rect.top / viewHeight), 1);
+
+        // Subtle Parallax effect
+        const translateX = (ratio - 0.5) * 50;
+
+        section.style.transform = `translateX(${translateX}px) scale(${
+          1 + ratio * 0.02
+        })`;
       });
     };
+
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className="TimelineOutermostBox">
-      <div className="timeline-container">
-        <div className="timeline-header">
-          <h2 className="timeline-header__title">TIMELINE OF GMUN 2025</h2>
-        </div>
-        <div className="timeline">
-          {timelineItems.map((item, index) => (
-            <div
-              className={`timeline-item ${
-                index === activeIndex ? "timeline-item--active" : ""
-              }`}
-              key={index}
-              ref={(el) => (timelineRefs.current[index] = el)} // Assign ref to each timeline item
-            >
-              <div className="timeline__content">
-                <img
-                  className="timeline__img"
-                  src={item.img}
-                  alt={`${item.year} Event`}
-                />
-                <h2 className="timeline__content-title">{item.year}</h2>
-                <p className="timeline__content-desc">{item.desc}</p>
+    <motion.div
+      initial={{ y: 100, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1.5 }}
+    >
+      <div className="timeline-page-title">Timeline</div>
+
+      <div className="timeline-wrapper">
+        {/* LEFT SECTION - STATIC/STICKY DISPLAY ONLY */}
+        <div className="timeline-left-stacked">
+          <div className="timeline-left-container">
+            {timelineItems.map((item, index) => (
+              <div
+                key={index}
+                // No ref needed here for observation anymore
+                className={`timeline-left-item ${
+                  index === activeIndex ? "active" : ""
+                }`}
+              >
+                <h2 className="timeline-left-title">{item.year}</h2>
+                <p className="timeline-left-desc">{item.desc}</p>
               </div>
-            </div>
+            ))}
+          </div>
+        </div>
+
+        {/* RIGHT SECTION - SCROLLABLE CONTENT */}
+        <div className="timeline-scroll" ref={scrollContainerRef}>
+          {timelineItems.map((item, index) => (
+            <section
+              key={index}
+              ref={(el) => (sectionsRef.current[index] = el)}
+              className={`timeline-section ${
+                index === activeIndex ? "is-active" : ""
+              }`}
+              style={{ backgroundImage: `url(${item.img})` }}
+            ></section>
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
