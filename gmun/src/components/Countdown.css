@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap");
+
+/* Variables using HowToMUN structure but Hero's warmer brown-gold */
+:root {
+  --countdown-text-light: #fefdf8;
+  --countdown-text-muted: rgba(243, 243, 243, 0.86);
+  --countdown-gold: #B38C6A;
+  --countdown-gold-light: #d4b08c;
+  --countdown-gold-bright: #e8c9a0;
+  --countdown-gold-glow: rgba(179, 140, 106, 0.4);
+  --countdown-glass-bg: rgba(0, 0, 0, 0.40);
+  --countdown-glass-border: rgba(255, 255, 255, 0.15);
+  --countdown-bg-dark: rgba(0, 0, 0, 0.35);
+  --countdown-font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --countdown-font-heading: 'Playfair Display', Georgia, serif;
+}
+
+/* Outer wrapper for spacing */
+.countdown-outer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 6rem;
+  position: relative;
+  z-index: 10;
+}
+
+/* Main container - card style matching HowToMUN */
+.countdown-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 2.5rem 2.5rem;
+  background: var(--countdown-glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--countdown-glass-border);
+  border-radius: 1.4rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.25);
+  font-family: var(--countdown-font-body);
+  transition: all 0.3s ease;
+}
+
+.countdown-container:hover {
+  background: rgba(255, 235, 150, 0.09);
+  border-color: #f3d48a;
+  box-shadow: 0 0 14px rgba(243, 212, 138, 0.45);
+}
+
+/* Decorative corner accent - kept from original */
+.countdown-corner-accent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  background: var(--countdown-gold);
+  opacity: 0.04;
+  border-bottom-left-radius: 100%;
+  pointer-events: none;
+}
+
+/* Header section */
+.countdown-header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+.countdown-badge {
+  font-family: var(--countdown-font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(248, 231, 176, 0.8);
+  margin-bottom: 0.4rem;
+}
+
+.countdown-title {
+  font-family: var(--countdown-font-body);
+  text-transform: uppercase;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: 0.035em;
+  color: rgba(248, 231, 176, 0.9);
+  text-shadow: 0 0 18px rgba(0, 0, 0, 0.6);
+}
+
+/* Dials container */
+.countdown-dials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Individual dial wrapper */
+.countdown-dial-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 80px;
+  max-width: 120px;
+}
+
+/* Dial container */
+.countdown-dial {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.countdown-dial-scale {
+  transform: scale(0.7);
+}
+
+/* SVG styling */
+.countdown-dial-svg {
+  transform: rotate(-90deg);
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.4));
+}
+
+.countdown-dial-bg {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+.countdown-dial-progress {
+  stroke: rgba(248, 231, 176, 0.85);
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.4));
+}
+
+/* Value container */
+.countdown-dial-value-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.countdown-dial-animated {
+  overflow: hidden;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.countdown-dial-number {
+  font-family: var(--countdown-font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: rgba(248, 231, 176, 0.95);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Label below dial */
+.countdown-dial-label {
+  font-family: var(--countdown-font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--countdown-text-muted);
+  margin-top: 0.5rem;
+}
+
+/* Inline block for SplitText */
+.inline-block {
+  display: inline-block;
+}
+
+/* === Compact sticker variant (used in announcement toggle) === */
+.countdown-sticker-shell {
+  transform: scale(0.5);
+  transform-origin: bottom right;
+}
+
+.countdown-sticker-shell .countdown-outer {
+  padding: 0;
+  margin: 0;
+}
+
+.countdown-sticker-shell .countdown-container {
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+/* Responsive */
+@media (min-width: 640px) {
+  .countdown-dial-scale {
+    transform: scale(1);
+  }
+  
+  .countdown-dials {
+    gap: 2rem;
+  }
+  
+  .countdown-dial-wrapper {
+    min-width: 100px;
+  }
+  
+  .countdown-dial-label {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .countdown-outer {
+    padding: 1rem 1rem 4rem;
+  }
+  
+  .countdown-container {
+    padding: 1.5rem 1.25rem 2rem;
+    border-radius: 18px;
+  }
+  
+  .countdown-dials {
+    gap: 0.75rem;
+  }
+  
+  .countdown-dial-wrapper {
+    min-width: 65px;
+  }
+  
+  .countdown-dial-scale {
+    transform: scale(0.6);
+  }
+  
+  .countdown-dial-number {
+    font-size: 1.5rem;
+  }
+  
+  .countdown-dial-label {
+    font-size: 0.6rem;
+    margin-top: 0.25rem;
+  }
+}
+

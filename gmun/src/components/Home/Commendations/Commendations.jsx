@@ -21,7 +21,7 @@ const recommendations = [
 const Commendations = () => {
   return ( 
     <div className="commendations-wrapper">
-      <p className="commendations-text">An MUN recommended by</p>
+      <p className="commendations-text">Messages of support from global diplomatic leaders</p>
 
       <div className="images-container">
         {recommendations.map((rec) => (

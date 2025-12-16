@@ -1,6 +1,5 @@
-/* Wrapper */
+/* Wrapper - Updated to match HowToMUN */
 .commendations-wrapper {
-  /* background: rgba(3, 38, 37, 0.8); */
   width: 100%;
   padding: 7rem 2rem 4rem 2rem;
   text-align: center;
@@ -8,14 +7,17 @@
   flex-direction: column;
   align-items: center;
   gap: 3rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* Subtitle text */
+/* Subtitle text - Updated to match HowToMUN */
 .commendations-text {
-  font-size: 1.4rem;
-  color: #d9ccc4; /* nice contrasting beige */
-  font-weight: 500;
-  letter-spacing: 1px;
+  font-size: 1.15rem;
+  color: rgba(243, 243, 243, 0.86);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 1.7;
+  max-width: 40rem;
 }
 
 /* Container for logos */
@@ -28,17 +30,18 @@
   width: 100%;
 }
 
-/* Logo wrapper card */
+/* Logo wrapper card - Updated to match HowToMUN */
 .commendation-image {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.40);
   padding: 1rem 1.5rem;
-  border-radius: 12px;
+  border-radius: 1.4rem;
   display: flex;
   align-items: center;
-  backdrop-filter: blur(4px);
-  transition: 0.25s ease;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   width: 27%;
+  cursor: pointer;
 }
 
 /* Logo image styling */
@@ -50,10 +53,12 @@
   transition: 0.3s ease;
 }
 
-/* Hover Effects */
+/* Hover Effects - Updated to match HowToMUN */
 .commendation-image:hover {
   transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 235, 150, 0.09);
+  border-color: #f3d48a;
+  box-shadow: 0 0 14px rgba(243, 212, 138, 0.45);
 }
 
 .commendation-image:hover img {
