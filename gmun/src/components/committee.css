@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
-/* === GENERAL COMMITTEE LAYOUT === */
 #Committee {
   width: 100%;
   align-items: center;
@@ -13,7 +12,6 @@
   background-color: #190b2500;
   display: flex;
   flex-direction: column;
-  /* Use gap for consistent minimum spacing, margins will add to this */
   gap: 0px; 
   padding-bottom: 50px;
 }
@@ -22,7 +20,6 @@
 #World-Map h2 {
   font-size: 4rem !important; 
   
-  /* Ensures lines don't drift too far apart */
   line-height: 1.2 !important;
   color: #F3EDE3;
   text-align: center;
@@ -123,39 +120,25 @@
   display: block;
   margin: 50px auto 30px auto;
   padding: 35px;
-  
-  /* === SHAPE === */
   border-radius: 50%;
-  
-  /* === DARKER BACKGROUND === */
-  /* Dark teal tint (65% opacity) - Darkens the area so the gold shines, 
-     but still see-through so it blends with the page */
   background: rgba(5, 15, 20, 0.65); 
-  
-  /* Smooth out the wallpaper lines behind it */
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-
-  /* === THE DOUBLE BORDER === */
-  /* Inner Ring: Thinner, subtle gold */
   border: 2px solid rgba(182, 147, 84, 0.7);
   
   /* Outer Ring: Created using outline and offset */
   outline: 2px solid rgba(182, 147, 84, 0.7);
-  outline-offset: 12px; /* The gap between the two rings */
+  outline-offset: 12px; 
   
   /* Soft shadow to lift the whole emblem slightly */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-
   transition: all 0.4s ease;
 }
 
 .UNSCLogo:hover {
   transform: translateY(-5px);
-  /* Make borders brighter on hover */
-  border-color: #d2aa5b;
-  outline-color: #d2aa5b;
-  /* Slightly darken background for focus */
+  border-color: #c79847;
+  outline-color: #c79847;
   background: rgba(5, 15, 20, 0.75);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
 }
@@ -314,6 +297,161 @@
   margin-bottom: 0;
 }
 
+.chair-image-wrapper.clickable-chair {
+  cursor: pointer;
+  position: relative; 
+}
+
+.click-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 15, 20, 0.6); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+  border-radius: 13px; 
+}
+
+.click-indicator span {
+  color: #F3EDE3; 
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid #B69354; 
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: rgba(182, 147, 84, 0.2); 
+  backdrop-filter: blur(4px);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.chair-image-wrapper:hover .click-indicator {
+  opacity: 1;
+}
+
+/* === MODAL STYLES === */
+.chair-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(5, 10, 15, 0.85); 
+  backdrop-filter: blur(8px);
+  z-index: 10000; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.chair-modal-content {
+  background: rgba(12, 20, 24, 0.95);
+  border: 2px solid #B69354; 
+  border-radius: 20px;
+  width: 100%;
+  max-width: 650px;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 0 40px rgba(182, 147, 84, 0.15);
+  padding: 40px;
+}
+
+.chair-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+.chair-modal-content::-webkit-scrollbar-track {
+  background: rgba(5, 15, 20, 0.5);
+}
+.chair-modal-content::-webkit-scrollbar-thumb {
+  background: #B69354;
+  border-radius: 4px;
+}
+
+.chair-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  background: none;
+  border: none;
+  color: #B69354;
+  font-size: 36px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  line-height: 1;
+  z-index: 10;
+  padding: 0;
+}
+
+.chair-modal-close:hover {
+  color: #F3EDE3;
+  transform: rotate(90deg);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(182, 147, 84, 0.3);
+  padding-bottom: 25px;
+}
+
+.modal-img-wrapper {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 3px solid #B69354; 
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-title-box h2 {
+  font-family: 'Montserrat', sans-serif;
+  color: #F3EDE3;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+  text-align: left;
+  letter-spacing: -0.5px;
+}
+
+.modal-title-box h3 {
+  font-family: 'Montserrat', sans-serif;
+  color: #B69354;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 8px 0 0 0;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.modal-body p {
+  color: #F3EDE3; 
+  font-family: 'Open Sans', sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  text-align: justify;
+  margin-bottom: 15px;
+  opacity: 0.9;
+}
+
 /* === Two Chair Message === */
 .two-chair-message {
   margin-top: 30px;
@@ -402,23 +540,22 @@
 }
 @media (max-width: 768px) {
   .two-chair-photos {
-    flex-direction: row !important; /* Force side-by-side */
-    flex-wrap: nowrap !important;   /* Prevent stacking */
+    flex-direction: row !important; 
+    flex-wrap: nowrap !important;  
     align-items: flex-start;
     justify-content: center;
-    gap: 15px; /* Small gap to fit both */
+    gap: 15px; 
   }
 
   .chair-card {
-    /* Each card takes roughly half the space */
     width: 48%; 
-    max-width: 180px; /* Cap size */
+    max-width: 180px; 
     margin-bottom: 0;
   }
 
   .chair-img {
-    height: auto; /* Allow height to adjust naturally */
-    aspect-ratio: 3/4; /* Maintain portrait ratio */
+    height: auto; 
+    aspect-ratio: 3/4; 
   }
 
   .two-chair-board,
@@ -495,4 +632,91 @@
     font-size: 42px !important;
     margin-bottom: 40px !important;
   }
+}
+
+
+.fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .modal-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .modal-title-box h2,
+  .modal-title-box h3 {
+    text-align: center;
+  }
+
+  .chair-modal-content {
+    padding: 30px 20px;
+    width: 90%;
+  }
+
+  .chair-modal-close {
+    top: 15px;
+    right: 15px;
+  }
+}
+
+/* === TITLE & STATUS WRAPPER (NEW) === */
+.title-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px; /* Spacing between Name and Status */
+}
+
+/* === CLEAN STATUS PILL (NEW) === */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(5, 15, 20, 0.4); 
+  border: 1px solid rgba(182, 147, 84, 0.3);
+  padding: 6px 24px;
+  border-radius: 50px;
+  
+  /* Resetting H2 font styles */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px; 
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: #F3EDE3; 
+  text-transform: uppercase;
+  line-height: normal;
+  
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 5px; 
+  transition: all 0.3s ease;
+}
+
+.status-pill:hover {
+  background: rgba(5, 15, 20, 0.6);
+  border-color: #B69354;
+  transform: translateY(-2px);
+}
+
+/* === STATUS DOT (NEW) === */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ff4d4d; /* Default Gold (Offline) */
+  box-shadow: 0 0 8px rgba(182, 147, 84, 0.6);
+}
+
+/* Green dot for Online mode */
+.status-pill.online .status-dot {
+  background-color: #2ecc71;
+  box-shadow: 0 0 8px rgba(46, 204, 113, 0.6);
 }

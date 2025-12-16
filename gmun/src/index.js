@@ -24,6 +24,7 @@ import { Provider } from "react-redux";
 import store from "./store/store.js";
 import PostPage from "./components/PostPage.jsx";
 import Sponsors from "./components/Sponsors.jsx";
+import HowToMUN from "./pages/howToMun";
 
 const router = createBrowserRouter([
   {
@@ -117,6 +118,10 @@ const router = createBrowserRouter([
       {
         path: "/sec",
         element: <Sec />,
+      },
+      {
+        path: "/how-to-mun",
+        element: <HowToMUN />,
       },
     ],
   },

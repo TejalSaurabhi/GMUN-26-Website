@@ -1,0 +1,293 @@
+/* Page wrapper and background */
+.howto-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  /* your page bg already exists; this wrapper just fills the height */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* No dark overlay here – we rely on the global page background */
+
+/* Main container */
+.howto-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  color: #fefdf8;
+}
+
+@media (max-width: 768px) {
+  .howto-container {
+    padding: 3rem 1.25rem 3.5rem;
+  }
+}
+
+/* Header */
+.howto-header {
+  text-align: center;
+}
+
+.howto-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem 1.1rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid rgba(184, 155, 94, 0.6);
+  background: rgba(0, 0, 0, 0.35);
+  color: #f8e7b0;
+}
+
+.howto-title {
+  margin-top: 1rem;
+  font-size: clamp(2.8rem, 5vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: 0.035em;
+  color: #ffe9a3;
+  text-shadow: 0 0 25px rgba(255, 215, 0, 0.35);
+}
+
+.howto-subtitle {
+  margin: 1rem auto 0;
+  max-width: 40rem;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: rgba(243, 243, 243, 0.86);
+}
+
+/* Pills navigation */
+.howto-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.howto-pill {
+  font-size: 1.2rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.35);
+  color: #f5f5f5;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.howto-pill:hover {
+  background: rgba(0, 0, 0, 0.65);
+  border-color: #d8b877;
+}
+
+.howto-pill-active {
+  background: #d8b877;
+  color: #000;
+  border-color: #f7e3a5;
+  box-shadow: 0 0 18px rgba(248, 225, 160, 0.55);
+}
+
+.howto-pill-active:hover {
+  background: rgba(0, 0, 0, 0.65);
+  border-color: #d8b877;
+  color: #f5f5f5;
+  box-shadow: 0 0 18px rgba(248, 225, 160, 0.55);
+}
+
+/* Main layout: cards + sidebar */
+.howto-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+@media (min-width: 992px) {
+  .howto-main {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+/* Cards / accordion */
+.howto-cards {
+  flex: 1.15;
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.howto-card {
+  border-radius: 1.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.howto-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(216, 184, 119, 0.7);
+}
+
+.howto-card-active {
+  background: rgba(255, 235, 150, 0.09);
+  border-color: #f3d48a;
+  box-shadow: 0 0 14px rgba(243, 212, 138, 0.45);
+}
+
+.howto-card-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+  padding: 1.2rem 1.8rem 1.45rem;
+}
+
+@media (max-width: 600px) {
+  .howto-card-inner {
+    padding: 1rem 1.3rem 1.25rem;
+  }
+}
+
+.howto-card-number {
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.12);
+  color: #f8e7b0;
+  transition: all 0.3s ease;
+}
+
+.howto-card-number-active {
+  background: #f3d48a;
+  color: #000;
+  box-shadow: 0 0 15px rgba(243, 212, 138, 0.8);
+}
+
+.howto-card-content {
+  flex: 1;
+}
+
+.howto-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.howto-card-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #f8e7b0;
+  line-height: 1.4;
+}
+
+.howto-card-toggle {
+  font-size: 1.4rem;
+  color: rgba(248, 231, 176, 0.8);
+}
+
+.howto-card-body {
+  overflow: hidden;
+}
+
+.howto-card-text {
+  margin-top: 0.85rem;
+  font-size: 1rem;
+  line-height: 1.8;
+  white-space: pre-line;
+  color: rgba(248, 248, 248, 0.96);
+}
+
+/* Sidebar */
+.howto-sidebar {
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (max-width: 991px) {
+  .howto-sidebar {
+    max-width: 100%;
+  }
+}
+
+/* Sidebar boxes – dark, luxurious look */
+.howto-box {
+  border-radius: 1.4rem;
+  border: 1px solid rgba(201, 171, 108, 0.9);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(14px);
+  padding: 1.5rem 1.6rem;
+}
+
+/* Background guide box specifically */
+.howto-brochure-box {
+  text-align: center;          /* center heading + text */
+  align-items: center;
+  box-shadow: 0 0 26px rgba(255, 215, 0, 0.32);
+}
+
+/* sidebar heading + text */
+.howto-box-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffe9a3;
+  margin-bottom: 0.6rem;
+  width: 100%;
+}
+
+.howto-box-text {
+  font-size: 0.9rem;
+  color: rgba(243, 243, 243, 0.9);
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+/* Brochure inner box (the Canva component wrapper) */
+.howto-brochure {
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+  margin: 1rem auto 0;
+  width: 90%;
+  max-width: 360px;
+  align-items:center;
+}
+
+/* Small screen tweaks */
+@media (max-width: 600px) {
+  .howto-badge {
+    font-size: 0.72rem;
+  }
+
+  .howto-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .howto-pill {
+    font-size: 0.78rem;
+    padding: 0.45rem 0.9rem;
+  }
+}

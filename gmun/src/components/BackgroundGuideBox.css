@@ -5,36 +5,41 @@
   display: block;
   width: 100%;
   max-width: 800px;
-  margin: 0px auto;
-  margin-top:30px;
+  margin: 30px auto 0 auto;
 }
 
 .bg-guide-card {
-  border: 2px solid rgba(182, 147, 84, 0.85);
-  background: rgba(10, 25, 30, 0.80);
-  border-radius: 16px;
-  backdrop-filter: blur(12px);
-  text-align: center;
+  position: relative;
+  background: rgba(10, 25, 30, 0.80) !important;
+  background-image: none !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 2px solid rgba(182, 147, 84, 0.9) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+  border-radius: 22px;
   padding: 45px 32px;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  transition: all 0.4s ease;
+  overflow: hidden;
 }
 
 .bg-guide-card::before {
   content: "";
   position: absolute;
-  inset: 8px;
-  border-radius: 12px;
-  border: 1px solid rgba(182, 147, 84, 0.45);
+  inset: 10px;
+  border-radius: 18px;
+  border: 1px solid rgba(182, 147, 84, 0.4);
   pointer-events: none;
 }
 
+/* Hover Effects */
 .bg-guide-card:hover {
   transform: translateY(-5px);
-  border-color: #d2aa5b;
-  box-shadow: 0 10px 28px rgba(182, 147, 84, 0.25);
+  border-color: #d2aa5b !important;
+  box-shadow: 0 12px 30px rgba(182, 147, 84, 0.25) !important;
 }
 
+/* Text Styling */
 .bg-guide-text {
   color: #f3ede3;
   font-family: "Montserrat", sans-serif;
@@ -44,6 +49,7 @@
   text-transform: uppercase;
   margin: 0;
   position: relative;
+  transition: all 0.3s ease;
 }
 
 .bg-guide-card:hover .bg-guide-text {
@@ -51,11 +57,12 @@
   text-shadow: 0 0 10px rgba(182, 147, 84, 0.25);
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .bg-guide-card {
     padding: 35px 24px;
     margin-left: 10px;
-    margin-right:10px;
+    margin-right: 10px;
   }
   .bg-guide-text {
     font-size: 1rem;

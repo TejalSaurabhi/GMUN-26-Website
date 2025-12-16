@@ -1,103 +1,101 @@
-import React, { useEffect } from "react";
+import React from "react";
 import WorldMap from "./WorldMap";
-import "./committee.css"; // General styles
-import { ReactComponent as DISECLogo } from "../images/committee_img/DISEC_LOGO.svg";
+import "./committee.css";
+import { ReactComponent as UNSCLogo } from "../images/committee_img/DISEC.svg";
+import BackgroundGuideBox from "./BackgroundGuideBox";
+import AgendaCard from "./AgendaCard";
+import TwoChairBoard from "./TwoChairBoard";
 
+const message = `
+Dear Delegates
 
-const DISEC = () => {
-  useEffect(() => {
-    const cards = document.querySelector(".cards");
-    const images = document.querySelectorAll(".card__img");
-    const backgrounds = document.querySelectorAll(".card__bg");
-    const range = 40;
+It is our distinct pleasure to invite all of you to this simulation of the United Nations 
+General Assembly: Disarmament and International Security Committee (DISEC), at this 
+edition of GMUN- IITKGP, 2026. Please note that this background guide is for your own 
+perusal, to provide direction to your research. The real efficacy of this, however, lies in 
+the use of this guide as a reference; evaluate the potential problem statements; and 
+propose practical solutions that can be covered under the spectrum of this agenda, while 
+incorporating them within your deliberations. 
+Understanding the complexity, as well as the significance of this agenda, the Executive 
+Board strongly recommends all of you to come prepared and well researched in 
+committee, and at the same time, we expect you to participate throughout the course of 
+the committee sessions. We look forward to putting you all in various diplomatic 
+practices that might be deemed necessary to provide more substantiation to the 
+deliberations at hand. We sincerely believe that all of you will come prepared, well 
+researched, and motivated enough to discuss the agenda, and it’s nuances, brainstorm 
+together to explore solutions, and gain back a lot from this committee. 
+Our goal for you in this committee is to provide you with an enriching experience by 
+helping you to navigate through the art of diplomacy, and at the same time, see you 
+deliberate on real life problems, and global challenges that currently exist in the real 
+world. We also expect all delegates to maintain courteous behaviour throughout the 
+course of the entire conference, while looking at real life situations from a diplomatic 
+standpoint. Looking forward to meeting all of you at GMUN 2026. 
 
-    const calcValue = (a, b) => ((a / b) * range - range / 2).toFixed(1);
+With Warm Regards
 
-    const handleMouseMove = (event) => {
-      const { clientX: x, clientY: y } = event;
-      const yValue = calcValue(y, window.innerHeight);
-      const xValue = calcValue(x, window.innerWidth);
+Swapnaneel Datta (Chairperson)  
 
-      if (cards) {
-        cards.style.transform = `rotateX(${yValue}deg) rotateY(${xValue}deg)`;
-      }
+Soumodip Adhikary (Co Chairperson)
+`;
 
-      images.forEach((image) => {
-        image.style.transform = `translateX(${-xValue}px) translateY(${yValue}px)`;
-      });
-
-      backgrounds.forEach((background) => {
-        background.style.backgroundPosition = `${xValue * 0.45}px ${
-          -yValue * 0.45
-        }px`;
-      });
-    };
-
-    document.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
+const DISEC = ({mode}) => {
   return (
     <div className="committee-container">
-     
+      {/* === Logo Section === */}
       <div className="emblem">
-      <DISECLogo className="Disec" />
+        <UNSCLogo className="UNSCLogo" />
       </div>
-      
-      {/* World Map Section */}
+    
+      {/* === Committee Title + Map === */}
       <div className="committee-map">
-        <WorldMap title="DISARMAMENT AND INTERNATIONAL SECURITY COMMITTEE" mapDataFile="mapdata.js" />
+        <WorldMap
+          title={
+            <span className="title-wrapper">
+              <span className="hover-underline">
+                UNITED NATIONS GENERAL ASSEMBLY
+              </span>
+              <span className={`status-pill ${mode.toLowerCase()}`}>
+                <span className="status-dot"></span>
+                {mode}
+              </span>
+            </span>
+          }
+          mapDataFile="mapdata.js"
+        />
       </div>
 
-      {/* Committee Content Section */}
-      <div className="committee-content">
-        <h2>DISEC</h2>
-        <p>1. Enhancing the effectiveness of disarmament,demobilization and reintegration and security sector reform in conflict-affected regions.</p>
-        <p>2. Prevention of involvement of artificial intelligence in weapon systems and its implications for global security.</p>
+      {/* === Agenda Card === */}
+      <div className="agenda-card-container">
+        <AgendaCard
+          agenda="Strengthening the role of mediation with respect to the peaceful settlement of disputes, conflict prevention, and arms trafficking."
+          label="UNGA-DISEC"
+        />
       </div>
 
-      {/* 3D Cards Section */}
-      <div className="cards">
-        <h3>DISEC</h3>
-        <h1>Executive Board</h1>
+      {/* === Executive Board Section === */}
+      <TwoChairBoard
+        title="Executive Board"
+        subtitle="UNSC"
+        chairs={[
+          {
+            name: "Swapnaneel Dutta",
+            role: "Co-Chair",
+            image: "/team-images/Executive Board Images/Swapnaneel pic.jpg",
+          },
+          {
+            name: "Soumodip Adhikary",
+            role: "Co-Chair",
+            image: "/team-images/Executive Board Images/Soumodip.jpeg",
+            bio: "A Masters Student from the prestigious Jadavpur University who is extremely motivated for tomorrow, Soumodip has a strong love for communication and discussion. Having worked in the UNDP Kenya, he is particularly interested in the intricacies of geopolitics and international events, demonstrating his intellectual curiosity outside of the classroom. Because of this interest, he has been actively involved in the Model United Nations (MUN) circuit for about almost 5 years now, developing his research, diplomatic, and public speaking abilities.\n\nOften called Mr Dependable, The MUN community has recognized his thorough study, perspective analysis, and compelling arguments qualities that demonstrates his organizational skills and leadership abilities. An ardent FC Barcelona Fan he always balances out his out his hobbies but football and Catalunya comes above all."
+          },
+        ]}
+        message={message}
+      />
 
-        {/* Card 1 */}
-        <div className="card card__one">
-          <div className="card__bg"></div>
-          <img
-            className="card__img"
-            src="/team-images/Executive Board Images/AbhinavDas.jpeg"
-            alt="1"
-          />
-          <div className="card__hover-text">
-          <p>Chairperson</p>
-          </div>
-          <div className="card__text">
-            <p className="card__title">Abhinav Das</p>
-          </div>
-        </div>
-
-        {/* Card 2 */}
-        <div className="card card__two">
-          <div className="card__bg"></div>
-          <img
-            className="card__img"
-            src="/team-images/Executive Board Images/SaanviGupta.jpeg"
-            alt="Spirited Away"
-          />
-          <div className="card__hover-text">
-          <p>Vice Chairperson</p>
-          </div>
-          <div className="card__text">
-            <p className="card__title">Saanvi Gupta</p>
-          </div>
-        </div>
-
+      {/* === Background Guide Box === */}
+      <div style={{ marginBottom: "60px" }}>
+        <BackgroundGuideBox link="" />
       </div>
-      
     </div>
   );
 };

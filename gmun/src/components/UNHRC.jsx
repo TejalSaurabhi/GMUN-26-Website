@@ -1,30 +1,33 @@
-// UNSC.jsx – Refined version with TwoChairBoard layout
 import React from "react";
 import WorldMap from "./WorldMap";
 import "./committee.css";
 import { ReactComponent as UNHRCLogo } from "../images/committee_img/UNHRCLOGO.svg";
 import BackgroundGuideBox from "./BackgroundGuideBox";
 import AgendaCard from "./AgendaCard";
-import TwoChairBoard from "./TwoChairBoard"; // ⬅️ new component import
+import TwoChairBoard from "./TwoChairBoard"; 
 
 const message = `
 Dear Delegates,
 
-My name is Urvansh Saraf, and I am delighted to serve as your Co-Chair for the United Nations Security Council at HMUN 2026. It is an honor to guide this simulation of one of the most powerful and dynamic bodies in international diplomacy.
+As the Executive Board (EB) of the United Nations Human Rights Council (UNHRC), we welcome you to a committee entrusted with one of the gravest responsibilities in multilateral diplomacy. The agenda before you "Addressing Grave Human Rights Violations in Armed Conflict, with special emphasis on the situation in the Republic of Sudan" demands not only awareness, but precision, empathy, and accountability. 
 
-The Security Council stands as a pillar of global governance — where peace, conflict, and cooperation meet. This year’s agenda challenges you to think deeply about the intersection of organized crime and terrorism — how financial networks, arms trade, and transnational groups threaten global security, and how international cooperation can create solutions.
+This council is not a forum for rhetoric alone. It is a space for principled debate, legally grounded argumentation, and solution-oriented engagement rooted in international human rights law, humanitarian norms, and institutional mandates. We expect delegates to approach deliberations with seriousness, respect for procedure, and sensitivity to the human cost underlying every statistic and report.
 
-As your chairs, we look forward to seeing you bring creativity, intellect, and diplomacy to the table. Debate passionately, but also listen carefully — that’s where the best resolutions are built.
+We encourage diplomatic representatives to move beyond diagnosis and towards mechanisms underlying protection, accountability, access, and implementation. We urge participants to uphold diplomatic decorum, listen actively, and engage constructively across differences. 
 
-See you in committee!
+We look forward to a rigorous, disciplined, and impactful session of the council. Wishing you all the very best! 
 
-Warm regards,
-Urvansh Saraf & Swapnaneel Datta
-Co-Chairs, United Nations Security Council
-hmun-unsc@harvardmun.org
+
+Aditya Kiran
+
+Chairperson, UNHRC
+
+Arghyadip Pal
+
+Co-Chairperson, UNHRC
 `;
 
-const UNHRC2 = () => {
+const UNHRC2 = ({mode}) => {
   return (
     <div className="committee-container">
       {/* === Logo Section === */}
@@ -36,8 +39,14 @@ const UNHRC2 = () => {
       <div className="committee-map">
         <WorldMap
           title={
-            <span className="hover-underline">
-              UNITED NATIONS HUMAN RIGHTS COUNCIL
+            <span className="title-wrapper">
+              <span className="hover-underline">
+                UNITED NATIONS HUMAN RIGHTS COUNCIL
+              </span>
+              <span className={`status-pill ${mode.toLowerCase()}`}>
+                <span className="status-dot"></span>
+                {mode}
+              </span>
             </span>
           }
           mapDataFile="mapdata.js"
@@ -47,7 +56,7 @@ const UNHRC2 = () => {
       {/* === Agenda Card === */}
       <div className="agenda-card-container">
         <AgendaCard
-          agenda="Consideration of digital privacy rights of assessment of mechanisms for protecting personal data across national and global context."
+          agenda="Addressing Grave Human Rights Violations in Armed Conflict with Special Emphasis on the Situation in the Republic of the Sudan."
           label="UNHRC"
         />
       </div>
@@ -58,9 +67,16 @@ const UNHRC2 = () => {
         subtitle="UNHRC"
         chairs={[
           {
-            name: "Divyanshu Sharma",
-            role: "Chairperson",
-            image: "/team-images/Executive Board Images/Divyansu_Sharma.JPG",
+            name: "Aditya Kiran",
+            role: "Co-Chairperson",
+            image: "/team-images/Executive Board Images/Aditya Kiran.jpeg",
+            bio: "He devotes substantial time to researching global economic affairs and contemporary geopolitical developments, bringing a disciplined and analytical approach to committee deliberations. Similarly, having participated across various United Nations (UN) committees and with experience spanning over 100 conferences, he demonstrates a strong aptitude for structured, articulate debate grounded in foreign policy principles and evidence-based analysis. As part of his doctoral research, he examines the intersection of peace building, human rights, development paradigms, and post-conflict reconstruction, with particular attention to economic reintegration in conflict-affected regions. He values substantive engagement over surface-level rhetoric and looks forward to rigorous, policy-oriented dialogue that prioritizes depth, coherence, and long-terms institutional solutions.",
+          },
+          {
+            name: "Arghyadip Pal",
+            role: "Co-Chairperson",
+            image: "/team-images/Executive Board Images/Arghyadip.JPG",
+            bio: "Meet Arghyadip Pal, a third year undergrad from IIT Kharagpur. With an experience of over 50 conferences under his belt as a delegate and chair across all major circuits of the country, his MUN game is stronger than his morning coffee creations. An avid bibliophile and a global policy enthusiast, he firmly believes in the power of youth in bringing global order and creating impact. \n\nBeyond MUNs, his experience of working with the Government of India and multiple nationally recognised institutions and NGOs towards the cause of sustainable social and humanitarian development allows him to bring a realistic perspective into the committee. \n\nIf he had written a self help book, it would be “Surviving questionable side quests: What not to do”"
           },
         ]}
         message={message}
@@ -68,7 +84,7 @@ const UNHRC2 = () => {
 
       {/* === Background Guide Box === */}
       <div style={{ marginBottom: "60px" }}>
-        <BackgroundGuideBox link="https://example.com/background-guide.pdf" />
+        <BackgroundGuideBox link="" />
       </div>
     </div>
   );

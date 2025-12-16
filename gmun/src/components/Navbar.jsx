@@ -85,13 +85,19 @@ const Navbar = () => {
               <Link to="/committee/2">UNHRC</Link>
             </li>
             <li>
-              <Link to="/committee/3">DISEC</Link>
+              <Link to="/committee/3">AIPPM</Link>
             </li>
             <li>
-              <Link to="/committee/4">LokSabha</Link>
+              <Link to="/committee/4">UNGA-DISEC</Link>
             </li>
             <li>
-              <Link to="/committee/5">G20</Link>
+              <Link to="/committee/5">International Press</Link>
+            </li>
+            <li>
+              <Link to="/committee/6">World Bank</Link>
+            </li>
+            <li>
+              <Link to="/committee/7">UN CSW</Link>
             </li>
           </ul>
         </li>
