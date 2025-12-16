@@ -39,7 +39,7 @@ const App = () => {
     fetchData();
   }, [dispatch]);
 
-  if (0) {
+  if (1) {
     return (
       <>
         <div>

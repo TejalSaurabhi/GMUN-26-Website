@@ -1,104 +1,27 @@
-.preloader {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-size: 400% 400%;
-    animation: gradientShift 6s ease infinite;
-    overflow: hidden;
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000; /* Dark background looks premium */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
-@keyframes gradientShift {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
+.loader-text {
+  display: flex;
+  font-family: 'Arial', sans-serif; /* Use your brand font here */
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ffffff;
+  overflow: hidden; /* Ensures text doesn't spill out */
 }
 
-.logo1 {
-    position: relative;
-    width: 20vw;
-    height: 20vw;
-    transform-style: preserve-3d;
-    animation: rotate 2.35s linear infinite;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #F3EDE3;
-    font-weight: bold;
-    background: linear-gradient(135deg, #1F1529 55%, #574A73 100%);
-    border-radius: 50%;
-    z-index: 10;
-    box-shadow: 0 0 30px 15px rgba(182, 147, 84, 0.8),
-        0 0 60px 30px rgba(182, 147, 84, 0.5);
-    cursor: pointer;
+/* Adds a little space between words if you have spaces */
+.loader-text span {
+    display: inline-block;
 }
 
-.front,
-.back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    backface-visibility: hidden;
-    border-radius: 50%;
-}
-
-.front {
-    top: 2%;
-    right: 1%;
-    background-image: url('../images/GMUN Gold.png');
-}
-
-.back {
-    background-image: url('../images/4thBackLogo.webp');
-    transform: rotateY(180deg);
-}
-
-@keyframes rotate {
-    0% {
-        transform: rotateY(0deg);
-    }
-
-    100% {
-        transform: rotateY(360deg);
-    }
-}
-
-@media (max-width: 768px) {
-    .logo1 {
-        width: 30vw;
-        height: 30vw;
-    }
-
-    .front,
-    .back {
-        background-position: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .logo1 {
-        width: 40vw;
-        height: 40vw;
-
-    }
-
-    .preloader {
-        transform: translateY(-80px);
-    }
-
-    .front,
-    .back {
-        background-position: center;
-    }
-}
