@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap");
 
 :root {
   /* Accent colors - gently aligned with Hero's brownish golds */
-  --gm-gold: #B38C6A;           /* match Hero accent-gold */
-  --gm-gold-bright: #e8c9a0;    /* match Hero accent-gold-bright */
-  --gm-gold-light: #d4b08c;     /* match Hero accent-gold-light */
-  --gm-primary: #B38C6A;        /* primary action color uses Hero gold */
+  --gm-gold: #b38c6a; /* match Hero accent-gold */
+  --gm-gold-bright: #e8c9a0; /* match Hero accent-gold-bright */
+  --gm-gold-light: #d4b08c; /* match Hero accent-gold-light */
+  --gm-primary: #b38c6a; /* primary action color uses Hero gold */
 
   /* Dark theme backgrounds */
   --gm-bg: #071022; /* Deep navy page background */
@@ -13,7 +13,12 @@
 
   /* Text colors adapted for dark theme */
   --gm-maroon: #fefdf8; /* Updated cream to match HowToMUN */
-  --gm-teal: rgba(243, 243, 243, 0.86); /* Updated to match HowToMUN text muted */
+  --gm-teal: rgba(
+    243,
+    243,
+    243,
+    0.86
+  ); /* Updated to match HowToMUN text muted */
 
   /* Layout */
   --header-height: 12px;
@@ -23,14 +28,15 @@
   --gm-maroon-rgb: 254, 253, 248;
   --gm-gold-rgb: 179, 140, 106;
   /* extra utility variables for variants */
-  --gm-gold-dark: #6a5038;             /* deeper brown from Hero gradient */
+  --gm-gold-dark: #6a5038; /* deeper brown from Hero gradient */
   --gm-gold-glow: rgba(179, 140, 106, 0.4); /* glow matching Hero gold-glow */
   --gm-on-dark: #ffffff; /* light-on-dark text fallback for highlights */
   --gm-on-gold: #000; /* text color used when on gold backgrounds */
-  
+
   /* Font stack matching HowToMUN */
-  --gm-font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --gm-font-heading: 'Playfair Display', Georgia, serif;
+  --gm-font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --gm-font-heading: "Playfair Display", Georgia, serif;
 }
 
 /* layout safety */
@@ -67,7 +73,7 @@ section.mb-8::before,
 
 /* GM card baseline - Updated to match HowToMUN card style */
 .gm-card {
-  background: rgba(0, 0, 0, 0.40);
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(12px);
   border-radius: 1.4rem;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -434,15 +440,21 @@ section.mb-8::before,
   }
   .container-content {
     padding-top: 8px;
-    padding-bottom: calc(120px + env(safe-area-inset-bottom)); /* space for announcement */
+    padding-bottom: calc(
+      120px + env(safe-area-inset-bottom)
+    ); /* space for announcement */
   }
   .gm-modal {
     padding: 12px;
   }
   /* tighten up very small screens */
   @media (max-width: 360px) {
-    .gm-title { font-size: 2rem; }
-    .heading { font-size: 40px; }
+    .gm-title {
+      font-size: 2rem;
+    }
+    .heading {
+      font-size: 40px;
+    }
   }
 }
 

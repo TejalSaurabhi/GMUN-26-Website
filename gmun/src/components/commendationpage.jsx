@@ -190,7 +190,6 @@ export default function Commendations({
   entries = [],
   className = "w-full max-w-6xl mx-auto mt-32 px-4",
 }) {
-  // No modal: all content will be displayed inside the card itself.
   const sample = [
     {
       id: "c1",
@@ -257,7 +256,6 @@ export default function Commendations({
     };
   }, []);
 
-  // No sticky logic; cards are independent
 
   const containerClass = isMobile ? "w-full max-w-6xl mx-auto px-4" : className;
 
@@ -292,7 +290,11 @@ export default function Commendations({
           <div
             className="text-4xl font-bold gm-title"
             style={{
-              color: "var(--gm-gold)",
+              background:
+                "radial-gradient(ellipse at 50% 15%, #f5ebe0 0%, #eedccc 10%, #e8c9a0 22%, #d4b08c 38%, #b38c6a 55%, #96704d 75%, #6a5038 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
               marginTop: 8,
               fontSize: isMobile ? "1.4rem" : undefined,
             }}
@@ -318,7 +320,7 @@ export default function Commendations({
               : {
                   minHeight: "100vh",
                   zIndex: 10,
-                  top: "-53.5vh",
+                  top: "-40vh",
                   position: "relative",
                 }
           }

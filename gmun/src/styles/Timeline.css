@@ -29,7 +29,19 @@
   font-family: var(--tl-heading-font);
   font-size: clamp(2.8rem, 5vw, 3.8rem);
   font-weight: 800;
-  color: var(--tl-gold-light);
+  background: radial-gradient(
+    ellipse at 50% 15%,
+    #f5ebe0 0%,
+    #eedccc 10%,
+    #e8c9a0 22%,
+    #d4b08c 38%,
+    #b38c6a 55%,
+    #96704d 75%,
+    #6a5038 100%
+  );
+  -webkit-text-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   letter-spacing: 0.035em;
   padding-bottom: 18px;
   text-shadow: 0 0 18px rgba(0, 0, 0, 0.65);

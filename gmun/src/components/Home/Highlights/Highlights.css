@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap");
 
 .about-highlights-wrapper {
   width: 100%;
@@ -10,7 +10,8 @@
   gap: 3.5rem;
   position: relative;
   /* Match HowToMUN font */
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
   color: #fefdf8;
 }
 
@@ -27,7 +28,7 @@
 }
 
 .main-heading {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: "Playfair Display", Georgia, serif;
   font-size: clamp(2.8rem, 5vw, 3.8rem);
   font-weight: 800;
   text-align: center;
@@ -43,14 +44,13 @@
     #eedccc 10%,
     #e8c9a0 22%,
     #d4b08c 38%,
-    #B38C6A 55%,
+    #b38c6a 55%,
     #96704d 75%,
     #6a5038 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
 }
 
 .content-wrapper {
@@ -70,11 +70,12 @@
   padding: 2rem;
   border-radius: 1.4rem;
   border: 1px solid rgba(184, 155, 94, 0.6);
-  background: rgba(0, 0, 0, 0.40);
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(12px);
   position: relative;
   text-align: justify;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
 }
 
 /* Gold accent line on left */
@@ -104,7 +105,7 @@
   border-radius: 1.4rem;
   transition: all 0.3s ease;
   text-align: center;
-  background: rgba(0, 0, 0, 0.40);
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(12px);
   cursor: pointer;
 }
@@ -145,7 +146,7 @@
   color: #ffe9a3;
   margin-bottom: 0.25rem;
   text-shadow: 0 0 25px rgba(255, 215, 0, 0.35);
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: "Playfair Display", Georgia, serif;
 }
 
 .highlight-adjective {
@@ -153,7 +154,8 @@
   color: rgba(243, 243, 243, 0.86);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
 }
 
 /* Responsive adjustments */
@@ -161,20 +163,20 @@
   .about-highlights-wrapper {
     padding: 4rem 1.25rem 3rem;
   }
-  
+
   .about-paragraph {
     font-size: 0.95rem;
     padding: 1.5rem;
   }
-  
+
   .highlights-container {
     gap: 1rem;
   }
-  
+
   .highlights {
     padding: 1.25rem 1rem;
   }
-  
+
   .higlight {
     font-size: 1.8rem;
   }

@@ -43,7 +43,19 @@
   margin-bottom: 0.75rem;
   padding-top: 1rem;
 
-  color: #d9c1a0; /* softened gold */
+  background: radial-gradient(
+    ellipse at 50% 15%,
+    #f5ebe0 0%,
+    #eedccc 10%,
+    #e8c9a0 22%,
+    #d4b08c 38%,
+    #b38c6a 55%,
+    #96704d 75%,
+    #6a5038 100%
+  );
+  -webkit-text-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-shadow: 0 0 18px rgba(0, 0, 0, 0.65);
 }
 

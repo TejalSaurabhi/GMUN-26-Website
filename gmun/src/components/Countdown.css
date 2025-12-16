@@ -181,7 +181,7 @@
 /* === Compact sticker variant (used in announcement toggle) === */
 .countdown-sticker-shell {
   transform: scale(0.5);
-  transform-origin: bottom right;
+  transform-origin: bottom left;
 }
 
 .countdown-sticker-shell .countdown-outer {
