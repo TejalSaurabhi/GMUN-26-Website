@@ -85,11 +85,27 @@ const Navbar = () => {
             <span className={`roll-text ${isActive('/committee') ? 'active' : ''}`}>Committees</span>
             
             <ul className="dropdown-panel">
-              <li><Link to="/committee/1" onClick={handleLinkClick}>UNSC</Link></li>
-              <li><Link to="/committee/2" onClick={handleLinkClick}>UNHRC</Link></li>
-              <li><Link to="/committee/3" onClick={handleLinkClick}>DISEC</Link></li>
-              <li><Link to="/committee/4" onClick={handleLinkClick}>LokSabha</Link></li>
-              <li><Link to="/committee/5" onClick={handleLinkClick}>G20</Link></li>
+            <li>
+              <Link to="/committee/1" onClick={handleLinkClick}>UNSC</Link>
+            </li>
+            <li>
+              <Link to="/committee/2" onClick={handleLinkClick}>UNHRC</Link>
+            </li>
+            <li>
+              <Link to="/committee/3" onClick={handleLinkClick}>AIPPM</Link>
+            </li>
+            <li>
+              <Link to="/committee/4" onClick={handleLinkClick}>DISEC</Link>
+            </li>
+            <li>
+              <Link to="/committee/5" onClick={handleLinkClick}>International Press</Link>
+            </li>
+            <li>
+              <Link to="/committee/6" onClick={handleLinkClick}>World Bank</Link>
+            </li>
+            <li>
+              <Link to="/committee/7" onClick={handleLinkClick}>UN CSW</Link>
+            </li>
             </ul>
           </li>
 
