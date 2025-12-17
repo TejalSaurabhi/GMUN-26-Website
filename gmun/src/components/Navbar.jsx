@@ -58,9 +58,8 @@ const Navbar = () => {
         {/* Links */}
         <ul className={`nav-links ${isMobileMenuOpen ? "active" : ""}`}>
           <li><Link to="/" className={`roll-text ${isActive('/') ? 'active' : ''}`} onClick={handleLinkClick}>Home</Link></li>
-          <li><Link to="/sec" className={`roll-text ${isActive('/sec') ? 'active' : ''}`} onClick={handleLinkClick}>Secretariat</Link></li>
           <li><Link to="/how-to-mun" className={`roll-text ${isActive('/how-to-mun') ? 'active' : ''}`} onClick={handleLinkClick}>How to MUN</Link></li>
-          
+
           {/* Dropdown for Committees */}
           <li className={`dropdown-trigger ${isDropdownOpen ? 'open' : ''} ${isActive('/committee') ? 'active' : ''}`} onClick={toggleDropdown}>
             <span className={`roll-text ${isActive('/committee') ? 'active' : ''}`}>Committees</span>
@@ -91,8 +90,9 @@ const Navbar = () => {
           </li>
 
           <li><Link to="/FAQs" className={`roll-text ${isActive('/FAQs') ? 'active' : ''}`} onClick={handleLinkClick}>FAQs</Link></li>
-          <li><Link to="/AboutUs" className={`roll-text ${isActive('/AboutUs') ? 'active' : ''}`} onClick={handleLinkClick}>About</Link></li>
           <li><Link to="/gallery" className={`roll-text ${isActive('/gallery') ? 'active' : ''}`} onClick={handleLinkClick}>Gallery</Link></li>
+          <li><Link to="/sec" className={`roll-text ${isActive('/sec') ? 'active' : ''}`} onClick={handleLinkClick}>Secretariat</Link></li>
+          <li><Link to="/AboutUs" className={`roll-text ${isActive('/AboutUs') ? 'active' : ''}`} onClick={handleLinkClick}>About</Link></li>
           <li><Link to="/Sponsors" className={`roll-text ${isActive('/Sponsors') ? 'active' : ''}`} onClick={handleLinkClick}>Sponsors</Link></li>
 
           {/* Auth Button - direct registration link from Hero (offline) */}

@@ -1,6 +1,7 @@
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import React, { useEffect, useRef, useState, lazy, Suspense } from "react";
 import styles from "./sec.module.css";
+import StarsBackground from "./Home/StarsBackground.jsx";
 
 // Lazy-loaded icons
 const FaFacebookF = lazy(() =>
@@ -311,6 +312,7 @@ const Sec = () => {
 
   return (
     <div className={styles.gallery}>
+      <StarsBackground />
       <div className={styles.mainSection} ref={mainSectionRef}>
         <header className={styles.teamHeader}>
           <div

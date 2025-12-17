@@ -95,7 +95,7 @@ export default function FAQ() {
           assistance with your queries.
         </p>
         <a href="mailto:secretariat@iitbhumun.com" className="faq-contact-btn">
-          secretariat@iitkgpmun.com
+        cq.iitkharagpur@gmail.com
         </a>
       </div>
     </div>
