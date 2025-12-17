@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import NavBar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -8,7 +8,6 @@ import { BASE_URL } from "./constants.js";
 import { useDispatch } from "react-redux";
 import { login } from "./store/authSlice.js";
 import axios from "axios";
-import { useState } from "react";
 import { logout } from "./store/authSlice.js";
 import Preloader from "./components/preloader.jsx";
 import { ToastContainer } from "react-toastify";
@@ -16,6 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
+  const [showPreloader, setShowPreloader] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,12 +39,16 @@ const App = () => {
     fetchData();
   }, [dispatch]);
 
-  if (1) {
+  // Let the preloader always play fully, independent of API latency
+  useEffect(() => {
+    const timer = setTimeout(() => setShowPreloader(false), 7000); // play full animation (~4s)
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (showPreloader) {
     return (
       <>
-        <div>
-          <Preloader />
-        </div>
+        <Preloader />
       </>
     );
   } else {

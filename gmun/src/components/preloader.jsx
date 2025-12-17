@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { animate, delay, easeIn, motion } from "framer-motion";
 import { VscDebugBreakpointUnsupported } from "react-icons/vsc";
+import StarsBackground from "./Home/StarsBackground";
 
 const Preloader = () => {
   const [phase, setPhase] = useState(0);
@@ -59,10 +60,12 @@ const writingVariants = {
 
   return (
     <div style={styles.container}>
+      <StarsBackground />
       <div style={styles.contentWrapper}>
         
         {/* 1. THE LOGO */}
         <motion.div
+          initial="initial"
           animate={phase === 0 ? "initial" : phase === 1 ? "scaled" : "moved"}
           variants={logoVariants}
         >
@@ -140,8 +143,17 @@ const writingVariants = {
 
 const styles = {
   container: {
-    position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh",
-    backgroundColor: "#111", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 9999,
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100vw",
+    height: "100vh",
+    background: "radial-gradient(circle at bottom, #043132ff, #000)", // match stars bg
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 9999,
+    overflow: "hidden",
   },
   contentWrapper: {
     display: "flex", alignItems: "center", justifyContent: "center", position: "relative", width: "100%"
