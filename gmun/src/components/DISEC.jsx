@@ -80,7 +80,9 @@ const DISEC = ({mode}) => {
           {
             name: "Swapnaneel Dutta",
             role: "Co-Chair",
-            image: "/team-images/Executive Board Images/Swapnaneel pic.jpg",
+            image: "/team-images/Executive Board Images/Swapnaneel pic.jpeg",
+            bio: "Swapnaneel is currently a third year student, pursuing his undergrad at the department of international relations, Jadavpur University. Having started his MUN journey back in 2021, Swapnaneel has actively participated in 55+ conferences, earning multiple accreditations from various UN agencies, notably the UNDP and ILO, through collaborations on diverse projects and training initiatives. He is also one of the very few individuals to have chaired across 5 distinct IITs, and multiple other national and internationally reputed conferences.\n\nHis finesse lies in his understanding of International Law, Conflict Resolution Oriented studies and Transcontinental Political Entrenchment. With his strong academic foundation and extensive experience, he looks forward to engaging with young minds through the means of quality research and a healthy discourse at GMUN 2026."
+
           },
           {
             name: "Soumodip Adhikary",
