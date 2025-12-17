@@ -41,7 +41,7 @@
   font-weight: 800;
   letter-spacing: 0.035em;
   margin-bottom: 0.75rem;
-  padding-top: 1rem;
+  padding-top: 5rem;
 
   background: radial-gradient(
     ellipse at 50% 15%,
@@ -67,7 +67,7 @@
   font-weight: 400;
   letter-spacing: 0.03em;
   color: rgba(243, 243, 243, 0.86);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
