@@ -25,7 +25,6 @@ import VerifyEmail from "./pages/Authorization/VerifyEmail.jsx";
 import { Toaster } from "react-hot-toast";
 import StarsBackground from "./components/Home/StarsBackground.jsx";
 import FAQ from "./pages/FAQ";
-import HowToMUN from "./pages/howToMun.jsx";
 
 const router = createBrowserRouter([
   {
@@ -120,10 +119,6 @@ const router = createBrowserRouter([
       {
         path: "/sec",
         element: <Sec />,
-      },
-      {
-        path: "/how-to-mun",
-        element: <HowToMUN />,
       },
     ],
   },

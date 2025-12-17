@@ -5,41 +5,36 @@
   display: block;
   width: 100%;
   max-width: 800px;
-  margin: 30px auto 0 auto;
+  margin: 0px auto;
+  margin-top:30px;
 }
 
 .bg-guide-card {
-  position: relative;
-  background: rgba(10, 25, 30, 0.80) !important;
-  background-image: none !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 2px solid rgba(182, 147, 84, 0.9) !important;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
-  border-radius: 22px;
-  padding: 45px 32px;
+  border: 1px solid rgba(182, 147, 84, 0.6);
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 1.4rem;
+  backdrop-filter: blur(12px);
   text-align: center;
-  transition: all 0.4s ease;
-  overflow: hidden;
+  padding: 45px 32px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .bg-guide-card::before {
   content: "";
   position: absolute;
-  inset: 10px;
-  border-radius: 18px;
-  border: 1px solid rgba(182, 147, 84, 0.4);
+  inset: 8px;
+  border-radius: 1.1rem;
+  border: 1px solid rgba(182, 147, 84, 0.25);
   pointer-events: none;
 }
 
-/* Hover Effects */
 .bg-guide-card:hover {
-  transform: translateY(-5px);
-  border-color: #d2aa5b !important;
-  box-shadow: 0 12px 30px rgba(182, 147, 84, 0.25) !important;
+  transform: translateY(-3px);
+  border-color: rgba(216, 184, 119, 0.85);
+  box-shadow: 0 0 18px rgba(243, 212, 138, 0.4);
 }
 
-/* Text Styling */
 .bg-guide-text {
   color: #f3ede3;
   font-family: "Montserrat", sans-serif;
@@ -49,7 +44,6 @@
   text-transform: uppercase;
   margin: 0;
   position: relative;
-  transition: all 0.3s ease;
 }
 
 .bg-guide-card:hover .bg-guide-text {
@@ -57,12 +51,11 @@
   text-shadow: 0 0 10px rgba(182, 147, 84, 0.25);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .bg-guide-card {
     padding: 35px 24px;
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right:10px;
   }
   .bg-guide-text {
     font-size: 1rem;
