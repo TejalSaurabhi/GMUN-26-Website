@@ -75,7 +75,7 @@ const UNHRC2 = ({mode}) => {
           {
             name: "Arghyadip Pal",
             role: "Co-Chairperson",
-            image: "/team-images/Executive Board Images/Arghyadip.JPG",
+            image: "/team-images/Executive Board Images/Arghyadip.jpg",
             bio: "Meet Arghyadip Pal, a third year undergrad from IIT Kharagpur. With an experience of over 50 conferences under his belt as a delegate and chair across all major circuits of the country, his MUN game is stronger than his morning coffee creations. An avid bibliophile and a global policy enthusiast, he firmly believes in the power of youth in bringing global order and creating impact. \n\nBeyond MUNs, his experience of working with the Government of India and multiple nationally recognised institutions and NGOs towards the cause of sustainable social and humanitarian development allows him to bring a realistic perspective into the committee. \n\nIf he had written a self help book, it would be “Surviving questionable side quests: What not to do”"
           },
         ]}
