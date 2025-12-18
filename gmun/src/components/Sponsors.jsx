@@ -15,13 +15,13 @@ const previousSponsors = [
     id: 2,
     name: 'vehere',
     logo: '/gallery/sponsors/sponsor1.webp',
-    description: 'Co-Event Sponsor',
+    description: 'Co-Event Partner',
   },
   {
     id: 3,
     name: 'iQuanta',
     logo: '/gallery/sponsors/iQuanta.webp',
-    description: 'Education Sponsor',
+    description: 'Education Partner',
   },
   {
     id: 4,
@@ -39,7 +39,7 @@ const previousSponsors = [
     id: 6,
     name: 'Unstop',
     logo: '/gallery/sponsors/unstopng.webp',
-    description: 'Event Sponsor',
+    description: 'Event Partner',
   },
   {
     id: 7,
@@ -54,12 +54,6 @@ const previousSponsors = [
     description: 'Previous Association',
   },
   // Moved recent sponsors to previous section
-  {
-    id: 9,
-    name: 'Adda52',
-    logo: '/gallery/sponsors/TITLE.webp',
-    description: 'Title Gaming Partner',
-  },
   {
     id: 10,
     name: 'IDP Education',
@@ -126,7 +120,7 @@ const Sponsors = () => {
       {/* Header */}
       <div className="sponsors-header">
         <p className="sponsors-badge">GMUN 4.0</p>
-        <h1 className="sponsors-title">Our Sponsors</h1>
+        <h1 className="sponsors-title">Our Partners</h1>
         <p className="sponsors-subtitle">
           We are grateful to our partners who make GMUN possible.
         </p>
@@ -134,13 +128,13 @@ const Sponsors = () => {
 
       {/* Current Sponsors Section */}
       <div className="sponsors-section">
-        <h2 className="sponsors-section-title">Current Sponsors</h2>
+        <h2 className="sponsors-section-title">Current Partners</h2>
         <div className="sponsor-list coming-soon">Coming Soon</div>
       </div>
 
       {/* Previous Sponsors Section */}
       <div className="sponsors-section">
-        <h2 className="sponsors-section-title">Previous Sponsors</h2>
+        <h2 className="sponsors-section-title">Previous Partner</h2>
         <div className="sponsor-list">
           {previousSponsors.map((sponsor) => (
             <Sponsor
