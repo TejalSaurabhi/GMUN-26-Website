@@ -1,51 +1,59 @@
 // src/teamData.js
 const teamMembers = [
   {
-        name: "ISHITA MUTNEJA",
+        name: "SOURAV UPADHYAY",
         role: "Secretary General",
-        image: "/team-images/Ishita.jpeg",
-        facebook: "https://www.facebook.com/profile.php?id=100086923635381",
-        linkedin: "https://www.linkedin.com/in/ishita-mutneja03/",
-        instagram: "https://www.instagram.com/ishitamutneja/"
+        image: "/team-images/Sourav.webp",
+        facebook: "https://www.facebook.com/share/1BeZb5hHwL/",
+        linkedin: "https://www.linkedin.com/in/sourav-upadhyay-585ba5232/",
+        instagram: "https://www.instagram.com/sourav._upadhyay/"
       },
       {
-        name: "ADITYA AGARWAL",
+        name: "ARYA DUBEY",
         role: "Under Secretary General Public Relations",
-        image: "/team-images/Aditya.jpg",
-        facebook: "https://www.facebook.com/profile.php?id=100088521496290",
-        linkedin: "https://www.linkedin.com/in/aditya-agarwal-407558256/",
-        instagram: "https://www.instagram.com/_adityagarwal_10/"
+        image: "/team-images/Arya.webp",
+        facebook: "https://www.facebook.com/share/1GzdAJtkvP/",
+        linkedin: "https://www.linkedin.com/in/arya-dubey-5a4181290/",
+        instagram: "https://www.instagram.com/ayra_yebud/"
       },
       {
-        name: "SUJAY VIVEK",
+        name: "TEJAL SAURABHI",
         role: "Under Secretary General Tech",
-        image: "/team-images/Sujay.png",
-        facebook: "https://www.facebook.com/profile.php?id=100087475424997",
-        linkedin: "https://www.linkedin.com/in/sujayvivek/",
-        instagram: "https://www.instagram.com/sujay_v1029/"
+        image: "/team-images/Tejal.webp",
+        facebook: "https://www.facebook.com/share/1RxjVoGwqy/",
+        linkedin: "https://www.linkedin.com/in/tejal-saurabhi-1a96b7291/",
+        instagram: "https://www.instagram.com/tejalsaurabhi/"
       },
       {
-        name: "UDAY ARNAV THAKUR",
+        name: "SRITOMA NANDAN",
         role: "Under Secretary General Design",
-        image: "/team-images/Uday2.jpeg",
-        facebook: "https://www.facebook.com/profile.php?id=100087750030750",
-        linkedin: "https://www.linkedin.com/in/uday-arnav-thakur-b3a809259/",
-        instagram: "https://www.instagram.com/udayy___/"
+        image: "/team-images/Sritoma.webp",
+        facebook: "https://www.facebook.com/share/1aUDEDZbLd/",
+        linkedin: "https://www.linkedin.com/in/sritoma-nandan-02637a280/",
+        instagram: "https://www.instagram.com/sritoma_nandan/"
       },
       {
-        name: "SUHANI GUPTA",
+        name: "DIVYANSH JAIN",
         role: "Under Secretary General Events",
-        image: "/team-images/Suhani.jpg",
-        facebook: "https://www.facebook.com/profile.php?id=100087490874170",
-        linkedin: "https://www.linkedin.com/in/suhani-gupta-95956a251/",
-        instagram: "https://www.instagram.com/__suhaniigupta__/"
+        image: "/team-images/Divyansh_Jain.webp",
+        facebook: "https://www.facebook.com/share/1ByRsTaYEE/",
+        linkedin: "https://www.linkedin.com/in/divyansh-jain-iitkgp/",
+        instagram: "https://www.instagram.com/divyanshjain610/"
       },
       {
-        name: "PRATHAM BHIMNANI",
+        name: "ATHARVA DESHMUKH",
         role: "Under Secretary General Sponsorship and Finance",
-        image: "/team-images/Pratham.jpeg",
-        facebook: "https://www.facebook.com/profile.php?id=100094205771993",
-        linkedin: "https://www.linkedin.com/in/pratham-bhimnani-36736725a/",
+        image: "/team-images/Atharva.webp",
+        facebook: "https://www.facebook.com/share/1CZp9JVcAm/",
+        linkedin: "https://www.linkedin.com/in/atharva-deshmukh-8a3894281/",
+        instagram: "https://www.instagram.com/atharva_26_4/"
+      },
+      {
+        name: "PRITVIK PREMKUMAR",
+        role: "Under Secretary General External and Outreach",
+        image: "/team-images/Pritvik.webp",
+        facebook: "https://www.facebook.com/share/17tWaoWGPq/",
+        linkedin: "https://www.linkedin.com/in/pritvik/",
         instagram: "https://www.instagram.com/prathahaham/"
       }
     ];
