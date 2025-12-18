@@ -94,13 +94,13 @@ function LegacySplit() {
       <div className="legacy-left">
         <h3>A Journey of Continuous Growth</h3>
         <p>
-        Communiqué is the official soft skills and personality development society of IIT Kharagpur. For over a decade, we have worked to bridge the gap between potential and performance by helping students build the skills that shape real outcomes: communication, leadership, confidence, and professional presence.
+        Communiqué is the official soft skills and personality development society of IIT Kharagpur. For over a decade, the society has worked to support students in developing core competencies such as communication, leadership, confidence, and professional conduct.
         </p>
         <p>
-        Our initiatives span structured training, speaker sessions, mentorship, and competitive platforms that push students to think critically, articulate clearly, and collaborate effectively. We focus not only on “speaking well”, but on building clarity of thought, persuasive writing, interpersonal intelligence, and the ability to lead in high-stakes environments.
+        Its initiatives include structured training programmes, speaker sessions, mentorship, and competitive platforms designed to help students improve critical thinking, articulation, and collaboration. The focus extends beyond public speaking to areas such as clarity of thought, persuasive writing, interpersonal skills, and leadership in professional and high-pressure settings.
         </p>
         <p>
-        Global Model United Nations (GMUN) is one such platform — a diplomatic simulation conference that translates soft skills into action through debate, negotiation, and policy-making. With GMUN entering its 4th edition, we continue our commitment to delivering a high-integrity, high-impact experience that helps students grow into confident communicators and responsible leaders.
+        Global Model United Nations (GMUN) is one such initiative. It is a diplomatic simulation conference that provides participants with practical exposure to debate, negotiation, and policy-making. As GMUN enters its fourth edition, the conference continues to offer a structured environment for students to apply and strengthen these skills.
         </p>
       </div>
 
