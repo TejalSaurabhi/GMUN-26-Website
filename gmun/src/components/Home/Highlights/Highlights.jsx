@@ -27,8 +27,8 @@ const highlights = [
   },
   {
     id: 4,
-    title: "Online & Offline",
-    number: ,
+    title: "Countries",
+    number: 50,
     superscript: "+",
     icon: <Globe size={30} />,
   },
