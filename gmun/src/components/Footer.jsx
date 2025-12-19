@@ -6,7 +6,7 @@ import cqLogo from "../images/CQ_Logo_White.webp";
 const QUICK_LINKS = [
   { name: "Home", path: "/" },
   { name: "About Us", path: "/AboutUs" },
-  { name: "Committees", path: "/committees/1" },
+  { name: "Committees", path: "/committee/1" },
   { name: "FAQs", path: "/faqs" },
   { name: "Gallery", path: "/gallery" },
 ];
