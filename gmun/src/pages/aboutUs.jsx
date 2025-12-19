@@ -92,7 +92,7 @@ function LegacySplit() {
   return (
     <section className="legacy-layout">
       <div className="legacy-left">
-        <h3>A Journey of Continuous Growth</h3>
+        <h3>Introduction</h3>
         <p>
         Communiqué is the official soft skills and personality development society of IIT Kharagpur. For over a decade, the society has worked to support students in developing core competencies such as communication, leadership, confidence, and professional conduct.
         </p>
@@ -120,7 +120,7 @@ function LegacySplit() {
         </div>
 
         <div className="legacy-card">
-          <h4>Global Impact</h4>
+          <h4>Impact</h4>
           <p>
             GMUN continues to evolve by addressing global issues and nurturing
             the next generation of leaders.
