@@ -72,7 +72,9 @@ const Reviews = () => {
       <div className="reviews-wrapper">
         {/* Heading */}
         <h1 className="reviews-heading">Voices from GMUN</h1>
-        <p className="reviews-subheading">Insights shared by delegates across committees and editions</p>
+        <p className="reviews-subheading">
+          Insights shared by delegates across committees and editions
+        </p>
 
         {/* Reviews Grid */}
         <div className="reviews-container-row">
@@ -82,13 +84,22 @@ const Reviews = () => {
                 key={review.id}
                 className={`review-card`}
                 onMouseEnter={() => setIsHover(review.id)}
+                onMouseDownCapture={() => {
+                  isHover !== -1 ? setIsHover(-1) : setIsHover(review.id);
+                }}
                 onMouseLeave={() => setIsHover(-1)}
               >
                 <StarRating rating={review.rating} />
                 <div className="review-writer">
                   <h3 className="name">{review.name}</h3>
                 </div>
-                <div className={`${isHover === review.id ? 'overflow-y-scroll' : 'overflow-hidden'} review-text`}>
+                <div
+                  className={`${
+                    isHover === review.id
+                      ? "overflow-y-scroll"
+                      : "overflow-hidden"
+                  } review-text`}
+                >
                   <p className={isHover !== review.id && "multiline-ellipsis"}>
                     {review.review}
                   </p>
@@ -100,13 +111,22 @@ const Reviews = () => {
                 key={review.id + "-dup"}
                 className={`review-card`}
                 onMouseEnter={() => setIsHover(review.id)}
+                onMouseDownCapture={() => {
+                  isHover !== -1 ? setIsHover(-1) : setIsHover(review.id);
+                }}
                 onMouseLeave={() => setIsHover(-1)}
               >
                 <StarRating rating={review.rating} />
                 <div className="review-writer">
                   <h3 className="name">{review.name}</h3>
                 </div>
-                <div className={`${isHover === review.id ? 'overflow-y-scroll' : 'overflow-hidden'} review-text`}>
+                <div
+                  className={`${
+                    isHover === review.id
+                      ? "overflow-y-scroll"
+                      : "overflow-hidden"
+                  } review-text`}
+                >
                   <p className={isHover !== review.id && "multiline-ellipsis"}>
                     {review.review}
                   </p>

@@ -160,6 +160,11 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .about-highlights-wrapper {
     padding: 4rem 1.25rem 3rem;
   }

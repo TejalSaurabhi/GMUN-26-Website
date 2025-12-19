@@ -135,7 +135,7 @@
   position: absolute;
   top: 45px;
   left: 50%;
-  /* transform: translateX(-50%) translateY(10px); */
+  transform: translateX(-50%);
   background: #141414;
   border: 1px solid var(--accent-gold);
   border-radius: 8px;
@@ -157,7 +157,6 @@
 .dropdown-trigger:hover .dropdown-panel {
   opacity: 1;
   visibility: visible;
-  /* transform: translateX(-50%) translateY(0); */
 }
 
 .dropdown-panel li {

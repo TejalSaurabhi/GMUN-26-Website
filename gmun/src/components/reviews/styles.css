@@ -214,3 +214,14 @@
     transform: translateX(-50%);
   }
 }
+
+@media (max-width: 768px) {
+  .review-card{
+    min-width: 0;
+    max-width: 95vw;
+  }
+
+  .review-card:focus .multiline-ellipsis {
+    display: inline-block;
+  }
+}

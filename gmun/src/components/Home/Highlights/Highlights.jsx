@@ -98,6 +98,14 @@ const Highlights = () => {
     };
   });
 
+  const [device, setDevice] = useState("PC");
+
+  useEffect(() => {
+    if (window.innerWidth <= 768) {
+      setDevice("MOBILE");
+    }
+  }, []);
+
   return (
     <div className="about-highlights-wrapper">
       <motion.h2
@@ -113,8 +121,14 @@ const Highlights = () => {
       <div className="content-wrapper">
         <motion.div
           className="about-paragraph bg-[rgb(13,44,49)]"
-          initial={{ x: -50, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
+          initial={
+            device === "PC"
+              ? { x: -50, opacity: 0 }
+              : { y: 50, opacity: 0, x: 0 }
+          }
+          whileInView={
+            device === "PC" ? { x: 0, opacity: 1 } : { y: 0, opacity: 1, x: 0 }
+          }
           viewport={{ once: true }}
           transition={{ duration: 0.75 }}
         >
@@ -136,8 +150,14 @@ const Highlights = () => {
 
         <motion.div
           className="highlights-container"
-          initial={{ x: 50, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
+          initial={
+            device === "PC"
+              ? { x: 50, opacity: 0 }
+              : { y: 50, opacity: 0, x: 0 }
+          }
+          whileInView={
+            device === "PC" ? { x: 0, opacity: 1 } : { y: 0, opacity: 1, x: 0 }
+          }
           viewport={{ once: true }}
           transition={{ duration: 0.75 }}
           ref={ref}
