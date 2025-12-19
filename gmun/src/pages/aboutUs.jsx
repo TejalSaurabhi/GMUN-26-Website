@@ -342,12 +342,11 @@ function EvalueBook() {
 
         {/* Content */}
         <div className="evalue-content">
-          <h3>Evalue</h3>
+          <h3>Evalué</h3>
           <p className="evalue-tagline">The Art of a Perfect Guess</p>
 
           <p className="evalue-description">
-            <strong>Evalue</strong> is a curated publication by Communiqué, IIT Kharagpur,
-            A focused guide to mastering guesstimates for consulting interviews. Evalué features 75 handpicked problems across industries, each solved with clear structure and logical reasoning. Designed for aspirants across IITs, IIMs, and top B-schools, it helps sharpen thinking, handle ambiguity, and build confidence for the toughest interview rounds.
+            <strong>Evalué</strong> is a focused guide to mastering guesstimates for consulting interviews. It features 75 handpicked problems across industries, each solved with clear structure and logical reasoning. Designed for aspirants across IITs, IIMs, and top B-schools, it helps sharpen thinking, handle ambiguity, and build confidence for the toughest interview rounds.
           </p>
 
           {/* CTA */}
@@ -439,8 +438,7 @@ function OurEvents() {
     <section className="about-events">
       <h2 className="about-section-title">OUR EVENTS</h2>
       <p className="about-section-subtitle">
-        Explore our flagship events that help students build confidence,
-        practical skills, and career readiness.
+        Explore our major events that help students in their career readiness.
       </p>
 
       <div className="oe-grid">
