@@ -1,16 +1,17 @@
-import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
-import React, { useEffect, useRef, useState, lazy, Suspense } from 'react';
-import styles from './sec.module.css';
+import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
+import React, { useEffect, useRef, useState, lazy, Suspense } from "react";
+import styles from "./sec.module.css";
+import StarsBackground from "./Home/StarsBackground.jsx";
 
 // Lazy-loaded icons
 const FaFacebookF = lazy(() =>
-  import('react-icons/fa').then(module => ({ default: module.FaFacebookF }))
+  import("react-icons/fa").then((module) => ({ default: module.FaFacebookF }))
 );
 const FaLinkedinIn = lazy(() =>
-  import('react-icons/fa').then(module => ({ default: module.FaLinkedinIn }))
+  import("react-icons/fa").then((module) => ({ default: module.FaLinkedinIn }))
 );
 const FaInstagram = lazy(() =>
-  import('react-icons/fa').then(module => ({ default: module.FaInstagram }))
+  import("react-icons/fa").then((module) => ({ default: module.FaInstagram }))
 );
 
 const MAX_ROTATION = 20;
@@ -23,7 +24,7 @@ const TeamCard3D = ({ member }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [socialsHovering, setSocialsHovering] = useState(false);
 
-  const handleMouseMove = e => {
+  const handleMouseMove = (e) => {
     if (!cardRef.current) return;
 
     const rect = cardRef.current.getBoundingClientRect();
@@ -63,24 +64,24 @@ const TeamCard3D = ({ member }) => {
   const handleSocialsLeave = () => {
     setSocialsHovering(false);
     setTimeout(() => {
-      if (cardRef.current && !cardRef.current.matches(':hover')) {
+      if (cardRef.current && !cardRef.current.matches(":hover")) {
         setIsHovering(false);
       }
     }, 100);
   };
 
   const cardStyle = {
-    '--rotX': `${rotation.x}deg`,
-    '--rotY': `${rotation.y}deg`,
-    '--shineX': `${shine.x}%`,
-    '--shineY': `${shine.y}%`,
-    '--imgScale': isHovering ? 1.08 : 1.0,
+    "--rotX": `${rotation.x}deg`,
+    "--rotY": `${rotation.y}deg`,
+    "--shineX": `${shine.x}%`,
+    "--shineY": `${shine.y}%`,
+    "--imgScale": isHovering ? 1.08 : 1.0,
   };
 
   return (
     <div
       ref={cardRef}
-      className={`${styles.teamCard} ${isHovering ? styles.isHovering : ''}`}
+      className={`${styles.teamCard} ${isHovering ? styles.isHovering : ""}`}
       style={cardStyle}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -104,17 +105,29 @@ const TeamCard3D = ({ member }) => {
             >
               <Suspense fallback={<span>...</span>}>
                 {member.facebook && (
-                  <a href={member.facebook} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={member.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <FaFacebookF />
                   </a>
                 )}
                 {member.linkedin && (
-                  <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <FaLinkedinIn />
                   </a>
                 )}
                 {member.instagram && (
-                  <a href={member.instagram} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={member.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <FaInstagram />
                   </a>
                 )}
@@ -134,14 +147,14 @@ const Sec = () => {
 
   const [teamData, setTeamData] = useState([]);
   const [secretariatData, setSecretariatData] = useState([]);
-  const [USGScrollState, setUSGScrollState] = useState('both');
-  const [secretariatScrollState, setSecretariatScrollState] = useState('both');
-  const [activeTab, setActiveTab] = useState('usg');
-  const [lineAnimationStage, setLineAnimationStage] = useState('none');
+  const [USGScrollState, setUSGScrollState] = useState("both");
+  const [secretariatScrollState, setSecretariatScrollState] = useState("both");
+  const [activeTab, setActiveTab] = useState("usg");
+  const [lineAnimationStage, setLineAnimationStage] = useState("none");
   const [isAnimating, setIsAnimating] = useState(false);
   const [showScrollToStart, setShowScrollToStart] = useState(false);
 
-  const handleTabClick = tabName => {
+  const handleTabClick = (tabName) => {
     if (activeTab === tabName) return;
 
     setIsAnimating(true);
@@ -151,8 +164,8 @@ const Sec = () => {
 
     if (mainSectionRef.current) {
       mainSectionRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
+        behavior: "smooth",
+        block: "center",
       });
     }
 
@@ -160,7 +173,7 @@ const Sec = () => {
       setLineAnimationStage(`${tabName}-end`);
       setTimeout(() => {
         setIsAnimating(false);
-        setLineAnimationStage('none');
+        setLineAnimationStage("none");
       }, 300);
     }, 300);
   };
@@ -168,17 +181,16 @@ const Sec = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const usg = await import('./teamData');
+        const usg = await import("./teamData");
         setTeamData(usg.default || []);
-        const secretariat = await import('./secretariat');
+        const secretariat = await import("./secretariat");
         setSecretariatData(secretariat.default || []);
       } catch (error) {
-        console.error('Failed to load data:', error);
+        console.error("Failed to load data:", error);
       }
     };
     loadData();
   }, []);
-
 
   const updateScrollState = (ref, setState) => {
     if (!ref.current) return;
@@ -186,24 +198,23 @@ const Sec = () => {
 
     // If there is nothing to scroll, hide arrows
     if (scrollWidth <= clientWidth + 5) {
-        setState('none');
-        return;
+      setState("none");
+      return;
     }
 
     // LEFT edge → disable LEFT arrow
-    if (scrollLeft <= 5) {
-        setState('start');
+    if (scrollLeft <= 100) {
+      setState("start");
     }
     // RIGHT edge → disable RIGHT arrow
-    else if (scrollLeft >= scrollWidth - clientWidth - 5) {
-        setState('end');
+    else if (scrollLeft >= scrollWidth - clientWidth - 100) {
+      setState("end");
     }
     // Middle → show both
     else {
-        setState('both');
+      setState("both");
     }
-};
-
+  };
 
   useEffect(() => {
     const u = USGScrollRef.current;
@@ -211,11 +222,11 @@ const Sec = () => {
     const handleU = () => updateScrollState(USGScrollRef, setUSGScrollState);
     const handleS = () =>
       updateScrollState(secretariatScrollRef, setSecretariatScrollState);
-    if (u) u.addEventListener('scroll', handleU);
-    if (s) s.addEventListener('scroll', handleS);
+    if (u) u.addEventListener("scroll", handleU);
+    if (s) s.addEventListener("scroll", handleS);
     return () => {
-      if (u) u.removeEventListener('scroll', handleU);
-      if (s) s.removeEventListener('scroll', handleS);
+      if (u) u.removeEventListener("scroll", handleU);
+      if (s) s.removeEventListener("scroll", handleS);
     };
   }, [teamData, secretariatData]);
 
@@ -226,19 +237,19 @@ const Sec = () => {
         setShowScrollToStart(rect.top < -100);
       }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const createScrollHandler = (ref, direction) => () => {
     if (ref.current)
-      ref.current.scrollBy({ left: 400 * direction, behavior: 'smooth' });
+      ref.current.scrollBy({ left: 400 * direction, behavior: "smooth" });
   };
 
   const handleScrollToStart = () => {
     const activeRef =
-      activeTab === 'usg' ? USGScrollRef.current : secretariatScrollRef.current;
-    if (activeRef) activeRef.scrollTo({ left: 0, behavior: 'smooth' });
+      activeTab === "usg" ? USGScrollRef.current : secretariatScrollRef.current;
+    if (activeRef) activeRef.scrollTo({ left: 0, behavior: "smooth" });
   };
 
   const renderCarousel = (
@@ -247,41 +258,66 @@ const Sec = () => {
     scrollLeftHandler,
     scrollRightHandler,
     scrollState
-  ) => (
-    <div className={`${styles.cardWrapper} ${styles[`shadow-${scrollState}`]}`}>
-      {scrollState !== 'none' && (
-        <div className={styles.horizontalNav}>
-          <button
-            onClick={scrollLeftHandler}
-            className={`${styles.arrowBtn} ${styles.left}`}
-            disabled={scrollState === 'start'}
-          >
-            <MdArrowBackIos />
-          </button>
-          <button
-            onClick={scrollRightHandler}
-            className={`${styles.arrowBtn} ${styles.right}`}
-            disabled={scrollState === 'end'}
-          >
-            <MdArrowForwardIos />
-          </button>
-        </div>
-      )}
-      <div ref={scrollRef} className={styles.cardRow}>
-        {data.map((member, index) => (
-          <TeamCard3D key={index} member={member} />
-        ))}
+  ) => {
+    const isMobile = window.innerWidth <= 768;
+    const nav = scrollState !== "none" && (
+      <div className={styles.horizontalNav}>
+        <button
+          onClick={scrollLeftHandler}
+          className={`${styles.arrowBtn} ${styles.left} ${isMobile ? 'pl-1' : 'pl-[0.3rem]'}`}
+          disabled={scrollState === "start"}
+        >
+          <MdArrowBackIos />
+        </button>
+        <button
+          onClick={scrollRightHandler}
+          className={`${styles.arrowBtn} ${styles.right}`}
+          disabled={scrollState === "end"}
+        >
+          <MdArrowForwardIos />
+        </button>
       </div>
-    </div>
-  );
+    );
+    if (isMobile) {
+      return (
+        <>
+          <div
+            className={`${styles.cardWrapper} ${
+              styles[`shadow-${scrollState}`]
+            }`}
+          >
+            <div ref={scrollRef} className={styles.cardRow}>
+              {data.map((member, index) => (
+                <TeamCard3D key={index} member={member} />
+              ))}
+            </div>
+          </div>
+          {nav && <div className={styles.mobileNavBelow}>{nav}</div>}
+        </>
+      );
+    }
+    return (
+      <div
+        className={`${styles.cardWrapper} ${styles[`shadow-${scrollState}`]}`}
+      >
+        <div ref={scrollRef} className={styles.cardRow}>
+          {data.map((member, index) => (
+            <TeamCard3D key={index} member={member} />
+          ))}
+        </div>
+        {nav}
+      </div>
+    );
+  };
 
   return (
     <div className={styles.gallery}>
+      <StarsBackground />
       <div className={styles.mainSection} ref={mainSectionRef}>
         <header className={styles.teamHeader}>
           <div
             className={`${styles.animationLine} ${
-              styles[lineAnimationStage] || ''
+              styles[lineAnimationStage] || ""
             }`}
           ></div>
           <div className={styles.headerContent}>
@@ -295,18 +331,18 @@ const Sec = () => {
         <div className={styles.tabContainer}>
           <button
             className={`${styles.tabButton} ${
-              activeTab === 'usg' ? styles.activeTab : ''
+              activeTab === "usg" ? styles.activeTab : ""
             }`}
-            onClick={() => handleTabClick('usg')}
+            onClick={() => handleTabClick("usg")}
             disabled={isAnimating}
           >
             Under Secretary Generals
           </button>
           <button
             className={`${styles.tabButton} ${
-              activeTab === 'secretariat' ? styles.activeTab : ''
+              activeTab === "secretariat" ? styles.activeTab : ""
             }`}
-            onClick={() => handleTabClick('secretariat')}
+            onClick={() => handleTabClick("secretariat")}
             disabled={isAnimating}
           >
             Secretariat
@@ -314,7 +350,7 @@ const Sec = () => {
         </div>
 
         <div className={styles.carouselSection}>
-          {activeTab === 'usg' &&
+          {activeTab === "usg" &&
             renderCarousel(
               teamData,
               USGScrollRef,
@@ -322,7 +358,7 @@ const Sec = () => {
               createScrollHandler(USGScrollRef, 1),
               USGScrollState
             )}
-          {activeTab === 'secretariat' &&
+          {activeTab === "secretariat" &&
             renderCarousel(
               secretariatData,
               secretariatScrollRef,
@@ -332,14 +368,6 @@ const Sec = () => {
             )}
         </div>
       </div>
-      <button
-        className={`${styles.scrollToStartBtn} ${
-          showScrollToStart ? styles.visible : ''
-        }`}
-        onClick={handleScrollToStart}
-      >
-        <MdArrowBackIos />
-      </button>
     </div>
   );
 };

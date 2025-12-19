@@ -40,7 +40,7 @@ export default function FAQ() {
     <div className="faq-page">
       <div className="faq-header">
         <h1>Frequently Asked Questions</h1>
-        <p>Find quick answers to the most common queries about GMUN 2025.</p>
+        <p>Find quick answers to the most common queries about GMUN 2026.</p>
       </div>
 
       <div className="faq-list">
@@ -95,7 +95,7 @@ export default function FAQ() {
           assistance with your queries.
         </p>
         <a href="mailto:secretariat@iitbhumun.com" className="faq-contact-btn">
-          secretariat@iitkgpmun.com
+        cq.iitkharagpur@gmail.com
         </a>
       </div>
     </div>

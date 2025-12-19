@@ -171,15 +171,19 @@ const WorldMap = ({ title }) => {
     };
   }, []);
 
-  // Clone title element and add in-view class if it's a React element with hover-underline
-  const renderTitle = () => {
-    if (React.isValidElement(title) && title.props?.className?.includes('hover-underline')) {
-      return React.cloneElement(title, {
-        className: `${title.props.className} ${titleInView ? 'in-view' : ''}`
-      });
-    }
-    return title;
+  // Recursively add in-view class to any element with hover-underline
+  const applyInViewToHoverUnderline = (node) => {
+    if (!React.isValidElement(node)) return node;
+    const className = node.props?.className || "";
+    const hasHoverUnderline = className.includes("hover-underline");
+    const children = React.Children.map(node.props.children, applyInViewToHoverUnderline);
+    return React.cloneElement(node, {
+      className: hasHoverUnderline && titleInView ? `${className} in-view` : className,
+      children,
+    });
   };
+
+  const renderTitle = () => applyInViewToHoverUnderline(title);
 
   return (
     <div id="World-Map">

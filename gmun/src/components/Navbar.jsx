@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../store/authSlice";
-import axios from "axios";
-import { BASE_URL } from "../constants";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import gmunlogo from "../images/GMUN Gold.png";
 import edition from "../images/4thBackLogo.webp";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
-  const authStatus = useSelector((state) => state.auth.status);
+  const authStatus = false; // frontend-only: no auth state
   const navigate = useNavigate();
   const location = useLocation();
-  const dispatch = useDispatch();
   
   // Helper to check if a path is active
   const isActive = (path) => {
@@ -48,18 +41,6 @@ const Navbar = () => {
     }
   };
 
-  const handlelogout = async () => {
-    try {
-      await axios.post(`${BASE_URL}/users/logout`, {}, { withCredentials: true });
-      toast.success("Logged out successfully");
-      dispatch(logout());
-      navigate("/");
-      closeMobileMenu();
-    } catch (error) {
-      toast.error("Logout failed");
-    }
-  };
-
   return (
     <header className={`navbar-container ${scrolled ? 'scrolled' : ''}`}>
       <nav className="glass-capsule">
@@ -77,34 +58,54 @@ const Navbar = () => {
         {/* Links */}
         <ul className={`nav-links ${isMobileMenuOpen ? "active" : ""}`}>
           <li><Link to="/" className={`roll-text ${isActive('/') ? 'active' : ''}`} onClick={handleLinkClick}>Home</Link></li>
-          <li><Link to="/sec" className={`roll-text ${isActive('/sec') ? 'active' : ''}`} onClick={handleLinkClick}>Secretariat</Link></li>
           <li><Link to="/how-to-mun" className={`roll-text ${isActive('/how-to-mun') ? 'active' : ''}`} onClick={handleLinkClick}>How to MUN</Link></li>
-          
+
           {/* Dropdown for Committees */}
           <li className={`dropdown-trigger ${isDropdownOpen ? 'open' : ''} ${isActive('/committee') ? 'active' : ''}`} onClick={toggleDropdown}>
             <span className={`roll-text ${isActive('/committee') ? 'active' : ''}`}>Committees</span>
             
             <ul className="dropdown-panel">
-              <li><Link to="/committee/1" onClick={handleLinkClick}>UNSC</Link></li>
-              <li><Link to="/committee/2" onClick={handleLinkClick}>UNHRC</Link></li>
-              <li><Link to="/committee/3" onClick={handleLinkClick}>DISEC</Link></li>
-              <li><Link to="/committee/4" onClick={handleLinkClick}>LokSabha</Link></li>
-              <li><Link to="/committee/5" onClick={handleLinkClick}>G20</Link></li>
+            <li>
+              <Link to="/committee/1" onClick={handleLinkClick}>UNSC</Link>
+            </li>
+            <li>
+              <Link to="/committee/2" onClick={handleLinkClick}>UNHRC</Link>
+            </li>
+            <li>
+              <Link to="/committee/3" onClick={handleLinkClick}>AIPPM</Link>
+            </li>
+            <li>
+              <Link to="/committee/4" onClick={handleLinkClick}>DISEC</Link>
+            </li>
+            <li>
+              <Link to="/committee/5" onClick={handleLinkClick}>International Press</Link>
+            </li>
+            <li>
+              <Link to="/committee/6" onClick={handleLinkClick}>World Bank</Link>
+            </li>
+            <li>
+              <Link to="/committee/7" onClick={handleLinkClick}>UN CSW</Link>
+            </li>
             </ul>
           </li>
 
           <li><Link to="/FAQs" className={`roll-text ${isActive('/FAQs') ? 'active' : ''}`} onClick={handleLinkClick}>FAQs</Link></li>
-          <li><Link to="/AboutUs" className={`roll-text ${isActive('/AboutUs') ? 'active' : ''}`} onClick={handleLinkClick}>About</Link></li>
           <li><Link to="/gallery" className={`roll-text ${isActive('/gallery') ? 'active' : ''}`} onClick={handleLinkClick}>Gallery</Link></li>
+          <li><Link to="/sec" className={`roll-text ${isActive('/sec') ? 'active' : ''}`} onClick={handleLinkClick}>Secretariat</Link></li>
+          <li><Link to="/AboutUs" className={`roll-text ${isActive('/AboutUs') ? 'active' : ''}`} onClick={handleLinkClick}>About</Link></li>
           <li><Link to="/Sponsors" className={`roll-text ${isActive('/Sponsors') ? 'active' : ''}`} onClick={handleLinkClick}>Sponsors</Link></li>
 
-          {/* Auth Button */}
+          {/* Auth Button - direct registration link from Hero (offline) */}
           <li className="auth-item">
-            {authStatus ? (
-              <button onClick={handlelogout} className="magnetic-btn">Logout</button>
-            ) : (
-              <Link to="/login" className="magnetic-btn" onClick={handleLinkClick}>Login</Link>
-            )}
+            <a
+              href="https://unstop.com/p/global-model-united-nations-2026-gmun-iit-kharagpur-1606090"
+              className="magnetic-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMobileMenu}
+            >
+              Register
+            </a>
           </li>
         </ul>
 

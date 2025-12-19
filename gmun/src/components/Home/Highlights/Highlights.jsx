@@ -28,7 +28,7 @@ const highlights = [
   {
     id: 4,
     title: "Countries",
-    number: 30,
+    number: 50,
     superscript: "+",
     icon: <Globe size={30} />,
   },

@@ -13,9 +13,10 @@
 
 .agenda-card {
   position: relative;
-  background: rgba(0, 0, 0, 0.45);        
-  border: 1px solid rgba(182, 147, 84, 0.6); 
-  backdrop-filter: blur(12px);               
+  background: rgba(10, 25, 30, 0.80);
+  box-shadow: 0 8px 25px rgba(0, 255, 255, .15);
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(182, 147, 84, 0.9);        
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   border-radius: 1.4rem;
   padding: 45px 50px;
@@ -61,18 +62,19 @@
 .agenda-card__title::after {
   content: "";
   position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%) scaleX(0);
-  width: 60%;
-  height: 2px;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
   background: linear-gradient(to right, #b69354, #e8d18c, #b69354);
   border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
   transition: transform 0.5s ease;
 }
 
 .agenda-card__title.in-view::after {
-  transform: translateX(-50%) scaleX(1);
+  transform: scaleX(1);
 }
 
 /* === Agenda Text === */
@@ -112,3 +114,4 @@
     font-size: 1rem;
   }
 }
+

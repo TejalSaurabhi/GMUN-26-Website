@@ -1,57 +1,7 @@
 import React from 'react';
 import './Sponsors.css';
 
-const currentSponsors = [
-  {
-    id: 1,
-    name: 'Adda52',
-    logo: '/gallery/sponsors/TITLE.webp',
-    description: 'Title Gaming Partner',
-  },
-  {
-    id: 2,
-    name: 'IDP Education',
-    logo: '/gallery/sponsors/IDP.webp',
-    description: 'Overseas Education Partner',
-    url: 'https://events.register.idp.com/registration/india/XVZW9OAYLIR',
-  },
-  {
-    id: 3,
-    name: 'Spykar',
-    logo: '/gallery/sponsors/Spykar.webp',
-    description: 'Style Partner',
-  },
-  {
-    id: 4,
-    name: 'Farmley',
-    logo: '/gallery/sponsors/Farmley.webp',
-    description: 'Snacking Partner',
-  },
-  {
-    id: 5,
-    name: 'Seed',
-    logo: '/gallery/sponsors/Seed.webp',
-    description: 'Event Partner',
-  },
-  {
-    id: 6,
-    name: 'Ease My Trip',
-    logo: '/gallery/sponsors/EMT.webp',
-    description: 'Travel Partner',
-  },
-  {
-    id: 7,
-    name: 'Lion Insurance Brokers',
-    logo: '/gallery/sponsors/LION.webp',
-    description: 'Insurance Partner',
-  },
-  {
-    id: 8,
-    name: 'Classmate ITC Ltd',
-    logo: '/gallery/sponsors/CLASSMATE.webp',
-    description: 'Stationery Partner',
-  },
-];
+const currentSponsors = [];
 
 
 const previousSponsors = [
@@ -103,6 +53,56 @@ const previousSponsors = [
     logo: '/gallery/sponsors/nomura.webp',
     description: 'Previous Association',
   },
+  // Moved recent sponsors to previous section
+  {
+    id: 9,
+    name: 'Adda52',
+    logo: '/gallery/sponsors/TITLE.webp',
+    description: 'Title Gaming Partner',
+  },
+  {
+    id: 10,
+    name: 'IDP Education',
+    logo: '/gallery/sponsors/IDP.webp',
+    description: 'Overseas Education Partner',
+    url: 'https://events.register.idp.com/registration/india/XVZW9OAYLIR',
+  },
+  {
+    id: 11,
+    name: 'Spykar',
+    logo: '/gallery/sponsors/Spykar.webp',
+    description: 'Style Partner',
+  },
+  {
+    id: 12,
+    name: 'Farmley',
+    logo: '/gallery/sponsors/Farmley.webp',
+    description: 'Snacking Partner',
+  },
+  {
+    id: 13,
+    name: 'Seed',
+    logo: '/gallery/sponsors/Seed.webp',
+    description: 'Event Partner',
+  },
+  {
+    id: 14,
+    name: 'Ease My Trip',
+    logo: '/gallery/sponsors/EMT.webp',
+    description: 'Travel Partner',
+  },
+  {
+    id: 15,
+    name: 'Lion Insurance Brokers',
+    logo: '/gallery/sponsors/LION.webp',
+    description: 'Insurance Partner',
+  },
+  {
+    id: 16,
+    name: 'Classmate ITC Ltd',
+    logo: '/gallery/sponsors/CLASSMATE.webp',
+    description: 'Stationery Partner',
+  },
 ];
 
 
@@ -135,17 +135,7 @@ const Sponsors = () => {
       {/* Current Sponsors Section */}
       <div className="sponsors-section">
         <h2 className="sponsors-section-title">Current Sponsors</h2>
-        <div className="sponsor-list">
-          {currentSponsors.map((sponsor) => (
-            <Sponsor
-              key={sponsor.id}
-              name={sponsor.name}
-              logo={sponsor.logo}
-              description={sponsor.description}
-              url={sponsor.url}
-            />
-          ))}
-        </div>
+        <div className="sponsor-list coming-soon">Coming Soon</div>
       </div>
 
       {/* Previous Sponsors Section */}

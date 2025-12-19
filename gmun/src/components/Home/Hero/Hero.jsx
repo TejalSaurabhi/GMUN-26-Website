@@ -44,23 +44,23 @@ const Hero = () => {
     <motion.div
       className="hero-wrapper"
       ref={heroRef}
-      initial={{ y: -20 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 1 }}
+      initial={{ opacity: 0, y: 20, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 1.1, ease: "easeOut" }}
     >
       <motion.p
         className="hero-badge"
-        initial={{ opacity: 0, y: -10 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        transition={{ duration: 0.8, delay: 0.25, ease: "easeOut" }}
       >
         Communiqué, IIT Kharagpur Presents
       </motion.p>
 
       <motion.h1
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2.5 }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.6, delay: 0.35, ease: "easeOut" }}
         className="hero-title"
       >
         <span className="hero-title-line">GLOBAL MODEL</span>
@@ -70,18 +70,18 @@ const Hero = () => {
 
       <motion.p
         className="hero-tagline"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.5 }}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.55, ease: "easeOut" }}
       >
         Where diplomacy meets innovation
       </motion.p>
 
       <motion.div
         className="hero-buttons-section"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.8 }}
+        transition={{ duration: 0.9, delay: 0.75, ease: "easeOut" }}
       >
         <span className="hero-register-label">Register as Delegate</span>
         <div className="hero-buttons-container">

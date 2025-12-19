@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
 import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
 import secretariat from "../components/secretariat.js";
+import StarsBackground from "../components/Home/StarsBackground.jsx";
 import "./Secretariat.css";
 
 const Secretariat = () => {
   return (
     <div className="secretariat-wrapper">
+      <StarsBackground />
       <div className="secretariat-container">
         {/* Header */}
         <motion.div

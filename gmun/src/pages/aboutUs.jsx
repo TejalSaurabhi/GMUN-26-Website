@@ -70,7 +70,7 @@ export default function AboutUs() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9 }}
         >
-          <img src="/group.jpg" alt="Communiqué Group" />
+          <img src="/images/group.webp" alt="Communiqué Group" />
         </motion.div>
 
         {/* ================= LEGACY ================= */}
@@ -94,16 +94,13 @@ function LegacySplit() {
       <div className="legacy-left">
         <h3>A Journey of Continuous Growth</h3>
         <p>
-          The journey of GMUN and the soft-skills society Communiqué at IIT
-          Kharagpur shares a common thread of ambition and excellence.
+        Communiqué is the official soft skills and personality development society of IIT Kharagpur. For over a decade, we have worked to bridge the gap between potential and performance by helping students build the skills that shape real outcomes: communication, leadership, confidence, and professional presence.
         </p>
         <p>
-         What began as a modest initiative in 2006 has evolved into one of India's premier national MUN conferences. GMUN has expanded yearly by tackling complex global issues and enhancing the delegate experience, drawing hundreds of aspiring diplomats from across the country.
+        Our initiatives span structured training, speaker sessions, mentorship, and competitive platforms that push students to think critically, articulate clearly, and collaborate effectively. We focus not only on “speaking well”, but on building clarity of thought, persuasive writing, interpersonal intelligence, and the ability to lead in high-stakes environments.
         </p>
         <p>
-          Today, as the flagship diplomatic simulation conference of IIT
-          Kharagpur, we are driven by a singular mission: to foster meaningful
-          debate, collaboration, and leadership.
+        Global Model United Nations (GMUN) is one such platform — a diplomatic simulation conference that translates soft skills into action through debate, negotiation, and policy-making. With GMUN entering its 4th edition, we continue our commitment to delivering a high-integrity, high-impact experience that helps students grow into confident communicators and responsible leaders.
         </p>
       </div>
 
@@ -111,16 +108,14 @@ function LegacySplit() {
         <div className="legacy-card">
           <h4>Communiqué’s Role</h4>
           <p>
-            Over the past decade, Communiqué has become the official personality
-            development body at IIT Kharagpur.
+          Established in 2006, we have led personality development initiatives at IIT Kharagpur for over a decade.
           </p>
         </div>
 
         <div className="legacy-card">
           <h4>Our Shared Mission</h4>
           <p>
-            Together, we empower students with confidence, leadership,
-            diplomacy, and professional skills.
+        Empower students with confidence, communication, leadership, and professional skills through structured growth.
           </p>
         </div>
 

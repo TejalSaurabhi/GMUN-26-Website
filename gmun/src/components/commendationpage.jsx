@@ -256,11 +256,16 @@ export default function Commendations({
     };
   }, []);
 
-
   const containerClass = isMobile ? "w-full max-w-6xl mx-auto px-4" : className;
 
   return (
-    <div style={{ marginBottom: isMobile ? 0 : "-50vh" }}>
+    <motion.div
+      style={{ marginBottom: isMobile ? 0 : "-50vh" }}
+      initial={{ y: 20, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1.5 }}
+    >
       <div
         className={containerClass}
         style={{
@@ -358,6 +363,6 @@ export default function Commendations({
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
