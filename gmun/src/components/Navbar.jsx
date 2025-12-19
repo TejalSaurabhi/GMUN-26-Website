@@ -98,7 +98,7 @@ const Navbar = () => {
           {/* Auth Button - direct registration link from Hero (offline) */}
           <li className="auth-item">
             <a
-              href="https://unstop.com/p/global-model-united-nations-2026-gmun-iit-kharagpur-1606090"
+              href="https://linktr.ee/CQ_IITKGP"
               className="magnetic-btn"
               target="_blank"
               rel="noopener noreferrer"

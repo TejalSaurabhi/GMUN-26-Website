@@ -41,7 +41,7 @@ const IP = ({mode}) => {
       {/* === Agenda Card === */}
       <div className="agenda-card-container">
         <AgendaCard
-          agenda="Assessing the Conflicts in the African Subcontinent and Their Threat to Regional Stability."
+          agenda="To cover and critically analyze all committee proceedings through unbiased journalistic reporting, interviews, and articles."
           label="UNSC"
         />
       </div>

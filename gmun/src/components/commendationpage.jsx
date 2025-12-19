@@ -197,7 +197,7 @@ export default function Commendations({
       countryName: "India",
       title: "Ambassador of India to Chile (Santiago)",
       short:
-        "Extends best wishes to the organizers of the 3rd edition of Global Model United Nations (GMUN) 2025 at IIT Kharagpur. Highlights GMUN as a platform for young leaders to engage in diplomacy, dialogue, and international cooperation.",
+        "Commends the organizers, participants, and supporters for their unwavering dedication to creating a space where future global leaders can refine their skills and contribute to addressing some of the world's most pressing challenges.",
       imageUrl: "/commendations/commendation1.svg",
       avatar: "/commendations/commi1.jpg",
     },

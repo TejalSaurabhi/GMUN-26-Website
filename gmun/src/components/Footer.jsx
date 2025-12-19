@@ -6,16 +6,16 @@ import cqLogo from "../images/CQ_Logo_White.webp";
 const QUICK_LINKS = [
   { name: "Home", path: "/" },
   { name: "About Us", path: "/AboutUs" },
-  { name: "Committees", path: "/committees" },
+  { name: "Committees", path: "/committees/1" },
   { name: "FAQs", path: "/faqs" },
   { name: "Gallery", path: "/gallery" },
 ];
 
 const SOCIAL_LINKS = [
-  { href: "https://facebook.com", icon: "fab fa-facebook-f", label: "Facebook" },
-  { href: "https://linkedin.com", icon: "fab fa-linkedin-in", label: "LinkedIn" },
-  { href: "https://instagram.com", icon: "fab fa-instagram", label: "Instagram" },
-  { href: "https://youtube.com", icon: "fab fa-youtube", label: "YouTube" },
+  { href: "https://www.facebook.com/communique.iitkgp/", icon: "fab fa-facebook-f", label: "Facebook" },
+  { href: "https://www.linkedin.com/company/communiqu%C3%A9-iit-kharagpur/?viewAsMember=true", icon: "fab fa-linkedin-in", label: "LinkedIn" },
+  { href: "https://www.instagram.com/gmun.iitkgp?igsh=ZTZlZnp4cHpqbjl3", icon: "fab fa-instagram", label: "Instagram" },
+  { href: "https://www.youtube.com/channel/UCHDd6pfVicWGwIIbqIRP64g", icon: "fab fa-youtube", label: "YouTube" },
 ];
 
 const Footer = () => {
@@ -42,7 +42,7 @@ const Footer = () => {
               </Link>
               
               <p className="footer-desc">
-                The Official Soft Skills & Personality Development Society of IIT Kharagpur.
+                The Official Soft Skills and Personality Development Society of IIT Kharagpur.
               </p>
             </div>
           </div>

@@ -83,7 +83,7 @@ const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 0.75, ease: "easeOut" }}
       >
-        <span className="hero-register-label">Register as Delegate</span>
+        <span className="hero-register-label">Register as a Delegate</span>
         <div className="hero-buttons-container">
           <button
             className="hero-register-btn hero-btn-offline"

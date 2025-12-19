@@ -54,7 +54,7 @@ const teamMembers = [
         image: "/team-images/Pritvik.webp",
         facebook: "https://www.facebook.com/share/17tWaoWGPq/",
         linkedin: "https://www.linkedin.com/in/pritvik/",
-        instagram: "https://www.instagram.com/prathahaham/"
+        instagram: "https://www.instagram.com/"
       }
     ];
     
