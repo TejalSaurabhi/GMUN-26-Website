@@ -110,7 +110,7 @@ const WB = ({mode}) => {
 
       {/* === Background Guide Box === */}
       <div style={{ marginBottom: "60px" }}>
-        <BackgroundGuideBox link="" />
+        <BackgroundGuideBox link="https://drive.google.com/file/d/12TAuqznD1rTeJ1TPWoZayF-uplcNEUwP/" />
       </div>
     </div>
   );

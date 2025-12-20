@@ -167,6 +167,7 @@
   border: 1px solid var(--glass-border);
   color: var(--text-light);
   backdrop-filter: blur(12px);
+  will-change: background, border-color, box-shadow;
 }
 
 .hero-register-btn .btn-icon {
@@ -306,6 +307,15 @@
     bottom: 0.5rem;
     left: 34%;
   }
+
+  /* Ensure offline button gold color loads immediately on mobile/tablet */
+  .hero-btn-offline {
+    background: linear-gradient(135deg, var(--accent-gold-light) 0%, var(--accent-gold) 100%) !important;
+    border-color: var(--accent-gold-light) !important;
+    color: #0a1a1c !important;
+    box-shadow: 0 4px 20px var(--gold-glow),
+                0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -320,5 +330,19 @@
     width: 100%;
     justify-content: center;
     padding: 16px 24px;
+  }
+
+  /* Ensure offline button gold color loads immediately on mobile */
+  .hero-btn-offline {
+    background: linear-gradient(135deg, var(--accent-gold-light) 0%, var(--accent-gold) 100%) !important;
+    border-color: var(--accent-gold-light) !important;
+    color: #0a1a1c !important;
+    box-shadow: 0 4px 20px var(--gold-glow),
+                0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .hero-btn-offline .btn-icon,
+  .hero-btn-offline .btn-arrow {
+    opacity: 0.9 !important;
   }
 }

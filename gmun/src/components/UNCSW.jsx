@@ -73,7 +73,7 @@ const UNCSW = ({mode}) => {
 
       {/* === Background Guide Box === */}
       <div style={{ marginBottom: "60px" }}>
-        <BackgroundGuideBox link="" />
+        <BackgroundGuideBox link="https://docs.google.com/document/d/1MtX32fLHlYWdFYp1klRNcX-UVTq1LGvL/" />
       </div>
     </div>
   );

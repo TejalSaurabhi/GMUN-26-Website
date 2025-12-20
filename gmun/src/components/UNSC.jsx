@@ -82,7 +82,7 @@ const UNSC = ({ mode = "Offline" }) => {
 
       {/* === Background Guide Box === */}
       <div style={{ marginBottom: "60px" }}>
-        <BackgroundGuideBox link="" />
+        <BackgroundGuideBox link="https://docs.google.com/document/d/1_Zq47KU1lu4b1FIOvXrUQLVPMe7yE-NX/" />
       </div>
     </div>
   );

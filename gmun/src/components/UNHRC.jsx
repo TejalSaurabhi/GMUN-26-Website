@@ -84,7 +84,7 @@ const UNHRC2 = ({mode}) => {
 
       {/* === Background Guide Box === */}
       <div style={{ marginBottom: "60px" }}>
-        <BackgroundGuideBox link="" />
+        <BackgroundGuideBox link="https://docs.google.com/document/d/1qMsirNz0u-JDJkZvoviZQvq7CjfPj0Mh/" />
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ export default function BackgroundGuideBox({ link }) {
       className="bg-guide-link"
     >
       <div className="bg-guide-card">
-        <p className="bg-guide-text">BACKGROUND GUIDE COMING SOON...</p>
+        <p className="bg-guide-text">CLICK TO VIEW STUDY GUIDE</p>
       </div>
     </a>
   );
