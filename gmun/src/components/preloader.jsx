@@ -17,7 +17,7 @@ const Preloader = () => {
 
     // --- TRIGGER EXIT ---
     // Timing: 2500ms (start) + 1000ms (text delay) + 8000ms (writing) + 1500ms ( removed buffer)
-    const exitTimer = setTimeout(() => setIsVisible(false), 7000); 
+    const exitTimer = setTimeout(() => setIsVisible(false), 7000); //7000 
 
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -94,8 +94,8 @@ const Preloader = () => {
                   viewBox="0 0 146.66801 19.049952" 
                   style={{ 
                       position: "absolute", 
-                      left: isMobile ? "0" : "36%", 
-                      marginTop: isMobile ? "-45%" : "-30%",
+                      left: isMobile ? "0" : "35%", 
+                      marginTop: isMobile ? "-45%" : "-32%",
                       width: isMobile ? "80%" : "35%", 
                       height: "auto",
                       overflow: "visible"
