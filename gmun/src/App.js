@@ -41,7 +41,7 @@ const App = () => {
 
   // Let the preloader always play fully, independent of API latency
   useEffect(() => {
-    const timer = setTimeout(() => setShowPreloader(false), 7000); // play full animation (~4s)
+    const timer = setTimeout(() => setShowPreloader(false), 8000); // play full animation (~4s)
     return () => clearTimeout(timer);
   }, []);
 
