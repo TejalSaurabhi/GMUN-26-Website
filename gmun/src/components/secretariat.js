@@ -26,7 +26,7 @@ const secretrait = [
   },
   {
     name: "KARTIK PATIL",
-    role: "Secretariat",
+    role: "UNCSW",
     image: "/team-images/Kartik.webp",
     facebook: "https://www.facebook.com/share/1FrL9SahQy/",
     linkedin: "https://www.linkedin.com/in/kartik-patil-957834201/",
