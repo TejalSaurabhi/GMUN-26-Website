@@ -24,7 +24,14 @@ const secretrait = [
     linkedin: "https://www.linkedin.com/in/divyansh-joshi-b98b19321/",
     instagram: "https://www.instagram.com/j.divyansh26"
   },
-
+  {
+    name: "KARTIK PATIL",
+    role: "Secretariat",
+    image: "/team-images/Kartik.webp",
+    facebook: "https://www.facebook.com/share/1FrL9SahQy/",
+    linkedin: "https://www.linkedin.com/in/kartik-patil-957834201/",
+    instagram: "https://www.instagram.com/kmz_2006/"
+  },
   {
     name: "MAADHAV GOEL",
     role: "UNSC",

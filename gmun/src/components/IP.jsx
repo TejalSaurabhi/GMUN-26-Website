@@ -63,7 +63,7 @@ const IP = ({mode}) => {
 
       {/* === Background Guide Box === */}
       <div style={{ marginBottom: "60px" }}>
-        <BackgroundGuideBox link="https://drive.google.com/drive/folders/1V5SJyNcVgkydht_R3715xLzcYHPo8h8S" />
+        <BackgroundGuideBox link="https://drive.google.com/file/d/1i5Bby4B9yMlgKisPCRHUn7cOVVNhKRZe/" />
       </div>
     </div>
   );
