@@ -10,7 +10,7 @@ const message = `
 Greetings delegates!
 
 It gives us immense pleasure to serve as your Executive Board for the simulation of the
-World Bank at GMUN’26.
+World Bank at GMUN'26.
 
 We have made a background guide to help you kick start your research. The background
 guide has been written with the thought that it will serve as a map for you to navigate
@@ -25,7 +25,7 @@ arguments. You use your research to form your argument; your research cannot be 
 only argument. That is where analysis steps in.
 
 It is extremely important for you to listen to everything other delegates talk about in the
-committee, so don’t keep yourself too occupied writing your own speeches, but truly
+committee, so don't keep yourself too occupied writing your own speeches, but truly
 listen to what other delegates speak in the committee. It will help you give direction to
 the debate happening in the committee and also some point to elaborate on or rebuttal.
 The trick here is to make sure you make notes of the documents that you have read and
@@ -96,7 +96,7 @@ const WB = ({mode}) => {
             name: "Mayank Kedia",
             role: "Co-Chair",
             image: "/team-images/Executive Board Images/Mayank Kedia.jpeg",
-            bio: "Mayank Kedia has participated in 30+ debates and Model United Nations conferences, known for his clarity of thought, structured argumentation, and diplomatic approach. His journey spans from hosting fireside chats with ambassadors and sharing lunch-table conversations with ministers to actively leading discussions in ECOFIN and other economic committees, where his interest in global policy and macro-economic issues stands out. Beyond the speaking circuit, Mayank’s versatility is reflected in his unconventional trajectory—from running high-reach meme pages to working in consulting—showcasing both creativity and analytical rigor. Across every platform, he brings intellectual depth, persuasive communication, and a commitment to meaningful dialogue.",
+            bio: "Mayank Kedia has participated in 30+ debates and Model United Nations conferences, known for his clarity of thought, structured argumentation, and diplomatic approach. His journey spans from hosting fireside chats with ambassadors and sharing lunch-table conversations with ministers to actively leading discussions in ECOFIN and other economic committees, where his interest in global policy and macro-economic issues stands out. Beyond the speaking circuit, Mayank's versatility is reflected in his unconventional trajectory—from running high-reach meme pages to working in consulting—showcasing both creativity and analytical rigor. Across every platform, he brings intellectual depth, persuasive communication, and a commitment to meaningful dialogue.",
           },
           {
             name: "Vyom Gupta",
