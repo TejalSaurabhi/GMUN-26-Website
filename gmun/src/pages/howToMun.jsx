@@ -322,6 +322,10 @@ export default function HowToMUN() {
               link="https://youtu.be/8NwN1NiIDdI?si=pabTHhdeBuDpV78e"
               title="Moderated Caucus"
             />
+            <VideoCard
+              link="https://youtu.be/NGLGImhxEWc"
+              title="How To Mun Workshop"
+            />
           </div>
         </motion.section>
       </div>
