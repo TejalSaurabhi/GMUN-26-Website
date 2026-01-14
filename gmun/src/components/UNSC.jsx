@@ -66,13 +66,13 @@ const UNSC = ({ mode = "Offline" }) => {
         chairs={[
           {
             name: "Kingshuk Maulik",
-            role: "Co-Chair",
+            role: "Co-President",
             image: "/team-images/Executive Board Images/Kingshuk.jpeg",
             bio: "Kingshuk is currently pursuing his Honours degree in Food Science and Technology at GITAM (Deemed to be University), Hyderabad. With a rich and diverse MUN journey, he brings extensive experience of chairing across 15+ types of committees, ranging from traditional forums such as UNHRC, UNFCCC, and UNSC to highly specialized and creative committees including Marvel and Star Wars. \n\nAs the Founder and Former President of GMUN Hyderabad, he has played a pivotal role in building the organization into a recognized hub of diplomacy, debate, and discourse on campus. Under his leadership, GMUN has not only fostered meaningful dialogue but has also successfully organized one of the largest student-led events at the university, reflecting his strong organizational and leadership capabilities. \n\nFor him, Model United Nations is the ideal intersection of diplomacy, debate, and storytelling. He is known for his patient, fair, and inclusive approach, ensuring that every delegate feels heard and encouraged to participate. Outside the MUN circuit, he is also an active film critic across multiple platforms, bringing a creative lens to his perspectives. Guided by the belief that “with great power, there must also come great responsibility” 🕷️, he strives to make every committee a space for collaboration, creativity, and critical thinking."
           },
           {
             name: "Niharika Jaiswal",
-            role: "Co-Chair",
+            role: "Co-President",
             image: "/team-images/Executive Board Images/Niharika Jaiswal.jpg",
             bio: "Niharika Jaiswal is a Sociology graduate from Banaras Hindu University (BHU) and currently pursuing her Master's in Sociology at the same institution. A seasoned debater and critical thinker, she brings sharp insights and nuanced perspectives to discourse and diplomacy. \n\nWith 90+ MUNs and 100+ conventional debates, she has chaired and participated in international as well as national platforms, including IITs and NITs. A CBSE Class 12 District Topper, district-level debate and essay champion, and Best Speaker (Faculty of Arts, BHU), she has also won multiple gold medals at BHU. An active volunteer and organizer of academic seminars, Niharika balances her scholarly pursuits with interests in art, music, Hindu mythology, and public debates.",
           },

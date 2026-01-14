@@ -6,7 +6,6 @@ import cqLogo from "../images/CQ_Logo_White.webp";
 const QUICK_LINKS = [
   { name: "Home", path: "/" },
   { name: "About Us", path: "/AboutUs" },
-  { name: "Committees", path: "/committees/1" },
   { name: "FAQs", path: "/faqs" },
   { name: "Gallery", path: "/gallery" },
 ];
@@ -84,7 +83,7 @@ const Footer = () => {
           <h3>EVENT INFO</h3>
           <div className="underline"></div>
           <p>
-            <strong>Venue:</strong> Nalanda, IIT Kharagpur<br />
+            <strong>Venue:</strong> Nalanda Classroom Complex, IIT Kharagpur<br />
             Kharagpur, West Bengal – 721302<br />
             <strong>Dates:</strong> 9th – 11th January 2026
           </p>
@@ -94,7 +93,6 @@ const Footer = () => {
       {/* COPYRIGHT AREA */}
       <div className="copyright-area">
         <div className="copyright-content">
-          <span>© 2026 Communiqué IIT Kharagpur</span>
           <span className="divider">|</span>
           <span>Developed by the Communiqué Tech Team</span>
         </div>

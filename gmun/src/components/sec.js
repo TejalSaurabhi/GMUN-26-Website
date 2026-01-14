@@ -345,7 +345,7 @@ const Sec = () => {
             onClick={() => handleTabClick("secretariat")}
             disabled={isAnimating}
           >
-            Secretariat
+            Secretaries-in-Charge
           </button>
         </div>
 

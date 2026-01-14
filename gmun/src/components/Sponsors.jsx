@@ -28,13 +28,13 @@ const previousSponsors = [
     id: 2,
     name: 'vehere',
     logo: '/gallery/sponsors/sponsor1.webp',
-    description: 'Co-Event Sponsor',
+    description: 'Co-Event Partner',
   },
   {
     id: 3,
     name: 'iQuanta',
     logo: '/gallery/sponsors/iQuanta.webp',
-    description: 'Education Sponsor',
+    description: 'Education Partner',
   },
   {
     id: 4,
@@ -52,7 +52,7 @@ const previousSponsors = [
     id: 6,
     name: 'Unstop',
     logo: '/gallery/sponsors/unstopng.webp',
-    description: 'Event Sponsor',
+    description: 'Event Partner',
   },
   {
     id: 7,
@@ -67,12 +67,6 @@ const previousSponsors = [
     description: 'Previous Association',
   },
   // Moved recent sponsors to previous section
-  {
-    id: 9,
-    name: 'Adda52',
-    logo: '/gallery/sponsors/TITLE.webp',
-    description: 'Title Gaming Partner',
-  },
   {
     id: 10,
     name: 'IDP Education',

@@ -36,7 +36,7 @@ const Preloader = () => {
     },
     moved: { 
       scale: 1,
-      x: isMobile ? 0 : -300,    
+      x: isMobile ? 0 : -340,    
       y: isMobile ? -100 : 0,    
       opacity: 1,
       transition: { 
